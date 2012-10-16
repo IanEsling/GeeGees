@@ -14,14 +14,14 @@ import static org.junit.Assert.assertEquals;
 public class TipsDecoratorTest {
 
     Collection<Horse> horses;
-    Map<String, Integer> tips;
+    Map<String, Integer> expectedTips;
 
     @Before
-    public void createTips(){
-        tips = newHashMap();
-        tips.put("Kingdom", 5);
-        tips.put("Cool Metallic", 1);
-        tips.put("Lucky Kitten", 0);
+    public void createExpectedTips(){
+        expectedTips = newHashMap();
+        expectedTips.put("Kingdom", 5);
+        expectedTips.put("Cool Metallic", 1);
+        expectedTips.put("Lucky Kitten", 0);
     }
 
     @Before
@@ -37,7 +37,7 @@ public class TipsDecoratorTest {
         TipsDecorator decorator = new TipsDecorator(Jsoup.parseBodyFragment(getHorsesHtml()), horses);
         assertEquals("wrong number of horses", 3, decorator.getHorses().size());
         for (Horse horse : decorator.getHorses()) {
-            assertEquals("wrong number of tips", tips.get(horse.getName()), horse.getTips());
+            assertEquals("wrong number of expectedTips", expectedTips.get(horse.getName()), horse.getTips());
         }
     }
 
@@ -63,7 +63,7 @@ public class TipsDecoratorTest {
                 " <span id=\"sc_sort-chance\" onclick=\"sortBlock('chance');\" onmouseover=\"$(this).addClass('hover');\" onmouseout=\"$(this).removeClass('hover');\" title=\"Sort runners by Win chance\">WIN CHANCE</span>\n" +
                 " </th>\n" +
                 " <th class=\"c\">\n" +
-                " <span id=\"sc_sort-tips\" class=\"tips\" onclick=\"sortBlock('tips');\" onmouseover=\"$(this).addClass('hover');\" onmouseout=\"$(this).removeClass('hover');\" title=\"Sort runners by Tips\">TIPS</span><br>\n" +
+                " <span id=\"sc_sort-expectedTips\" class=\"expectedTips\" onclick=\"sortBlock('expectedTips');\" onmouseover=\"$(this).addClass('hover');\" onmouseout=\"$(this).removeClass('hover');\" title=\"Sort runners by Tips\">TIPS</span><br>\n" +
                 " <span id=\"sc_sort-rpr\" class=\"rpr\" title=\"Sort runners by Racing Post Rating\" onmouseout=\"$(this).removeClass('hover');\" onmouseover=\"$(this).addClass('hover');\" onclick=\"sortBlock('rpr');\">RPR</span>\n" +
                 " <span id=\"sc_sort-ts\" class=\"ts\" title=\"Sort runners by Top Speed\" onmouseout=\"$(this).removeClass('hover');\" onmouseover=\"$(this).addClass('hover');\" onclick=\"sortBlock('ts');\">TS</span>\n" +
                 " </th>\n" +
@@ -117,7 +117,7 @@ public class TipsDecoratorTest {
                 " &nbsp; </div>\n" +
                 " </td>\n" +
                 " <td class=\"two c\">\n" +
-                " <div class=\"tips\">1</div>\n" +
+                " <div class=\"expectedTips\">1</div>\n" +
                 " <div class=\"rpr\">89</div>\n" +
                 " <div class=\"ts\">79 </div>\n" +
                 " </td>\n" +
@@ -273,7 +273,7 @@ public class TipsDecoratorTest {
                 " </div>\n" +
                 " </td>\n" +
                 " <td class=\"two c\">\n" +
-                " <div class=\"tips\">5</div>\n" +
+                " <div class=\"expectedTips\">5</div>\n" +
                 " <div class=\"rpr\">89</div>\n" +
                 " <div class=\"ts\">81 </div>\n" +
                 " </td>\n" +
@@ -391,7 +391,7 @@ public class TipsDecoratorTest {
                 " </div>\n" +
                 " </td>\n" +
                 " <td class=\"two c\">\n" +
-                " <div class=\"tips\">0</div>\n" +
+                " <div class=\"expectedTips\">0</div>\n" +
                 " <div class=\"rpr\">73</div>\n" +
                 " <div class=\"ts\">Ñ</div>\n" +
                 " </td>\n" +
@@ -491,7 +491,7 @@ public class TipsDecoratorTest {
                 " </div>\n" +
                 " </td>\n" +
                 " <td class=\"two c\">\n" +
-                " <div class=\"tips\">0</div>\n" +
+                " <div class=\"expectedTips\">0</div>\n" +
                 " <div class=\"rpr\">53</div>\n" +
                 " <div class=\"ts\">39 </div>\n" +
                 " </td>\n" +
@@ -609,7 +609,7 @@ public class TipsDecoratorTest {
                 " </div>\n" +
                 " </td>\n" +
                 " <td class=\"two c\">\n" +
-                " <div class=\"tips\">0</div>\n" +
+                " <div class=\"expectedTips\">0</div>\n" +
                 " <div class=\"rpr\">65</div>\n" +
                 " <div class=\"ts\">Ñ</div>\n" +
                 " </td>\n" +
@@ -709,7 +709,7 @@ public class TipsDecoratorTest {
                 " </div>\n" +
                 " </td>\n" +
                 " <td class=\"two c\">\n" +
-                " <div class=\"tips\">0</div>\n" +
+                " <div class=\"expectedTips\">0</div>\n" +
                 " <div class=\"rpr\">55</div>\n" +
                 " <div class=\"ts\">44 </div>\n" +
                 " </td>\n" +
@@ -827,7 +827,7 @@ public class TipsDecoratorTest {
                 " </div>\n" +
                 " </td>\n" +
                 " <td class=\"two c\">\n" +
-                " <div class=\"tips\">0</div>\n" +
+                " <div class=\"expectedTips\">0</div>\n" +
                 " <div class=\"rpr\">Ñ</div>\n" +
                 " <div class=\"ts\">Ñ</div>\n" +
                 " </td>\n" +

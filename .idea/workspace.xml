@@ -2,9 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4906eb3e-3c23-416b-a2bb-2c3f55caf229" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/test/java/geegees/TipsDecoratorTest.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/geegees/BettingForecast.java" afterPath="$PROJECT_DIR$/src/main/java/geegees/BettingForecast.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/java/geegees/BettingForecastTest.java" afterPath="$PROJECT_DIR$/src/test/java/geegees/BettingForecastTest.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/java/geegees/TipsDecoratorTest.java" afterPath="$PROJECT_DIR$/src/test/java/geegees/TipsDecoratorTest.java" />
     </list>
     <ignored path="GeeGees.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -22,21 +20,6 @@
     <disable_hints />
   </component>
   <component name="DebuggerManager">
-    <line_breakpoints>
-      <breakpoint url="file://$PROJECT_DIR$/src/main/java/geegees/TipsDecorator.java" line="20" class="geegees.TipsDecorator" package="geegees">
-        <option name="ENABLED" value="true" />
-        <option name="LOG_ENABLED" value="false" />
-        <option name="LOG_EXPRESSION_ENABLED" value="false" />
-        <option name="SUSPEND_POLICY" value="SuspendAll" />
-        <option name="COUNT_FILTER_ENABLED" value="false" />
-        <option name="COUNT_FILTER" value="0" />
-        <option name="CONDITION_ENABLED" value="false" />
-        <option name="CLASS_FILTERS_ENABLED" value="false" />
-        <option name="INSTANCE_FILTERS_ENABLED" value="false" />
-        <option name="CONDITION" value="" />
-        <option name="LOG_MESSAGE" value="" />
-      </breakpoint>
-    </line_breakpoints>
     <breakpoint_any>
       <breakpoint>
         <option name="NOTIFY_CAUGHT" value="true" />
@@ -77,13 +60,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="TipsDecoratorTest.java" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/test/java/geegees/TipsDecoratorTest.java">
+      <file leaf-file-name="RacingPostTest.java" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/test/java/geegees/RacingPostTest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="36" column="0" selection-start="892" selection-end="892" vertical-scroll-proportion="0.61799216">
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
+            <state line="43" column="14" selection-start="1326" selection-end="1326" vertical-scroll-proportion="0.61025643">
+              <folding />
             </state>
           </provider>
         </entry>
@@ -506,6 +487,7 @@
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="JetGradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3290653" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.5633803" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
@@ -515,11 +497,10 @@
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24927954" sideWeight="0.27144685" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24927954" sideWeight="0.6709347" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="true" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.7285531" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
@@ -601,13 +582,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/geegees/RacingPostTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="43" column="14" selection-start="1326" selection-end="1326" vertical-scroll-proportion="0.3423077">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$MAVEN_REPOSITORY$/org/jsoup/jsoup/1.7.1/jsoup-1.7.1-sources.jar!/org/jsoup/parser/ParseErrorList.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="27" column="0" selection-start="560" selection-end="560" vertical-scroll-proportion="0.24324325">
@@ -650,19 +624,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/geegees/BettingForecast.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/geegees/TipsDecorator.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="45" column="0" selection-start="1639" selection-end="1639" vertical-scroll-proportion="0.7444589">
+        <state line="20" column="0" selection-start="603" selection-end="603" vertical-scroll-proportion="0.06666667">
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/geegees/BettingForecastTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="31" column="46" selection-start="882" selection-end="882" vertical-scroll-proportion="1.1316819">
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -673,19 +638,35 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/geegees/TipsDecorator.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/geegees/BettingForecast.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="29" column="49" selection-start="891" selection-end="891" vertical-scroll-proportion="0.3897436">
+        <state line="45" column="0" selection-start="1639" selection-end="1639" vertical-scroll-proportion="0.9491525">
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/geegees/BettingForecastTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="31" column="46" selection-start="882" selection-end="882" vertical-scroll-proportion="0.5110821">
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/test/java/geegees/TipsDecoratorTest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="36" column="0" selection-start="892" selection-end="892" vertical-scroll-proportion="0.61799216">
+        <state line="20" column="20" selection-start="480" selection-end="480" vertical-scroll-proportion="0.14602347">
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/geegees/RacingPostTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="43" column="14" selection-start="1326" selection-end="1326" vertical-scroll-proportion="0.61025643">
+          <folding />
         </state>
       </provider>
     </entry>
