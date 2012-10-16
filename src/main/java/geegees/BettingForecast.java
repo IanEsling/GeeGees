@@ -43,21 +43,4 @@ public class BettingForecast {
         return horses;
     }
 
-    class Horse {
-        String name;
-        private String odds;
-
-        Horse(String name, String odds) {
-            this.name = name;
-            this.odds = odds;
-        }
-
-        public String getName() {
-            return name;
-        }
-
-        public String getOdds() {
-            return odds;
-        }
-    }
 }

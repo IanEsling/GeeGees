@@ -4,7 +4,6 @@ import org.jsoup.Jsoup;
 import org.junit.Before;
 import org.junit.Test;
 
-import java.util.Collection;
 import java.util.Map;
 
 import static com.google.common.collect.Lists.newArrayList;
@@ -29,10 +28,10 @@ public class BettingForecastTest {
     }
 
     @Test
-    public void shouldParseHorseNamesAndOdds(){
+    public void shouldParseBettingForecastHtml(){
         bettingForecast = new BettingForecast(Jsoup.parse(getBettingForecastHTML()));
         assertTrue("wrong number of horses", bettingForecast.getHorses().size() == 6);
-        for (BettingForecast.Horse horse : bettingForecast.getHorses()) {
+        for (Horse horse : bettingForecast.getHorses()) {
             assertTrue("horse not found", horses.keySet().contains(horse.getName()));
             assertEquals("horse odds not correct", horses.get(horse.getName()), horse.getOdds());
         }

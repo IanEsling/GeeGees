@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="4906eb3e-3c23-416b-a2bb-2c3f55caf229" name="Default" comment="" />
+    <list default="true" id="4906eb3e-3c23-416b-a2bb-2c3f55caf229" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/test/java/geegees/TipsDecoratorTest.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/geegees/BettingForecast.java" afterPath="$PROJECT_DIR$/src/main/java/geegees/BettingForecast.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/java/geegees/BettingForecastTest.java" afterPath="$PROJECT_DIR$/src/test/java/geegees/BettingForecastTest.java" />
+    </list>
     <ignored path="GeeGees.iws" />
     <ignored path=".idea/workspace.xml" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -18,6 +22,21 @@
     <disable_hints />
   </component>
   <component name="DebuggerManager">
+    <line_breakpoints>
+      <breakpoint url="file://$PROJECT_DIR$/src/main/java/geegees/TipsDecorator.java" line="20" class="geegees.TipsDecorator" package="geegees">
+        <option name="ENABLED" value="true" />
+        <option name="LOG_ENABLED" value="false" />
+        <option name="LOG_EXPRESSION_ENABLED" value="false" />
+        <option name="SUSPEND_POLICY" value="SuspendAll" />
+        <option name="COUNT_FILTER_ENABLED" value="false" />
+        <option name="COUNT_FILTER" value="0" />
+        <option name="CONDITION_ENABLED" value="false" />
+        <option name="CLASS_FILTERS_ENABLED" value="false" />
+        <option name="INSTANCE_FILTERS_ENABLED" value="false" />
+        <option name="CONDITION" value="" />
+        <option name="LOG_MESSAGE" value="" />
+      </breakpoint>
+    </line_breakpoints>
     <breakpoint_any>
       <breakpoint>
         <option name="NOTIFY_CAUGHT" value="true" />
@@ -58,10 +77,10 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="BettingForecastTest.java" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/test/java/geegees/BettingForecastTest.java">
+      <file leaf-file-name="TipsDecoratorTest.java" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/test/java/geegees/TipsDecoratorTest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="31" column="44" selection-start="859" selection-end="859" vertical-scroll-proportion="0.6571056">
+            <state line="36" column="0" selection-start="892" selection-end="892" vertical-scroll-proportion="0.61799216">
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -76,14 +95,21 @@
       <setting name="OPEN_NEW_TAB" value="false" />
     </FindUsagesManager>
   </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
         <option value="$PROJECT_DIR$/pom.xml" />
         <option value="$PROJECT_DIR$/src/test/java/geegees/RacingPostService.java" />
         <option value="$PROJECT_DIR$/src/test/java/geegees/RacingPostTest.java" />
-        <option value="$PROJECT_DIR$/src/main/java/geegees/BettingForecast.java" />
         <option value="$PROJECT_DIR$/src/test/java/geegees/BettingForecastTest.java" />
+        <option value="$PROJECT_DIR$/src/test/java/geegees/AddTipsTest.java" />
+        <option value="$PROJECT_DIR$/src/main/java/geegees/BettingForecast.java" />
+        <option value="$PROJECT_DIR$/src/main/java/geegees/Horse.java" />
+        <option value="$PROJECT_DIR$/src/main/java/geegees/TipsDecorator.java" />
+        <option value="$PROJECT_DIR$/src/test/java/geegees/TipsDecoratorTest.java" />
       </list>
     </option>
   </component>
@@ -99,7 +125,7 @@
     <option name="width" value="1436" />
     <option name="height" value="878" />
   </component>
-  <component name="ProjectLevelVcsManager" settingsEditedManually="false">
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <OptionsSetting value="true" id="Add" />
     <OptionsSetting value="true" id="Remove" />
     <OptionsSetting value="true" id="Checkout" />
@@ -236,6 +262,8 @@
     <property name="GoToFile.includeJavaFiles" value="false" />
     <property name="last_directory_selection" value="$PROJECT_DIR$/src/test/java/geegees" />
     <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary" value="JUnit4" />
+    <property name="options.splitter.main.proportions" value="0.3" />
+    <property name="options.lastSelected" value="project.propVCSSupport.Mappings" />
     <property name="recentsLimit" value="5" />
     <property name="MemberChooser.sorted" value="false" />
     <property name="MemberChooser.copyJavadoc" value="false" />
@@ -245,6 +273,8 @@
     <property name="FullScreen" value="false" />
     <property name="MemberChooser.showClasses" value="true" />
     <property name="GoToClass.includeLibraries" value="false" />
+    <property name="options.searchVisible" value="true" />
+    <property name="options.splitter.details.proportions" value="0.2" />
     <property name="dynamic.classpath" value="false" />
   </component>
   <component name="RecentsManager">
@@ -258,7 +288,7 @@
       <recent name="geegees" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.BettingForecastTest">
+  <component name="RunManager" selected="JUnit.TipsDecoratorTest">
     <configuration default="false" name="RacingPostTest" type="JUnit" factoryName="JUnit" temporary="true">
       <module name="GeeGees" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
@@ -337,6 +367,34 @@
       <ConfigurationWrapper RunnerId="Run" />
       <method />
     </configuration>
+    <configuration default="false" name="TipsDecoratorTest" type="JUnit" factoryName="JUnit" temporary="true">
+      <module name="GeeGees" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PACKAGE_NAME" value="geegees" />
+      <option name="MAIN_CLASS_NAME" value="geegees.TipsDecoratorTest" />
+      <option name="METHOD_NAME" />
+      <option name="TEST_OBJECT" value="class" />
+      <option name="VM_PARAMETERS" value="-ea" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="moduleWithDependencies" />
+      </option>
+      <envs />
+      <patterns />
+      <RunnerSettings RunnerId="Debug">
+        <option name="DEBUG_PORT" value="" />
+        <option name="TRANSPORT" value="0" />
+        <option name="LOCAL" value="true" />
+      </RunnerSettings>
+      <RunnerSettings RunnerId="Run" />
+      <ConfigurationWrapper RunnerId="Debug" />
+      <ConfigurationWrapper RunnerId="Run" />
+      <method />
+    </configuration>
     <configuration default="true" type="Remote" factoryName="Remote">
       <option name="USE_SOCKET_TRANSPORT" value="true" />
       <option name="SERVER_MODE" value="false" />
@@ -411,10 +469,11 @@
         <option name="Maven.BeforeRunTask" enabled="false" />
       </method>
     </configuration>
-    <list size="3">
+    <list size="4">
       <item index="0" class="java.lang.String" itemvalue="JUnit.RacingPostTest" />
       <item index="1" class="java.lang.String" itemvalue="JUnit.BettingForecastTest" />
       <item index="2" class="java.lang.String" itemvalue="JUnit.RacingPostTest.getBettingForecastForEachRace" />
+      <item index="3" class="java.lang.String" itemvalue="JUnit.TipsDecoratorTest" />
     </list>
     <configuration name="&lt;template&gt;" type="TestNG" default="true" selected="false">
       <option name="MAIN_CLASS_NAME" />
@@ -497,7 +556,7 @@
     <option name="SHORT_DIFF_EXTRA_LINES" value="2" />
     <option name="SOFT_WRAPS_IN_SHORT_DIFF" value="true" />
     <option name="INCLUDE_TEXT_INTO_PATCH" value="false" />
-    <option name="INCLUDE_TEXT_INTO_SHELF" value="false" />
+    <option name="INCLUDE_TEXT_INTO_SHELF" value="true" />
     <option name="CREATE_PATCH_EXPAND_DETAILS_DEFAULT" value="true" />
     <option name="SHOW_FILE_HISTORY_DETAILS" value="true" />
     <option name="SHOW_VCS_ERROR_NOTIFICATIONS" value="true" />
@@ -593,14 +652,37 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/geegees/BettingForecast.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="37" column="0" selection-start="1453" selection-end="1453" vertical-scroll-proportion="0.6571056">
+        <state line="45" column="0" selection-start="1639" selection-end="1639" vertical-scroll-proportion="0.7444589">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/test/java/geegees/BettingForecastTest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="31" column="44" selection-start="859" selection-end="859" vertical-scroll-proportion="0.6571056">
+        <state line="31" column="46" selection-start="882" selection-end="882" vertical-scroll-proportion="1.1316819">
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/geegees/Horse.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="24" column="18" selection-start="412" selection-end="412" vertical-scroll-proportion="0.86153847">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/geegees/TipsDecorator.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="29" column="49" selection-start="891" selection-end="891" vertical-scroll-proportion="0.3897436">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/geegees/TipsDecoratorTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="36" column="0" selection-start="892" selection-end="892" vertical-scroll-proportion="0.61799216">
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
