@@ -117,7 +117,7 @@ public class TipsDecoratorTest {
                 " &nbsp; </div>\n" +
                 " </td>\n" +
                 " <td class=\"two c\">\n" +
-                " <div class=\"expectedTips\">1</div>\n" +
+                " <div class=\"tips\">1</div>\n" +
                 " <div class=\"rpr\">89</div>\n" +
                 " <div class=\"ts\">79 </div>\n" +
                 " </td>\n" +
@@ -273,7 +273,7 @@ public class TipsDecoratorTest {
                 " </div>\n" +
                 " </td>\n" +
                 " <td class=\"two c\">\n" +
-                " <div class=\"expectedTips\">5</div>\n" +
+                " <div class=\"tips\">5</div>\n" +
                 " <div class=\"rpr\">89</div>\n" +
                 " <div class=\"ts\">81 </div>\n" +
                 " </td>\n" +
@@ -391,7 +391,7 @@ public class TipsDecoratorTest {
                 " </div>\n" +
                 " </td>\n" +
                 " <td class=\"two c\">\n" +
-                " <div class=\"expectedTips\">0</div>\n" +
+                " <div class=\"tips\">0</div>\n" +
                 " <div class=\"rpr\">73</div>\n" +
                 " <div class=\"ts\">�</div>\n" +
                 " </td>\n" +
@@ -491,7 +491,7 @@ public class TipsDecoratorTest {
                 " </div>\n" +
                 " </td>\n" +
                 " <td class=\"two c\">\n" +
-                " <div class=\"expectedTips\">0</div>\n" +
+                " <div class=\"tips\">0</div>\n" +
                 " <div class=\"rpr\">53</div>\n" +
                 " <div class=\"ts\">39 </div>\n" +
                 " </td>\n" +
@@ -609,7 +609,7 @@ public class TipsDecoratorTest {
                 " </div>\n" +
                 " </td>\n" +
                 " <td class=\"two c\">\n" +
-                " <div class=\"expectedTips\">0</div>\n" +
+                " <div class=\"tips\">0</div>\n" +
                 " <div class=\"rpr\">65</div>\n" +
                 " <div class=\"ts\">&#8211;</div>\n" +
                 " </td>\n" +
@@ -709,7 +709,7 @@ public class TipsDecoratorTest {
                 " </div>\n" +
                 " </td>\n" +
                 " <td class=\"two c\">\n" +
-                " <div class=\"expectedTips\">0</div>\n" +
+                " <div class=\"tips\">0</div>\n" +
                 " <div class=\"rpr\">55</div>\n" +
                 " <div class=\"ts\">44 </div>\n" +
                 " </td>\n" +
@@ -827,7 +827,7 @@ public class TipsDecoratorTest {
                 " </div>\n" +
                 " </td>\n" +
                 " <td class=\"two c\">\n" +
-                " <div class=\"expectedTips\">0</div>\n" +
+                " <div class=\"tips\">0</div>\n" +
                 " <div class=\"rpr\">&#8211;</div>\n" +
                 " <div class=\"ts\">&#8211;</div>\n" +
                 " </td>\n" +
