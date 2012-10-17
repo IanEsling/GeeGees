@@ -15,7 +15,6 @@ public class TipsDecorator {
         this.horses = horses;
         Elements runners = document.select("table#sc_sortBlock > tbody");
         for (Element runner : runners){
-
             String name = runner.select("td.h").get(0).getElementsByTag("b").get(0).text();
             Horse horse = getHorseByName(name);
             if (horse != null) {

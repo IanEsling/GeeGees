@@ -5,6 +5,8 @@ import com.google.common.collect.Collections2;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.nodes.TextNode;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.Collection;
 import java.util.List;
@@ -12,9 +14,12 @@ import java.util.List;
 import static com.google.common.collect.Lists.newArrayList;
 
 public class BettingForecast {
+    Logger logger = LoggerFactory.getLogger(BettingForecast.class);
+
     Collection<Horse> horses = newArrayList();
 
     public BettingForecast(Document document) {
+        logger.info("loading betting forecast...");
         Element favourite = document.getElementsByTag("b").get(0);
         final String favouriteName = favourite.getElementsByTag("a").get(0).text();
         horses.add(new Horse(favouriteName, favourite.textNodes().get(0).text().trim()));
