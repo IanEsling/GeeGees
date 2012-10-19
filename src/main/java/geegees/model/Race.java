@@ -1,4 +1,4 @@
-package geegees;
+package geegees.model;
 
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;

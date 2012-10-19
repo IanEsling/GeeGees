@@ -1,5 +1,6 @@
-package geegees;
+package geegees.model;
 
+import geegees.model.Race;
 import org.jsoup.Jsoup;
 import org.junit.Test;
 

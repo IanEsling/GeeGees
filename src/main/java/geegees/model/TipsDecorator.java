@@ -1,11 +1,10 @@
-package geegees;
+package geegees.model;
 
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
 import java.util.Collection;
-import java.util.List;
 
 public class TipsDecorator {
 

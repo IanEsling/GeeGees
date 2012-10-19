@@ -1,5 +1,7 @@
-package geegees;
+package geegees.model;
 
+import geegees.model.Horse;
+import geegees.model.TipsDecorator;
 import org.jsoup.Jsoup;
 import org.junit.Before;
 import org.junit.Test;
@@ -63,7 +65,7 @@ public class TipsDecoratorTest {
                 " <span id=\"sc_sort-chance\" onclick=\"sortBlock('chance');\" onmouseover=\"$(this).addClass('hover');\" onmouseout=\"$(this).removeClass('hover');\" title=\"Sort runners by Win chance\">WIN CHANCE</span>\n" +
                 " </th>\n" +
                 " <th class=\"c\">\n" +
-                " <span id=\"sc_sort-expectedTips\" class=\"expectedTips\" onclick=\"sortBlock('expectedTips');\" onmouseover=\"$(this).addClass('hover');\" onmouseout=\"$(this).removeClass('hover');\" title=\"Sort runners by Tips\">TIPS</span><br>\n" +
+                " <span id=\"sc_sort-expectedTips\" class=\"tips\" onclick=\"sortBlock('expectedTips');\" onmouseover=\"$(this).addClass('hover');\" onmouseout=\"$(this).removeClass('hover');\" title=\"Sort runners by Tips\">TIPS</span><br>\n" +
                 " <span id=\"sc_sort-rpr\" class=\"rpr\" title=\"Sort runners by Racing Post Rating\" onmouseout=\"$(this).removeClass('hover');\" onmouseover=\"$(this).addClass('hover');\" onclick=\"sortBlock('rpr');\">RPR</span>\n" +
                 " <span id=\"sc_sort-ts\" class=\"ts\" title=\"Sort runners by Top Speed\" onmouseout=\"$(this).removeClass('hover');\" onmouseover=\"$(this).addClass('hover');\" onclick=\"sortBlock('ts');\">TS</span>\n" +
                 " </th>\n" +
@@ -203,7 +205,7 @@ public class TipsDecoratorTest {
                 " <b class=\"black\">3</b>/6 <a href=\"http://www.racingpost.com/horses/result_home.sd?race_id=559951&amp;r_date=&amp;popup=yes\" onclick=\"scorecards.send(559951);return Html.popup(this, {width:695, height:800})\" title=\"tracked leaders, 4th halfway, ridden to go 3rd over 1f out, no extra inside final furlong\">(4?L Lucked Out 9-5)</a> b 11/8F </td>\n" +
                 " <td>\n" +
                 " <a href=\"http://www.racingpost.com/horses/jockey_home.sd?jockey_id=11184\" onclick=\"scorecards.send(&quot;jockey_name&quot;);return Html.popup(this, {width:695, height:800})\" title=\"Full details about this JOCKEY\">Pat Smullen</a> </td>\n" +
-                " <td class=\"num\">&#8211;</td>\n" +
+                " <td class=\"num\">-</td>\n" +
                 " <td class=\"num\"><span class=\"red bold\">*</span></td>\n" +
                 " <td class=\"num last\"><span class=\"red bold\">*</span></td>\n" +
                 " </tr>\n" +
@@ -221,7 +223,7 @@ public class TipsDecoratorTest {
                 " <b class=\"black\">3</b>/6 <a href=\"http://www.racingpost.com/horses/result_home.sd?race_id=558440&amp;r_date=&amp;popup=yes\" onclick=\"scorecards.send(558440);return Html.popup(this, {width:695, height:800})\" title=\"chased leader in close 2nd, ridden in close 3rd 1f out, kept on final furlong, no extra close home\">(1L Versilia Gal 8-13)</a> 12/1 </td>\n" +
                 " <td>\n" +
                 " <a href=\"http://www.racingpost.com/horses/jockey_home.sd?jockey_id=11184\" onclick=\"scorecards.send(&quot;jockey_name&quot;);return Html.popup(this, {width:695, height:800})\" title=\"Full details about this JOCKEY\">Pat Smullen</a> </td>\n" +
-                " <td class=\"num\">&#8211;</td>\n" +
+                " <td class=\"num\">-</td>\n" +
                 " <td class=\"num\"><span class=\"red bold\">*</span></td>\n" +
                 " <td class=\"num last\"><span class=\"red bold\">*</span></td>\n" +
                 " </tr>\n" +
@@ -239,7 +241,7 @@ public class TipsDecoratorTest {
                 " <b class=\"black\">7</b>/8 <a href=\"http://www.racingpost.com/horses/result_home.sd?race_id=557970&amp;r_date=&amp;popup=yes\" onclick=\"scorecards.send(557970);return Html.popup(this, {width:695, height:800})\" title=\"dwelt, towards rear, no impression and kept on same pace under pressure from 2f out\">(8?L Gale Force Ten 9-5)</a> 14/1 </td>\n" +
                 " <td>\n" +
                 " <a href=\"http://www.racingpost.com/horses/jockey_home.sd?jockey_id=11184\" onclick=\"scorecards.send(&quot;jockey_name&quot;);return Html.popup(this, {width:695, height:800})\" title=\"Full details about this JOCKEY\">Pat Smullen</a> </td>\n" +
-                " <td class=\"num\">&#8211;</td>\n" +
+                " <td class=\"num\">-</td>\n" +
                 " <td class=\"num\"><span class=\"red bold\">*</span></td>\n" +
                 " <td class=\"num last\"><span class=\"red bold\">*</span></td>\n" +
                 " </tr>\n" +
@@ -279,7 +281,7 @@ public class TipsDecoratorTest {
                 " </td>\n" +
                 " <td class=\"two jt\">\n" +
                 " <div>\n" +
-                " <a href=\"http://www.racingpost.com/horses/trainer_home.sd?trainer_id=7978\" onclick=\"scorecards.send(&quot;trainer_name&quot;);return Html.popup(this, {width:695, height:800})\" title=\"Full details about this TRAINER\">A P O�Brien</a><sup><span title=\"the percentage of the stable's runners that have Run To Form in the last 14 days, based on RPR\">66</span></sup> </div>\n" +
+                " <a href=\"http://www.racingpost.com/horses/trainer_home.sd?trainer_id=7978\" onclick=\"scorecards.send(&quot;trainer_name&quot;);return Html.popup(this, {width:695, height:800})\" title=\"Full details about this TRAINER\">A P O'Brien</a><sup><span title=\"the percentage of the stable's runners that have Run To Form in the last 14 days, based on RPR\">66</span></sup> </div>\n" +
                 " <div>\n" +
                 " <a href=\"http://www.racingpost.com/horses/jockey_home.sd?jockey_id=88530\" onclick=\"scorecards.send(&quot;jockey_name&quot;);return Html.popup(this, {width:695, height:800})\" title=\"Full details about this JOCKEY\">J P O'Brien</a> </div>\n" +
                 " </td>\n" +
@@ -288,7 +290,7 @@ public class TipsDecoratorTest {
                 " 2 &nbsp;\n" +
                 " 9-5 </div>\n" +
                 " <div>\n" +
-                " � </div>\n" +
+                " - </div>\n" +
                 " </td>\n" +
                 " <td class=\"bk\" id=\"sc_61564719_bk\"><strong class=\"noBetting\">No betting</strong></td>\n" +
                 " </tr>\n" +
@@ -323,7 +325,7 @@ public class TipsDecoratorTest {
                 " <b class=\"black\">1</b>/6 <a href=\"http://www.racingpost.com/horses/result_home.sd?race_id=565793&amp;r_date=&amp;popup=yes\" onclick=\"scorecards.send(565793);return Html.popup(this, {width:695, height:800})\" title=\"soon led on nearside, narrow advantage 3f out, ridden entering final furlong and kept on under pressure towards finish, just\">(nk Pay Day Kitten 9-0)</a> p 4/11F </td>\n" +
                 " <td>\n" +
                 " <a href=\"http://www.racingpost.com/horses/jockey_home.sd?jockey_id=88530\" onclick=\"scorecards.send(&quot;jockey_name&quot;);return Html.popup(this, {width:695, height:800})\" title=\"Full details about this JOCKEY\">J P O'Brien</a> </td>\n" +
-                " <td class=\"num\">&#8211;</td>\n" +
+                " <td class=\"num\">-</td>\n" +
                 " <td class=\"num\"><span class=\"red bold\">*</span></td>\n" +
                 " <td class=\"num last\"><span class=\"red bold\">*</span></td>\n" +
                 " </tr>\n" +
@@ -341,7 +343,7 @@ public class TipsDecoratorTest {
                 " <b class=\"black\">5</b>/16 <a href=\"http://www.racingpost.com/horses/result_home.sd?race_id=564284&amp;r_date=&amp;popup=yes\" onclick=\"scorecards.send(564284);return Html.popup(this, {width:695, height:800})\" title=\"tacked over to chase leaders early, 2nd 4f out, pushed along approaching straight and soon no extra\">(10?L Trading Leather 9-5)</a> 5/2 </td>\n" +
                 " <td>\n" +
                 " <a href=\"http://www.racingpost.com/horses/jockey_home.sd?jockey_id=88530\" onclick=\"scorecards.send(&quot;jockey_name&quot;);return Html.popup(this, {width:695, height:800})\" title=\"Full details about this JOCKEY\">J P O'Brien</a> </td>\n" +
-                " <td class=\"num\">&#8211;</td>\n" +
+                " <td class=\"num\">-</td>\n" +
                 " <td class=\"num\"><span class=\"red bold\">*</span></td>\n" +
                 " <td class=\"num last\"><span class=\"red bold\">*</span></td>\n" +
                 " </tr>\n" +
@@ -359,7 +361,7 @@ public class TipsDecoratorTest {
                 " <b class=\"black\">3</b>/8 <a href=\"http://www.racingpost.com/horses/result_home.sd?race_id=563707&amp;r_date=&amp;popup=yes\" onclick=\"scorecards.send(563707);return Html.popup(this, {width:695, height:800})\" title=\"dwelt and held up in rear, headway into 6th 2f out, pushed along to close on inner and stayed on well inside final furlong to almost take 2nd final strides, nearest finish\">(2?L Eye Of The Storm 9-5)</a> 11/2 </td>\n" +
                 " <td>\n" +
                 " <a href=\"http://www.racingpost.com/horses/jockey_home.sd?jockey_id=7605\" onclick=\"scorecards.send(&quot;jockey_name&quot;);return Html.popup(this, {width:695, height:800})\" title=\"Full details about this JOCKEY\">Seamie Heffernan</a> </td>\n" +
-                " <td class=\"num\">&#8211;</td>\n" +
+                " <td class=\"num\">-</td>\n" +
                 " <td class=\"num\"><span class=\"red bold\">*</span></td>\n" +
                 " <td class=\"num last\"><span class=\"red bold\">*</span></td>\n" +
                 " </tr>\n" +
@@ -393,7 +395,7 @@ public class TipsDecoratorTest {
                 " <td class=\"two c\">\n" +
                 " <div class=\"tips\">0</div>\n" +
                 " <div class=\"rpr\">73</div>\n" +
-                " <div class=\"ts\">�</div>\n" +
+                " <div class=\"ts\">-</div>\n" +
                 " </td>\n" +
                 " <td class=\"two jt\">\n" +
                 " <div>\n" +
@@ -406,7 +408,7 @@ public class TipsDecoratorTest {
                 " 2 &nbsp;\n" +
                 " 9-5 </div>\n" +
                 " <div>\n" +
-                " &#8211; </div>\n" +
+                " - </div>\n" +
                 " </td>\n" +
                 " <td class=\"bk\" id=\"sc_61564721_bk\"><strong class=\"noBetting\">No betting</strong></td>\n" +
                 " </tr>\n" +
@@ -441,7 +443,7 @@ public class TipsDecoratorTest {
                 " <b class=\"black\">4</b>/6 <a href=\"http://www.racingpost.com/horses/result_home.sd?race_id=565793&amp;r_date=&amp;popup=yes\" onclick=\"scorecards.send(565793);return Html.popup(this, {width:695, height:800})\" title=\"held up, niggled along in 5th 3f out, ridden and no impression on principals from 2f out, kept on final furlong\">(11?L Kingdom 9-5)</a> 12/1 </td>\n" +
                 " <td>\n" +
                 " <a href=\"http://www.racingpost.com/horses/jockey_home.sd?jockey_id=89571\" onclick=\"scorecards.send(&quot;jockey_name&quot;);return Html.popup(this, {width:695, height:800})\" title=\"Full details about this JOCKEY\">Leigh Roche</a> </td>\n" +
-                " <td class=\"num\">&#8211;</td>\n" +
+                " <td class=\"num\">-</td>\n" +
                 " <td class=\"num\"><span class=\"red bold\">*</span></td>\n" +
                 " <td class=\"num last\"><span class=\"red bold\">*</span></td>\n" +
                 " </tr>\n" +
@@ -459,7 +461,7 @@ public class TipsDecoratorTest {
                 " <b class=\"black\">6</b>/6 <a href=\"http://www.racingpost.com/horses/result_home.sd?race_id=563131&amp;r_date=&amp;popup=yes\" onclick=\"scorecards.send(563131);return Html.popup(this, {width:695, height:800})\" title=\"raced in 5th, pushed along over 2f out, soon no impression\">(10L Sir Walter Scott 9-3)</a> 9/1 </td>\n" +
                 " <td>\n" +
                 " <a href=\"http://www.racingpost.com/horses/jockey_home.sd?jockey_id=11184\" onclick=\"scorecards.send(&quot;jockey_name&quot;);return Html.popup(this, {width:695, height:800})\" title=\"Full details about this JOCKEY\">Pat Smullen</a> </td>\n" +
-                " <td class=\"num\">&#8211;</td>\n" +
+                " <td class=\"num\">-</td>\n" +
                 " <td class=\"num\"><span class=\"red bold\">*</span></td>\n" +
                 " <td class=\"num last\"><span class=\"red bold\">*</span></td>\n" +
                 " </tr>\n" +
@@ -506,14 +508,14 @@ public class TipsDecoratorTest {
                 " 2 &nbsp;\n" +
                 " 9-5 </div>\n" +
                 " <div>\n" +
-                " &#8211; </div>\n" +
+                " - </div>\n" +
                 " </td>\n" +
                 " <td class=\"bk\" id=\"sc_61564724_bk\"><strong class=\"noBetting\">No betting</strong></td>\n" +
                 " </tr>\n" +
                 " <tr>\n" +
                 " <td class=\"cardItemInfo\" colspan=\"7\">\n" +
                 " <p class=\"diomed\">\n" +
-                " Those who follow stable&#8211;s in form will look no further, decent chance </p>\n" +
+                " Those who follow stable's in form will look no further, decent chance </p>\n" +
                 " <div class=\"forms\">\n" +
                 " <table class=\"grid smallSpaceGrid\">\n" +
                 " <tbody><tr class=\"noSpace\">\n" +
@@ -541,7 +543,7 @@ public class TipsDecoratorTest {
                 " <b class=\"black\">6</b>/6 <a href=\"http://www.racingpost.com/horses/result_home.sd?race_id=565793&amp;r_date=&amp;popup=yes\" onclick=\"scorecards.send(565793);return Html.popup(this, {width:695, height:800})\" title=\"hooded to load, waited with in rear, short of room and stumbled after 1f, ridden over 2f out and weakened\">(19?L Kingdom 9-5)</a> 20/1 </td>\n" +
                 " <td>\n" +
                 " <a href=\"http://www.racingpost.com/horses/jockey_home.sd?jockey_id=86592\" onclick=\"scorecards.send(&quot;jockey_name&quot;);return Html.popup(this, {width:695, height:800})\" title=\"Full details about this JOCKEY\">Emmet McNamara</a> </td>\n" +
-                " <td class=\"num\">&#8211;</td>\n" +
+                " <td class=\"num\">-</td>\n" +
                 " <td class=\"num\"><span class=\"red bold\">*</span></td>\n" +
                 " <td class=\"num last\"><span class=\"red bold\">*</span></td>\n" +
                 " </tr>\n" +
@@ -559,7 +561,7 @@ public class TipsDecoratorTest {
                 " <b class=\"black\">7</b>/8 <a href=\"http://www.racingpost.com/horses/result_home.sd?race_id=565364&amp;r_date=&amp;popup=yes\" onclick=\"scorecards.send(565364);return Html.popup(this, {width:695, height:800})\" title=\"went right start, held up in touch, 7th halfway, effort over 3f out and no impression, kept on final furlong\">(19L Kingsbarns 9-5)</a> 9/1 </td>\n" +
                 " <td>\n" +
                 " <a href=\"http://www.racingpost.com/horses/jockey_home.sd?jockey_id=14262\" onclick=\"scorecards.send(&quot;jockey_name&quot;);return Html.popup(this, {width:695, height:800})\" title=\"Full details about this JOCKEY\">C O'Donoghue</a> </td>\n" +
-                " <td class=\"num\">&#8211;</td>\n" +
+                " <td class=\"num\">-</td>\n" +
                 " <td class=\"num\"><span class=\"red bold\">*</span></td>\n" +
                 " <td class=\"num last\"><span class=\"red bold\">*</span></td>\n" +
                 " </tr>\n" +
@@ -577,7 +579,7 @@ public class TipsDecoratorTest {
                 " <b class=\"black\">10</b>/13 <a href=\"http://www.racingpost.com/horses/result_home.sd?race_id=564492&amp;r_date=&amp;popup=yes\" onclick=\"scorecards.send(564492);return Html.popup(this, {width:695, height:800})\" title=\"dwelt and raced in rear, some late headway final furlong, never a factor\">(22L Three Sea Captains 9-6)</a> 20/1 </td>\n" +
                 " <td>\n" +
                 " <a href=\"http://www.racingpost.com/horses/jockey_home.sd?jockey_id=14262\" onclick=\"scorecards.send(&quot;jockey_name&quot;);return Html.popup(this, {width:695, height:800})\" title=\"Full details about this JOCKEY\">C O'Donoghue</a> </td>\n" +
-                " <td class=\"num\">&#8211;</td>\n" +
+                " <td class=\"num\">-</td>\n" +
                 " <td class=\"num\"><span class=\"red bold\">*</span></td>\n" +
                 " <td class=\"num last\"><span class=\"red bold\">*</span></td>\n" +
                 " </tr>\n" +
@@ -611,7 +613,7 @@ public class TipsDecoratorTest {
                 " <td class=\"two c\">\n" +
                 " <div class=\"tips\">0</div>\n" +
                 " <div class=\"rpr\">65</div>\n" +
-                " <div class=\"ts\">&#8211;</div>\n" +
+                " <div class=\"ts\">-</div>\n" +
                 " </td>\n" +
                 " <td class=\"two jt\">\n" +
                 " <div>\n" +
@@ -624,7 +626,7 @@ public class TipsDecoratorTest {
                 " 2 &nbsp;\n" +
                 " 9-5 </div>\n" +
                 " <div>\n" +
-                " &#8211; </div>\n" +
+                " - </div>\n" +
                 " </td>\n" +
                 " <td class=\"bk\" id=\"sc_61564723_bk\"><strong class=\"noBetting\">No betting</strong></td>\n" +
                 " </tr>\n" +
@@ -659,7 +661,7 @@ public class TipsDecoratorTest {
                 " <b class=\"black\">3</b>/6 <a href=\"http://www.racingpost.com/horses/result_home.sd?race_id=565793&amp;r_date=&amp;popup=yes\" onclick=\"scorecards.send(565793);return Html.popup(this, {width:695, height:800})\" title=\"close up 3rd, pushed along in 2nd 2f out, soon ridden and no impression on winner, one pace final furlong\">(5?L Kingdom 9-5)</a> 4/1 </td>\n" +
                 " <td>\n" +
                 " <a href=\"http://www.racingpost.com/horses/jockey_home.sd?jockey_id=2102\" onclick=\"scorecards.send(&quot;jockey_name&quot;);return Html.popup(this, {width:695, height:800})\" title=\"Full details about this JOCKEY\">Kevin Manning</a> </td>\n" +
-                " <td class=\"num\">&#8211;</td>\n" +
+                " <td class=\"num\">-</td>\n" +
                 " <td class=\"num\"><span class=\"red bold\">*</span></td>\n" +
                 " <td class=\"num last\"><span class=\"red bold\">*</span></td>\n" +
                 " </tr>\n" +
@@ -677,7 +679,7 @@ public class TipsDecoratorTest {
                 " <b class=\"black\">9</b>/13 <a href=\"http://www.racingpost.com/horses/result_home.sd?race_id=564641&amp;r_date=&amp;popup=yes\" onclick=\"scorecards.send(564641);return Html.popup(this, {width:695, height:800})\" title=\"in rear of mid-division, ridden over 3f out, no impression\">(10?L Fighter Squadron 9-5)</a> 9/2 </td>\n" +
                 " <td>\n" +
                 " <a href=\"http://www.racingpost.com/horses/jockey_home.sd?jockey_id=2102\" onclick=\"scorecards.send(&quot;jockey_name&quot;);return Html.popup(this, {width:695, height:800})\" title=\"Full details about this JOCKEY\">Kevin Manning</a> </td>\n" +
-                " <td class=\"num\">&#8211;</td>\n" +
+                " <td class=\"num\">-</td>\n" +
                 " <td class=\"num\"><span class=\"red bold\">*</span></td>\n" +
                 " <td class=\"num last\"><span class=\"red bold\">*</span></td>\n" +
                 " </tr>\n" +
@@ -724,7 +726,7 @@ public class TipsDecoratorTest {
                 " 2 &nbsp;\n" +
                 " 9-5 </div>\n" +
                 " <div>\n" +
-                " &#8211; </div>\n" +
+                " - </div>\n" +
                 " </td>\n" +
                 " <td class=\"bk\" id=\"sc_61564722_bk\"><strong class=\"noBetting\">No betting</strong></td>\n" +
                 " </tr>\n" +
@@ -759,7 +761,7 @@ public class TipsDecoratorTest {
                 " <b class=\"black\">5</b>/6 <a href=\"http://www.racingpost.com/horses/result_home.sd?race_id=565793&amp;r_date=&amp;popup=yes\" onclick=\"scorecards.send(565793);return Html.popup(this, {width:695, height:800})\" title=\"chased winner in 2nd, pushed along over 2f out and soon weakened\">(15L Kingdom 9-5)</a> 33/1 </td>\n" +
                 " <td>\n" +
                 " <a href=\"http://www.racingpost.com/horses/jockey_home.sd?jockey_id=7605\" onclick=\"scorecards.send(&quot;jockey_name&quot;);return Html.popup(this, {width:695, height:800})\" title=\"Full details about this JOCKEY\">Seamie Heffernan</a> </td>\n" +
-                " <td class=\"num\">&#8211;</td>\n" +
+                " <td class=\"num\">-</td>\n" +
                 " <td class=\"num\"><span class=\"red bold\">*</span></td>\n" +
                 " <td class=\"num last\"><span class=\"red bold\">*</span></td>\n" +
                 " </tr>\n" +
@@ -777,7 +779,7 @@ public class TipsDecoratorTest {
                 " <b class=\"black\">8</b>/13 <a href=\"http://www.racingpost.com/horses/result_home.sd?race_id=563869&amp;r_date=&amp;popup=yes\" onclick=\"scorecards.send(563869);return Html.popup(this, {width:695, height:800})\" title=\"held up on inner, never a threat, some late headway\">(11L Fromajacktoaking 9-0)</a> 25/1 </td>\n" +
                 " <td>\n" +
                 " <a href=\"http://www.racingpost.com/horses/jockey_home.sd?jockey_id=7605\" onclick=\"scorecards.send(&quot;jockey_name&quot;);return Html.popup(this, {width:695, height:800})\" title=\"Full details about this JOCKEY\">Seamie Heffernan</a> </td>\n" +
-                " <td class=\"num\">&#8211;</td>\n" +
+                " <td class=\"num\">-</td>\n" +
                 " <td class=\"num\"><span class=\"red bold\">*</span></td>\n" +
                 " <td class=\"num last\"><span class=\"red bold\">*</span></td>\n" +
                 " </tr>\n" +
@@ -795,7 +797,7 @@ public class TipsDecoratorTest {
                 " <b class=\"black\">11</b>/12 <a href=\"http://www.racingpost.com/horses/result_home.sd?race_id=562960&amp;r_date=&amp;popup=yes\" onclick=\"scorecards.send(562960);return Html.popup(this, {width:695, height:800})\" title=\"always towards rear\">(14L Vinson Massif 9-5)</a> 25/1 </td>\n" +
                 " <td>\n" +
                 " <a href=\"http://www.racingpost.com/horses/jockey_home.sd?jockey_id=2456\" onclick=\"scorecards.send(&quot;jockey_name&quot;);return Html.popup(this, {width:695, height:800})\" title=\"Full details about this JOCKEY\">J F Egan</a> </td>\n" +
-                " <td class=\"num\">&#8211;</td>\n" +
+                " <td class=\"num\">-</td>\n" +
                 " <td class=\"num\"><span class=\"red bold\">*</span></td>\n" +
                 " <td class=\"num last\"><span class=\"red bold\">*</span></td>\n" +
                 " </tr>\n" +
@@ -828,8 +830,8 @@ public class TipsDecoratorTest {
                 " </td>\n" +
                 " <td class=\"two c\">\n" +
                 " <div class=\"tips\">0</div>\n" +
-                " <div class=\"rpr\">&#8211;</div>\n" +
-                " <div class=\"ts\">&#8211;</div>\n" +
+                " <div class=\"rpr\">-</div>\n" +
+                " <div class=\"ts\">-</div>\n" +
                 " </td>\n" +
                 " <td class=\"two jt\">\n" +
                 " <div>\n" +
@@ -842,7 +844,7 @@ public class TipsDecoratorTest {
                 " 2 &nbsp;\n" +
                 " 9-0 </div>\n" +
                 " <div>\n" +
-                " &#8211; </div>\n" +
+                " - </div>\n" +
                 " </td>\n" +
                 " <td class=\"bk\" id=\"sc_61564725_bk\"><strong class=\"noBetting\">No betting</strong></td>\n" +
                 " </tr>\n" +
@@ -877,7 +879,7 @@ public class TipsDecoratorTest {
                 " <b class=\"black\">2</b>/6 <a href=\"http://www.racingpost.com/horses/result_home.sd?race_id=565793&amp;r_date=&amp;popup=yes\" onclick=\"scorecards.send(565793);return Html.popup(this, {width:695, height:800})\" title=\"held up in 4th, pushed along under 3f out, went 3rd 1 1/2f out, soon switched right and ran on well to strongly press winner towards finish, just held\">(?L Kingdom 9-5)</a> 10/1 </td>\n" +
                 " <td>\n" +
                 " <a href=\"http://www.racingpost.com/horses/jockey_home.sd?jockey_id=11184\" onclick=\"scorecards.send(&quot;jockey_name&quot;);return Html.popup(this, {width:695, height:800})\" title=\"Full details about this JOCKEY\">Pat Smullen</a> </td>\n" +
-                " <td class=\"num\">&#8211;</td>\n" +
+                " <td class=\"num\">-</td>\n" +
                 " <td class=\"num\"><span class=\"red bold\">*</span></td>\n" +
                 " <td class=\"num last\"><span class=\"red bold\">*</span></td>\n" +
                 " </tr>\n" +
