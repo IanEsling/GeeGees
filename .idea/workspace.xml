@@ -2,8 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4906eb3e-3c23-416b-a2bb-2c3f55caf229" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/geegees/model/Horse.java" afterPath="$PROJECT_DIR$/src/main/java/geegees/model/Horse.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/geegees/model/TipsDecorator.java" afterPath="$PROJECT_DIR$/src/main/java/geegees/model/TipsDecorator.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/geegees/service/RacingPostDocumentService.java" afterPath="$PROJECT_DIR$/src/main/java/geegees/service/RacingPostDocumentService.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/java/geegees/service/RacingPostDocumentServiceTest.java" afterPath="$PROJECT_DIR$/src/test/java/geegees/service/RacingPostDocumentServiceTest.java" />
     </list>
     <ignored path="GeeGees.iws" />
@@ -62,11 +61,13 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="Horse.java" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/java/geegees/model/Horse.java">
+      <file leaf-file-name="RacingPostDocumentServiceTest.java" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/test/java/geegees/service/RacingPostDocumentServiceTest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="27" column="0" selection-start="465" selection-end="465" vertical-scroll-proportion="0.9174757">
-              <folding />
+            <state line="50" column="27" selection-start="2048" selection-end="2048" vertical-scroll-proportion="0.20715167">
+              <folding>
+                <element signature="e#522#574#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -93,13 +94,13 @@
         <option value="$PROJECT_DIR$/src/main/java/geegees/service/RacingPostRaceService.java" />
         <option value="$PROJECT_DIR$/src/test/java/geegees/service/RacingPostRaceServiceTest.java" />
         <option value="$PROJECT_DIR$/src/main/java/geegees/model/Race.java" />
-        <option value="$PROJECT_DIR$/src/main/java/geegees/service/RacingPostDocumentService.java" />
         <option value="$PROJECT_DIR$/src/test/java/geegees/model/BettingForecastTest.java" />
         <option value="$PROJECT_DIR$/src/main/java/geegees/model/BettingForecast.java" />
         <option value="$PROJECT_DIR$/src/main/java/geegees/model/TipsDecorator.java" />
-        <option value="$PROJECT_DIR$/src/test/java/geegees/service/RacingPostDocumentServiceTest.java" />
         <option value="$PROJECT_DIR$/src/test/java/geegees/builders/HorseBuilder.java" />
         <option value="$PROJECT_DIR$/src/main/java/geegees/model/Horse.java" />
+        <option value="$PROJECT_DIR$/src/main/java/geegees/service/RacingPostDocumentService.java" />
+        <option value="$PROJECT_DIR$/src/test/java/geegees/service/RacingPostDocumentServiceTest.java" />
       </list>
     </option>
   </component>
@@ -817,27 +818,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/geegees/model/TipsDecorator.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="22" column="5" selection-start="736" selection-end="736" vertical-scroll-proportion="0.61165047">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/geegees/service/RacingPostDocumentService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="11" column="27" selection-start="280" selection-end="280" vertical-scroll-proportion="0.30582523">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/geegees/service/RacingPostDocumentServiceTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="67" column="57" selection-start="2777" selection-end="2777" vertical-scroll-proportion="0.6781751">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/test/java/geegees/builders/HorseBuilder.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="19" column="21" selection-start="394" selection-end="394" vertical-scroll-proportion="0.5063291">
@@ -849,6 +829,29 @@
       <provider selected="true" editor-type-id="text-editor">
         <state line="27" column="0" selection-start="465" selection-end="465" vertical-scroll-proportion="0.9174757">
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/geegees/service/RacingPostDocumentService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="20" column="24" selection-start="594" selection-end="594" vertical-scroll-proportion="0.47572815">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/geegees/model/TipsDecorator.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="12" column="11" selection-start="240" selection-end="240" vertical-scroll-proportion="0.27184466">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/geegees/service/RacingPostDocumentServiceTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="50" column="27" selection-start="2048" selection-end="2048" vertical-scroll-proportion="0.20715167">
+          <folding>
+            <element signature="e#522#574#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

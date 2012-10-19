@@ -4,6 +4,7 @@ import geegees.builders.HorseBuilder;
 import geegees.model.BettingForecast;
 import geegees.model.Horse;
 import geegees.model.Race;
+import geegees.model.TipsDecorator;
 import org.jsoup.Jsoup;
 import org.junit.Before;
 import org.junit.Test;
@@ -48,7 +49,15 @@ public class RacingPostDocumentServiceTest {
 
     @Test
     public void shouldGetTipsDecorator(){
-
+        TipsDecorator tipsDecorator = racingPostDocumentService.getTipsDecorator(Jsoup.parse(getRaceHtml()), horses);
+        assertNotNull("no tips decorator", tipsDecorator);
+        assertEquals("wrong number of horses", 10, tipsDecorator.getHorses().size());
+        for (Horse horse : tipsDecorator.getHorses()) {
+            assertTrue("can't find horse " + horse.getName(), horses.contains(horse));
+            assertEquals("wrong odds for horse " + horse.getName(), getHorseByName(horse).getOdds(),
+                    horse.getOdds());
+            assertNotNull("no tips for horse " + horse.getName(), horse.getTips());
+        }
     }
 
     @Test
