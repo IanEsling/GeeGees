@@ -1,15 +1,37 @@
 package geegees.service;
 
+import geegees.model.BettingForecast;
+import geegees.model.Horse;
 import geegees.model.Race;
 import org.jsoup.Jsoup;
+import org.junit.Before;
 import org.junit.Test;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
+import java.util.Map;
 
+import static com.google.common.collect.Maps.newHashMap;
+import static org.junit.Assert.*;
+
+@SuppressWarnings("StringBufferReplaceableByString")
 public class RacingPostDocumentServiceTest {
 
     RacingPostDocumentService racingPostDocumentService = new RacingPostDocumentService();
+    Map<String, String> horses;
+
+    @Before
+    public void horses() {
+        horses = newHashMap();
+        horses.put("Best To Better", "4/1");
+        horses.put("Slipstream Angel", "5/1");
+        horses.put("El Mirage", "6/1");
+        horses.put("Pearl Bounty", "6/1");
+        horses.put("Al Khisa", "8/1");
+        horses.put("Hot Mustard", "8/1");
+        horses.put("Byron´s Dream", "12/1");
+        horses.put("Our Three Graces", "12/1");
+        horses.put("Missing Agent", "16/1");
+        horses.put("Stand N Applaude", "16/1");
+    }
 
     @Test
     public void shouldGetRaceFromDocument() {
@@ -17,7 +39,19 @@ public class RacingPostDocumentServiceTest {
         assertNotNull("no race", race);
         assertEquals("wrong time", "8:20", race.getTime());
         assertEquals("wrong venue", "Wolverhampton (AW)", race.getVenue());
-        assertEquals("wrong venue", 12, race.getNumberOfRunners().intValue());
+        assertEquals("wrong number of runners", 12, race.getNumberOfRunners().intValue());
+    }
+
+    @Test
+    public void shouldGetBettingForecastFromDocument() {
+        BettingForecast forecast = racingPostDocumentService.getBettingForecast(Jsoup.parse(getRaceHtml()));
+        assertNotNull("no forecast", forecast);
+        assertEquals("wrong number of horses", 10, forecast.getHorses().size());
+        for (Horse horse : forecast.getHorses()) {
+            assertTrue("can't find horse " + horse.getName(), horses.keySet().contains(horse.getName()));
+            assertEquals("wrong odds for horse " + horse.getName(), horses.get(horse.getName()),
+                    horse.getOdds());
+        }
     }
 
     private String getRaceHtml() {
@@ -599,1280 +633,1280 @@ public class RacingPostDocumentServiceTest {
                 " <td>\n" +
                 " <b class=\"black\">\n")
                 .append(" <a href=\"http://www.racingpost.com/horses/course_home.sd?crs_id=13\" onclick=\"return Html.popup(this, {width:695, height:800})\" title=\"Course (Click to view details): left-handed, very sharp track\">Chs</a> 6Sft </b>\n" +
-                " C42yHc 4K </td>\n" +
-                " <td>8-4</td>\n" +
-                " <td>\n" +
-                " <b class=\"black\">5</b>/6 <a href=\"http://www.racingpost.com/horses/result_home.sd?race_id=558686&amp;r_date=&amp;popup=yes\" onclick=\"scorecards.send(558686);return Html.popup(this, {width:695, height:800})\" title=\"slowly into stride and squeezed out when not much room shortly after start, behind and outpaced, stayed on inside final furlong, never going pace to get competitive\">(3¾L Bairam 8-12)</a> 5/2J </td>\n" +
-                " <td>\n" +
-                " <a href=\"http://www.racingpost.com/horses/jockey_home.sd?jockey_id=79115\" onclick=\"scorecards.send(&quot;jockey_name&quot;);return Html.popup(this, {width:695, height:800})\" title=\"Full details about this JOCKEY\">Patrick Mathers</a> </td>\n" +
-                " <td class=\"num\">66</td>\n" +
-                " <td class=\"num\"><span class=\"red bold\">*</span></td>\n" +
-                " <td class=\"num last\"><span class=\"red bold\">*</span></td>\n" +
-                " </tr>\n" +
-                " <tr>\n" +
-                " <td class=\"v\"><a href=\"#\" onclick=\"scorecards.sendSpecificDesc(&quot;ruk_video&quot;, &quot;37, 2012-06-30, 12:00&quot;);panels.mediaCentre.replayPopup($(this), 557564, 815159, '2012-06-30', 'RUK'); return false;\"><img src=\"http://ui.racingpost.com/release/v17/ico/video.17.0.gif\" alt=\"Video\" title=\"Video\"></a></td>\n" +
-                " <td>\n" +
-                " <a href=\"http://www.racingpost.com/horses/result_home.sd?race_id=557564&amp;r_date=2012-06-30&amp;popup=yes\" onclick=\"scorecards.send(557564);return Html.popup(this, {width:695, height:800})\" title=\"Betfred/Irish Stallion Farms E B F Maiden Stakes\">30Jun12</a> &nbsp;\n" +
-                " </td>\n" +
-                " <td>\n" +
-                " <b class=\"black\">\n" +
-                " <a href=\"http://www.racingpost.com/horses/course_home.sd?crs_id=37\" onclick=\"return Html.popup(this, {width:695, height:800})\" title=\"Course (Click to view details): left-handed, galloping, testing track\">Ncs</a> 5Hy </b>\n" +
-                " C42yMd 5K </td>\n" +
-                " <td>8-12</td>\n" +
-                " <td>\n" +
-                " <b class=\"black\">1</b>/4 <a href=\"http://www.racingpost.com/horses/result_home.sd?race_id=557564&amp;r_date=&amp;popup=yes\" onclick=\"scorecards.send(557564);return Html.popup(this, {width:695, height:800})\" title=\"tracked leaders, went second over 2f out, ridden along over 1f out, 4 lengths down inside final furlong, stayed on strongly to lead close home\">(½L Opt Out 9-3)</a> 4/1 </td>\n" +
-                " <td>\n" +
-                " <a href=\"http://www.racingpost.com/horses/jockey_home.sd?jockey_id=79004\" onclick=\"scorecards.send(&quot;jockey_name&quot;);return Html.popup(this, {width:695, height:800})\" title=\"Full details about this JOCKEY\">Tony Hamilton</a> </td>\n" +
-                " <td class=\"num\">—</td>\n" +
-                " <td class=\"num\"><span class=\"red bold\">*</span></td>\n" +
-                " <td class=\"num last\"><span class=\"red bold\">*</span></td>\n" +
-                " </tr>\n" +
-                " </tbody></table>\n" +
-                " <span id=\"barrier_RPR-TS_In_Form21246390931\" class=\"bar prpTsInfo\"><span id=\"ruli_33\"><span class=\"red bold\">*</span> Historical RP Ratings and Topspeed Ratings are part of Racing Post Members' Club <a href=\"#\" class=\"blue\" onclick=\"javascript:callLogin('special_offer');\"> Log in to view</a></span></span></div>\n" +
-                "<div id=\"sc_raceHorseNotes_815159\" class=\"notes\" style=\"display: none; \"></div>\n" +
-                "\n" +
-                " </td>\n" +
-                " </tr>\n" +
-                " <tr>\n" +
-                " <td colspan=\"7\"><tt><i></i></tt></td>\n" +
-                " </tr>\n" +
-                " </tbody><tbody id=\"sc_61619983\">\n" +
-                " <tr class=\"cr\">\n" +
-                " <td class=\"t\">\n" +
-                " <strong>8</strong><sup>6</sup> <em>089<b>5</b></em>\n" +
-                " </td>\n" +
-                " <td class=\"s\">\n" +
-                " <a href=\"http://www.racingpost.com/horses/owner_home.sd?owner_id=204088\" onclick=\"scorecards.send(&quot;owner_name&quot;);return Html.popup(this, {width:695, height:800})\" title=\"Full details about this OWNER\"><img src=\"http://images.racingpost.com/png_silks/8/8/0/204088.png\" class=\"iepng\" alt=\"Owner details\" title=\"Full details about this OWNER\" width=\"40\" height=\"29\"></a> </td>\n" +
-                " \n" +
-                " <td class=\"h\">\n" +
-                " <div class=\"nm\">\n" +
-                " <a href=\"http://www.racingpost.com/horses/horse_home.sd?race_id=564393&amp;r_date=2012-10-19&amp;horse_id=814315\" onclick=\"scorecards.send(&quot;horse_name&quot;);return Html.popup(this, {width:695, height:800})\" title=\"Full details about this HORSE\"><b>EL MIRAGE</b></a> \n" +
-                " <a href=\"#\" id=\"sc_pencil_814315\" title=\"Show/Hide My Notes for this runner\"></a> </div>\n" +
-                "\n" +
-                " <div class=\"oddsBar\">\n" +
-                " <div><div style=\"width: 12%\"></div></div>\n" +
-                " <span>12%</span>\n" +
-                " </div>\n" +
-                " </td>\n" +
-                " <td class=\"two c\">\n" +
-                " <div class=\"tips\">2</div>\n" +
-                " <div class=\"rpr\">71</div>\n" +
-                " <div class=\"ts\">43 </div>\n" +
-                " </td>\n" +
-                " <td class=\"two jt\">\n" +
-                " <div>\n" +
-                " <a href=\"http://www.racingpost.com/horses/trainer_home.sd?trainer_id=15107\" onclick=\"scorecards.send(&quot;trainer_name&quot;);return Html.popup(this, {width:695, height:800})\" title=\"Full details about this TRAINER\">Dean Ivory</a><sup><span title=\"the percentage of the stable's runners that have Run To Form in the last 14 days, based on RPR\">78</span></sup> </div>\n" +
-                " <div>\n" +
-                " <a href=\"http://www.racingpost.com/horses/jockey_home.sd?jockey_id=13700\" onclick=\"scorecards.send(&quot;jockey_name&quot;);return Html.popup(this, {width:695, height:800})\" title=\"Full details about this JOCKEY\">Shane Kelly</a> </div>\n" +
-                " </td>\n" +
-                " <td class=\"two awo\">\n" +
-                " <div>\n" +
-                " 2 &nbsp;\n" +
-                " 9-5 </div>\n" +
-                " <div>\n" +
-                " 63 </div>\n" +
-                " </td>\n" +
-                " <td class=\"bk\" id=\"sc_61619983_bk\"><button type=\"button\" class=\"btn btnBet btnLight\" title=\"5 with Ladbrokes - Click to bet\"><div><div>5</div></div></button><em>11/2</em><em>5</em><em>11/2</em><em>5</em></td>\n" +
-                " </tr>\n" +
-                " <tr>\n" +
-                " <td class=\"cardItemInfo\" colspan=\"7\">\n" +
-                " <p class=\"diomed\">\n" +
-                " Best effort yet on AW debut latest; player off an opening 63 </p>\n" +
-                " <div class=\"forms\">\n" +
-                " <table class=\"grid smallSpaceGrid\">\n" +
-                " <tbody><tr class=\"noSpace\">\n" +
-                " <th class=\"v\">&nbsp;</th>\n" +
-                " <th class=\"date\">DATE</th>\n" +
-                " <th class=\"raceCond\">RACE CONDITIONS</th>\n" +
-                " <th class=\"wgt\">WGT</th>\n" +
-                " <th class=\"raceOut\">RACE OUTCOME</th>\n" +
-                " <th class=\"jock\">JOCKEY</th>\n" +
-                " <th class=\"num\">OR</th>\n" +
-                " <th class=\"num\">TS</th>\n" +
-                " <th class=\"num last\">RPR</th>\n" +
-                " </tr>\n" +
-                " <tr>\n" +
-                " <td class=\"v\"><a href=\"#\" onclick=\"scorecards.sendSpecificDesc(&quot;ruk_video&quot;, &quot;1079, 2012-10-11, 12:00&quot;);panels.mediaCentre.replayPopup($(this), 565531, 814315, '2012-10-11', 'RUK'); return false;\"><img src=\"http://ui.racingpost.com/release/v17/ico/video.17.0.gif\" alt=\"Video\" title=\"Video\"></a></td>\n" +
-                " <td>\n" +
-                " <a href=\"http://www.racingpost.com/horses/result_home.sd?race_id=565531&amp;r_date=2012-10-11&amp;popup=yes\" onclick=\"scorecards.send(565531);return Html.popup(this, {width:695, height:800})\" title=\"32Red/British Stallion Studs E B F Maiden Stakes (Div II)\">11Oct12</a> &nbsp;\n" +
-                " </td>\n" +
-                " <td>\n" +
-                " <b class=\"black\">\n" +
-                " <a href=\"http://www.racingpost.com/horses/course_home.sd?crs_id=1079\" onclick=\"return Html.popup(this, {width:695, height:800})\" title=\"Course (Click to view details): AW Polytrack: right-handed\">Kem</a> 6St </b>\n" +
-                " C52yMd 3K </td>\n" +
-                " <td>8-12</td>\n" +
-                " <td>\n" +
-                " <b class=\"black\">5</b>/9 <a href=\"http://www.racingpost.com/horses/result_home.sd?race_id=565531&amp;r_date=&amp;popup=yes\" onclick=\"scorecards.send(565531);return Html.popup(this, {width:695, height:800})\" title=\"held up in midfield, ridden and effort 2f out, no threat to leaders but stayed on well under pressure inside final furlong, pressing for 3rd close home\">(4½L Exactement 8-12)</a> 33/1 </td>\n" +
-                " <td>\n" +
-                " <a href=\"http://www.racingpost.com/horses/jockey_home.sd?jockey_id=13700\" onclick=\"scorecards.send(&quot;jockey_name&quot;);return Html.popup(this, {width:695, height:800})\" title=\"Full details about this JOCKEY\">Shane Kelly</a> </td>\n" +
-                " <td class=\"num\">63</td>\n" +
-                " <td class=\"num\"><span class=\"red bold\">*</span></td>\n" +
-                " <td class=\"num last\"><span class=\"red bold\">*</span></td>\n" +
-                " </tr>\n" +
-                " <tr>\n" +
-                " <td class=\"v\"><a href=\"#\" onclick=\"scorecards.sendSpecificDesc(&quot;ruk_video&quot;, &quot;104, 2012-09-18, 12:00&quot;);panels.mediaCentre.replayPopup($(this), 562809, 814315, '2012-09-18', 'RUK'); return false;\"><img src=\"http://ui.racingpost.com/release/v17/ico/video.17.0.gif\" alt=\"Video\" title=\"Video\"></a></td>\n" +
-                " <td>\n" +
-                " <a href=\"http://www.racingpost.com/horses/result_home.sd?race_id=562809&amp;r_date=2012-09-18&amp;popup=yes\" onclick=\"scorecards.send(562809);return Html.popup(this, {width:695, height:800})\" title=\"British Stallion Studs Supporting British Racing E B F Maiden Fillies' Stakes\">18Sep12</a> &nbsp;\n" +
-                " </td>\n" +
-                " <td>\n" +
-                " <b class=\"black\">\n" +
-                " <a href=\"http://www.racingpost.com/horses/course_home.sd?crs_id=104\" onclick=\"return Html.popup(this, {width:695, height:800})\" title=\"Course (Click to view details): left-handed, galloping track\">Yar</a> 6GF </b>\n" +
-                " C52yMd 3K </td>\n" +
-                " <td>9-0</td>\n" +
-                " <td>\n" +
-                " <b class=\"black\">9</b>/13 <a href=\"http://www.racingpost.com/horses/result_home.sd?race_id=562809&amp;r_date=&amp;popup=yes\" onclick=\"scorecards.send(562809);return Html.popup(this, {width:695, height:800})\" title=\"pulled hard, chased leaders, 3rd and outpaced over 1f out, soon beaten, weakened inside final furlong\">(9¾L Supernova Heights 9-0)</a> 33/1 </td>\n" +
-                " <td>\n" +
-                " <a href=\"http://www.racingpost.com/horses/jockey_home.sd?jockey_id=13700\" onclick=\"scorecards.send(&quot;jockey_name&quot;);return Html.popup(this, {width:695, height:800})\" title=\"Full details about this JOCKEY\">Shane Kelly</a> </td>\n" +
-                " <td class=\"num\">—</td>\n" +
-                " <td class=\"num\"><span class=\"red bold\">*</span></td>\n" +
-                " <td class=\"num last\"><span class=\"red bold\">*</span></td>\n" +
-                " </tr>\n" +
-                " <tr>\n" +
-                " <td class=\"v\"><a href=\"#\" onclick=\"scorecards.sendSpecificDesc(&quot;ruk_video&quot;, &quot;36, 2012-08-17, 12:00&quot;);panels.mediaCentre.replayPopup($(this), 562402, 814315, '2012-08-17', 'RUK'); return false;\"><img src=\"http://ui.racingpost.com/release/v17/ico/video.17.0.gif\" alt=\"Video\" title=\"Video\"></a></td>\n" +
-                " <td>\n" +
-                " <a href=\"http://www.racingpost.com/horses/result_home.sd?race_id=562402&amp;r_date=2012-08-17&amp;popup=yes\" onclick=\"scorecards.send(562402);return Html.popup(this, {width:695, height:800})\" title=\"Don Deadman Memorial European Breeders' Fund Maiden Stakes (Div II)\">17Aug12</a> &nbsp;\n" +
-                " </td>\n" +
-                " <td>\n" +
-                " <b class=\"black\">\n" +
-                " <a href=\"http://www.racingpost.com/horses/course_home.sd?crs_id=36\" onclick=\"return Html.popup(this, {width:695, height:800})\" title=\"Course (Click to view details): left-handed, galloping track\">Nby</a> 7Gd </b>\n" +
-                " C42yMd 4K </td>\n" +
-                " <td>8-12</td>\n" +
-                " <td>\n" +
-                " <b class=\"black\">8</b>/11 <a href=\"http://www.racingpost.com/horses/result_home.sd?race_id=562402&amp;r_date=&amp;popup=yes\" onclick=\"scorecards.send(562402);return Html.popup(this, {width:695, height:800})\" title=\"chased winner, ridden 2f out, weakened over 1f out\">(11L Related 9-3)</a> 66/1 </td>\n" +
-                " <td>\n" +
-                " <a href=\"http://www.racingpost.com/horses/jockey_home.sd?jockey_id=13700\" onclick=\"scorecards.send(&quot;jockey_name&quot;);return Html.popup(this, {width:695, height:800})\" title=\"Full details about this JOCKEY\">Shane Kelly</a> </td>\n" +
-                " <td class=\"num\">—</td>\n" +
-                " <td class=\"num\"><span class=\"red bold\">*</span></td>\n" +
-                " <td class=\"num last\"><span class=\"red bold\">*</span></td>\n" +
-                " </tr>\n" +
-                " <tr>\n" +
-                " <td class=\"v\"><a href=\"#\" onclick=\"scorecards.sendSpecificDesc(&quot;ruk_video&quot;, &quot;174, 2012-06-29, 12:00&quot;);panels.mediaCentre.replayPopup($(this), 557535, 814315, '2012-06-29', 'RUK'); return false;\"><img src=\"http://ui.racingpost.com/release/v17/ico/video.17.0.gif\" alt=\"Video\" title=\"Video\"></a></td>\n" +
-                " <td>\n" +
-                " <a href=\"http://www.racingpost.com/horses/result_home.sd?race_id=557535&amp;r_date=2012-06-29&amp;popup=yes\" onclick=\"scorecards.send(557535);return Html.popup(this, {width:695, height:800})\" title=\"Get Your 0800 Number From poptelecom.co.uk EBF Maiden Fillies' Stakes\">29Jun12</a> &nbsp;\n" +
-                " </td>\n" +
-                " <td>\n" +
-                " <b class=\"black\">\n" +
-                " <a href=\"http://www.racingpost.com/horses/course_home.sd?crs_id=174\" onclick=\"return Html.popup(this, {width:695, height:800})\" title=\"Course (Click to view details): right-handed, galloping track\">Nmk</a> 6Gd </b>\n" +
-                " C42yMd 4K </td>\n" +
-                " <td>9-0</td>\n" +
-                " <td>\n" +
-                " <b class=\"black\">10</b>/15 <a href=\"http://www.racingpost.com/horses/result_home.sd?race_id=557535&amp;r_date=&amp;popup=yes\" onclick=\"scorecards.send(557535);return Html.popup(this, {width:695, height:800})\" title=\"slowly into stride, held up, pushed along over 2f out, stayed on inside final furlong, never nearer\">(6¼L Reyaadah 9-0)</a> 28/1 </td>\n" +
-                " <td>\n" +
-                " <a href=\"http://www.racingpost.com/horses/jockey_home.sd?jockey_id=627\" onclick=\"scorecards.send(&quot;jockey_name&quot;);return Html.popup(this, {width:695, height:800})\" title=\"Full details about this JOCKEY\">Michael Hills</a> </td>\n" +
-                " <td class=\"num\">—</td>\n" +
-                " <td class=\"num\"><span class=\"red bold\">*</span></td>\n" +
-                " <td class=\"num last\"><span class=\"red bold\">*</span></td>\n" +
-                " </tr>\n" +
-                " </tbody></table>\n" +
-                " <span id=\"barrier_RPR-TS_In_Form41686660079\" class=\"bar prpTsInfo\"><span id=\"ruli_33\"><span class=\"red bold\">*</span> Historical RP Ratings and Topspeed Ratings are part of Racing Post Members' Club <a href=\"#\" class=\"blue\" onclick=\"javascript:callLogin('special_offer');\"> Log in to view</a></span></span></div>\n" +
-                "<div id=\"sc_raceHorseNotes_814315\" class=\"notes\" style=\"display: none; \"></div>\n" +
-                "\n" +
-                " </td>\n" +
-                " </tr>\n" +
-                " <tr>\n" +
-                " <td colspan=\"7\"><tt><i></i></tt></td>\n" +
-                " </tr>\n" +
-                " </tbody><tbody id=\"sc_61619978\">\n" +
-                " <tr class=\"cr\">\n" +
-                " <td class=\"t\">\n" +
-                " <strong>2</strong><sup>2</sup> <em>64<b>6</b></em>\n" +
-                " </td>\n" +
-                " <td class=\"s\">\n" +
-                " <a href=\"http://www.racingpost.com/horses/owner_home.sd?owner_id=183587\" onclick=\"scorecards.send(&quot;owner_name&quot;);return Html.popup(this, {width:695, height:800})\" title=\"Full details about this OWNER\"><img src=\"http://images.racingpost.com/png_silks/7/8/5/183587.png\" class=\"iepng\" alt=\"Owner details\" title=\"Full details about this OWNER\" width=\"40\" height=\"29\"></a> </td>\n" +
-                " \n" +
-                " <td class=\"h\">\n" +
-                " <div class=\"nm\">\n" +
-                " <a href=\"http://www.racingpost.com/horses/horse_home.sd?race_id=564393&amp;r_date=2012-10-19&amp;horse_id=805252\" onclick=\"scorecards.send(&quot;horse_name&quot;);return Html.popup(this, {width:695, height:800})\" title=\"Full details about this HORSE\"><b>PEARL BOUNTY</b></a> <span>\n" +
-                " v<sup>1</sup> </span>\n" +
-                " \n" +
-                " <a href=\"#\" id=\"sc_pencil_805252\" title=\"Show/Hide My Notes for this runner\"></a> </div>\n" +
-                "\n" +
-                " <div class=\"oddsBar\">\n" +
-                " <div><div style=\"width: 12%\"></div></div>\n" +
-                " <span>12%</span>\n" +
-                " </div>\n" +
-                " </td>\n" +
-                " <td class=\"two c\">\n" +
-                " <div class=\"tips\">1</div>\n" +
-                " <div class=\"rpr\">65</div>\n" +
-                " <div class=\"ts\">31 </div>\n" +
-                " </td>\n" +
-                " <td class=\"two jt\">\n" +
-                " <div>\n" +
-                " <a href=\"http://www.racingpost.com/horses/trainer_home.sd?trainer_id=15605\" onclick=\"scorecards.send(&quot;trainer_name&quot;);return Html.popup(this, {width:695, height:800})\" title=\"Full details about this TRAINER\">Andrew Balding</a><sup><span title=\"the percentage of the stable's runners that have Run To Form in the last 14 days, based on RPR\">59</span></sup> </div>\n" +
-                " <div>\n" +
-                " <a href=\"http://www.racingpost.com/horses/jockey_home.sd?jockey_id=88632\" onclick=\"scorecards.send(&quot;jockey_name&quot;);return Html.popup(this, {width:695, height:800})\" title=\"Full details about this JOCKEY\">Harry Bentley</a> </div>\n" +
-                " </td>\n" +
-                " <td class=\"two awo\">\n" +
-                " <div>\n" +
-                " 2 &nbsp;\n" +
-                " 9-7 </div>\n" +
-                " <div>\n" +
-                " 65 </div>\n" +
-                " </td>\n" +
-                " <td class=\"bk\" id=\"sc_61619978_bk\"><button type=\"button\" class=\"btn btnBet btnLight\" title=\"7 with Ladbrokes - Click to bet\"><div><div>7</div></div></button><em>13/2</em><em>6</em><em>13/2</em><em>6</em></td>\n" +
-                " </tr>\n" +
-                " <tr>\n" +
-                " <td class=\"cardItemInfo\" colspan=\"7\">\n" +
-                " <p class=\"diomed\">\n" +
-                " Not cheap and capable of better than he´s shown; visor on </p>\n" +
-                " <div class=\"forms\">\n" +
-                " <table class=\"grid smallSpaceGrid\">\n" +
-                " <tbody><tr class=\"noSpace\">\n" +
-                " <th class=\"v\">&nbsp;</th>\n" +
-                " <th class=\"date\">DATE</th>\n" +
-                " <th class=\"raceCond\">RACE CONDITIONS</th>\n" +
-                " <th class=\"wgt\">WGT</th>\n" +
-                " <th class=\"raceOut\">RACE OUTCOME</th>\n" +
-                " <th class=\"jock\">JOCKEY</th>\n" +
-                " <th class=\"num\">OR</th>\n" +
-                " <th class=\"num\">TS</th>\n" +
-                " <th class=\"num last\">RPR</th>\n" +
-                " </tr>\n" +
-                " <tr>\n" +
-                " <td class=\"v\"><a href=\"#\" onclick=\"scorecards.sendSpecificDesc(&quot;ruk_video&quot;, &quot;1079, 2012-08-06, 12:00&quot;);panels.mediaCentre.replayPopup($(this), 560416, 805252, '2012-08-06', 'RUK'); return false;\"><img src=\"http://ui.racingpost.com/release/v17/ico/video.17.0.gif\" alt=\"Video\" title=\"Video\"></a></td>\n" +
-                " <td>\n" +
-                " <a href=\"http://www.racingpost.com/horses/result_home.sd?race_id=560416&amp;r_date=2012-08-06&amp;popup=yes\" onclick=\"scorecards.send(560416);return Html.popup(this, {width:695, height:800})\" title=\"Betfair Supporting Grassroots Racing Median Auction Maiden Stakes\">06Aug12</a> &nbsp;\n" +
-                " </td>\n" +
-                " <td>\n" +
-                " <b class=\"black\">\n" +
-                " <a href=\"http://www.racingpost.com/horses/course_home.sd?crs_id=1079\" onclick=\"return Html.popup(this, {width:695, height:800})\" title=\"Course (Click to view details): AW Polytrack: right-handed\">Kem</a> 6St/Slw </b>\n" +
-                " C52yMd 2K </td>\n" +
-                " <td>9-3</td>\n" +
-                " <td>\n" +
-                " <b class=\"black\">6</b>/7 <a href=\"http://www.racingpost.com/horses/result_home.sd?race_id=560416&amp;r_date=&amp;popup=yes\" onclick=\"scorecards.send(560416);return Html.popup(this, {width:695, height:800})\" title=\"chased leaders, left pressing leader, every chance and ridden 2f out, found little and beaten just over 1f out, weakened final furlong\">(9¼L Haafaguinea 9-3)</a> 10/1 </td>\n" +
-                " <td>\n" +
-                " <a href=\"http://www.racingpost.com/horses/jockey_home.sd?jockey_id=3659\" onclick=\"scorecards.send(&quot;jockey_name&quot;);return Html.popup(this, {width:695, height:800})\" title=\"Full details about this JOCKEY\">Jimmy Fortune</a> </td>\n" +
-                " <td class=\"num\">—</td>\n" +
-                " <td class=\"num\"><span class=\"red bold\">*</span></td>\n" +
-                " <td class=\"num last\"><span class=\"red bold\">*</span></td>\n" +
-                " </tr>\n" +
-                " <tr>\n" +
-                " <td class=\"v\"><a href=\"#\" onclick=\"scorecards.sendSpecificDesc(&quot;ruk_video&quot;, &quot;17, 2012-07-26, 12:00&quot;);panels.mediaCentre.replayPopup($(this), 559647, 805252, '2012-07-26', 'RUK'); return false;\"><img src=\"http://ui.racingpost.com/release/v17/ico/video.17.0.gif\" alt=\"Video\" title=\"Video\"></a></td>\n" +
-                " <td>\n" +
-                " <a href=\"http://www.racingpost.com/horses/result_home.sd?race_id=559647&amp;r_date=2012-07-26&amp;popup=yes\" onclick=\"scorecards.send(559647);return Html.popup(this, {width:695, height:800})\" title=\"British Stallion Studs Supporting British Racing E B F Maiden Stakes\">26Jul12</a> &nbsp;\n" +
-                " </td>\n" +
-                " <td>\n" +
-                " <b class=\"black\">\n" +
-                " <a href=\"http://www.racingpost.com/horses/course_home.sd?crs_id=17\" onclick=\"return Html.popup(this, {width:695, height:800})\" title=\"Course (Click to view details): left-handed, sharp track (very sharp up to 1m)\">Eps</a> 6GF </b>\n" +
-                " C52yMd 3K </td>\n" +
-                " <td>9-3</td>\n" +
-                " <td>\n" +
-                " <b class=\"black\">4</b>/7 <a href=\"http://www.racingpost.com/horses/result_home.sd?race_id=559647&amp;r_date=&amp;popup=yes\" onclick=\"scorecards.send(559647);return Html.popup(this, {width:695, height:800})\" title=\"held up in 6th, outpaced when ridden 2f out, no danger after\">(10½L Meringue Pie 9-3)</a> 4/1 </td>\n" +
-                " <td>\n" +
-                " <a href=\"http://www.racingpost.com/horses/jockey_home.sd?jockey_id=3659\" onclick=\"scorecards.send(&quot;jockey_name&quot;);return Html.popup(this, {width:695, height:800})\" title=\"Full details about this JOCKEY\">Jimmy Fortune</a> </td>\n" +
-                " <td class=\"num\">—</td>\n" +
-                " <td class=\"num\"><span class=\"red bold\">*</span></td>\n" +
-                " <td class=\"num last\"><span class=\"red bold\">*</span></td>\n" +
-                " </tr>\n" +
-                " <tr>\n" +
-                " <td class=\"v\"><a href=\"#\" onclick=\"scorecards.sendSpecificDesc(&quot;ruk_video&quot;, &quot;52, 2012-05-24, 12:00&quot;);panels.mediaCentre.replayPopup($(this), 554367, 805252, '2012-05-24', 'RUK'); return false;\"><img src=\"http://ui.racingpost.com/release/v17/ico/video.17.0.gif\" alt=\"Video\" title=\"Video\"></a></td>\n" +
-                " <td>\n" +
-                " <a href=\"http://www.racingpost.com/horses/result_home.sd?race_id=554367&amp;r_date=2012-05-24&amp;popup=yes\" onclick=\"scorecards.send(554367);return Html.popup(this, {width:695, height:800})\" title=\"Betfair Boosts Prize Money At Salisbury E B F Maiden Stakes\">24May12</a> &nbsp;\n" +
-                " </td>\n" +
-                " <td>\n" +
-                " <b class=\"black\">\n" +
-                " <a href=\"http://www.racingpost.com/horses/course_home.sd?crs_id=52\" onclick=\"return Html.popup(this, {width:695, height:800})\" title=\"Course (Click to view details): right-handed, galloping, testing track\">Sal</a> 5Fm </b>\n" +
-                " C42yMd 4K </td>\n" +
-                " <td>9-3</td>\n" +
-                " <td>\n" +
-                " <b class=\"black\">6</b>/9 <a href=\"http://www.racingpost.com/horses/result_home.sd?race_id=554367&amp;r_date=&amp;popup=yes\" onclick=\"scorecards.send(554367);return Html.popup(this, {width:695, height:800})\" title=\"little slowly away, in last pair, pushed along 3f out, never any impression on leaders\">(13½L Bungle Inthejungle 9-3)</a> 5/1 </td>\n" +
-                " <td>\n" +
-                " <a href=\"http://www.racingpost.com/horses/jockey_home.sd?jockey_id=3659\" onclick=\"scorecards.send(&quot;jockey_name&quot;);return Html.popup(this, {width:695, height:800})\" title=\"Full details about this JOCKEY\">Jimmy Fortune</a> </td>\n" +
-                " <td class=\"num\">—</td>\n" +
-                " <td class=\"num\"><span class=\"red bold\">*</span></td>\n" +
-                " <td class=\"num last\"><span class=\"red bold\">*</span></td>\n" +
-                " </tr>\n" +
-                " </tbody></table>\n" +
-                " <span id=\"barrier_RPR-TS_In_Form31755968315\" class=\"bar prpTsInfo\"><span id=\"ruli_33\"><span class=\"red bold\">*</span> Historical RP Ratings and Topspeed Ratings are part of Racing Post Members' Club <a href=\"#\" class=\"blue\" onclick=\"javascript:callLogin('special_offer');\"> Log in to view</a></span></span></div>\n" +
-                "<div id=\"sc_raceHorseNotes_805252\" class=\"notes\" style=\"display: none; \"></div>\n" +
-                "\n" +
-                " </td>\n" +
-                " </tr>\n" +
-                " <tr>\n" +
-                " <td colspan=\"7\"><tt><i></i></tt></td>\n" +
-                " </tr>\n" +
-                " </tbody><tbody id=\"sc_61619980\">\n" +
-                " <tr class=\"cr\">\n" +
-                " <td class=\"t\">\n" +
-                " <strong>1</strong><sup>1</sup> <em>932<b>2</b><b>7</b>7</em>\n" +
-                " </td>\n" +
-                " <td class=\"s\">\n" +
-                " <a href=\"http://www.racingpost.com/horses/owner_home.sd?owner_id=144347\" onclick=\"scorecards.send(&quot;owner_name&quot;);return Html.popup(this, {width:695, height:800})\" title=\"Full details about this OWNER\"><img src=\"http://images.racingpost.com/png_silks/7/4/3/144347.png\" class=\"iepng\" alt=\"Owner details\" title=\"Full details about this OWNER\" width=\"40\" height=\"29\"></a> </td>\n" +
-                " \n" +
-                " <td class=\"h\">\n" +
-                " <div class=\"nm\">\n" +
-                " <a href=\"http://www.racingpost.com/horses/horse_home.sd?race_id=564393&amp;r_date=2012-10-19&amp;horse_id=807841\" onclick=\"scorecards.send(&quot;horse_name&quot;);return Html.popup(this, {width:695, height:800})\" title=\"Full details about this HORSE\"><b>MISSING AGENT</b></a> <img src=\"http://ui.racingpost.com/ico/distance-d.gif\" class=\"cdbf\" alt=\"\"> <span>\n" +
-                " v </span>\n" +
-                " \n" +
-                " <a href=\"#\" id=\"sc_pencil_807841\" title=\"Show/Hide My Notes for this runner\"></a> </div>\n" +
-                "\n" +
-                " <div class=\"oddsBar\">\n" +
-                " <div><div style=\"width: 5%\"></div></div>\n" +
-                " <span>5%</span>\n" +
-                " </div>\n" +
-                " </td>\n" +
-                " <td class=\"two c\">\n" +
-                " <div class=\"tips\">3</div>\n" +
-                " <div class=\"rpr\">71</div>\n" +
-                " <div class=\"ts\">67 </div>\n" +
-                " </td>\n" +
-                " <td class=\"two jt\">\n" +
-                " <div>\n" +
-                " <a href=\"http://www.racingpost.com/horses/trainer_home.sd?trainer_id=3846\" onclick=\"scorecards.send(&quot;trainer_name&quot;);return Html.popup(this, {width:695, height:800})\" title=\"Full details about this TRAINER\">David Evans</a><sup><span title=\"the percentage of the stable's runners that have Run To Form in the last 14 days, based on RPR\">30</span></sup> </div>\n" +
-                " <div>\n" +
-                " <a href=\"http://www.racingpost.com/horses/jockey_home.sd?jockey_id=87299\" onclick=\"scorecards.send(&quot;jockey_name&quot;);return Html.popup(this, {width:695, height:800})\" title=\"Full details about this JOCKEY\">Nathan Sweeney</a><sup>5</sup> </div>\n" +
-                " </td>\n" +
-                " <td class=\"two awo\">\n" +
-                " <div>\n" +
-                " 2 &nbsp;\n" +
-                " 9-7 </div>\n" +
-                " <div>\n" +
-                " 65 </div>\n" +
-                " </td>\n" +
-                " <td class=\"bk\" id=\"sc_61619980_bk\"><button type=\"button\" class=\"btn btnBet btnLight\" title=\"8 with Ladbrokes - Click to bet\"><div><div>8</div></div></button><em>9</em><em>10</em><em>11</em><em>10</em></td>\n" +
-                " </tr>\n" +
-                " <tr>\n" +
-                " <td class=\"cardItemInfo\" colspan=\"7\">\n" +
-                " <p class=\"diomed\">\n" +
-                " Exposed now; fair effort on Monday; others more likely </p>\n" +
-                " <div class=\"forms\">\n" +
-                " <table class=\"grid smallSpaceGrid\">\n" +
-                " <tbody><tr class=\"noSpace\">\n" +
-                " <th class=\"v\">&nbsp;</th>\n" +
-                " <th class=\"date\">DATE</th>\n" +
-                " <th class=\"raceCond\">RACE CONDITIONS</th>\n" +
-                " <th class=\"wgt\">WGT</th>\n" +
-                " <th class=\"raceOut\">RACE OUTCOME</th>\n" +
-                " <th class=\"jock\">JOCKEY</th>\n" +
-                " <th class=\"num\">OR</th>\n" +
-                " <th class=\"num\">TS</th>\n" +
-                " <th class=\"num last\">RPR</th>\n" +
-                " </tr>\n" +
-                " <tr>\n" +
-                " <td class=\"v\"><a href=\"#\" onclick=\"scorecards.sendSpecificDesc(&quot;ruk_video&quot;, &quot;93, 2012-10-15, 12:00&quot;);panels.mediaCentre.replayPopup($(this), 564319, 807841, '2012-10-15', 'RUK'); return false;\"><img src=\"http://ui.racingpost.com/release/v17/ico/video.17.0.gif\" alt=\"Video\" title=\"Video\"></a></td>\n" +
-                " <td>\n" +
-                " <a href=\"http://www.racingpost.com/horses/result_home.sd?race_id=564319&amp;r_date=2012-10-15&amp;popup=yes\" onclick=\"scorecards.send(564319);return Html.popup(this, {width:695, height:800})\" title=\"davisbakerycaribbean.com Nursery\">15Oct12</a> &nbsp;\n" +
-                " </td>\n" +
-                " <td>\n" +
-                " <b class=\"black\">\n" +
-                " <a href=\"http://www.racingpost.com/horses/course_home.sd?crs_id=93\" onclick=\"return Html.popup(this, {width:695, height:800})\" title=\"Course (Click to view details): figure of eight, fairly sharp track\">Wdr</a> 8Sft </b>\n" +
-                " C52yHc 2K </td>\n" +
-                " <td>8-12</td>\n" +
-                " <td>\n" +
-                " <b class=\"black\">7</b>/8 <a href=\"http://www.racingpost.com/horses/result_home.sd?race_id=564319&amp;r_date=&amp;popup=yes\" onclick=\"scorecards.send(564319);return Html.popup(this, {width:695, height:800})\" title=\"fractious in stalls, led at good pace, edged off rail halfway, headed well over 2f out, steadily weakened\">(5¾L East Texas Red 8-10)</a> v 20/1 </td>\n" +
-                " <td>\n" +
-                " <a href=\"http://www.racingpost.com/horses/jockey_home.sd?jockey_id=83746\" onclick=\"scorecards.send(&quot;jockey_name&quot;);return Html.popup(this, {width:695, height:800})\" title=\"Full details about this JOCKEY\">Silvestre De Sousa</a> </td>\n" +
-                " <td class=\"num\">65</td>\n" +
-                " <td class=\"num\"><span class=\"red bold\">*</span></td>\n" +
-                " <td class=\"num last\"><span class=\"red bold\">*</span></td>\n" +
-                " </tr>\n" +
-                " <tr>\n" +
-                " <td class=\"v\"><a href=\"#\" onclick=\"scorecards.sendSpecificDesc(&quot;ruk_video&quot;, &quot;513, 2012-10-12, 12:00&quot;);panels.mediaCentre.replayPopup($(this), 563992, 807841, '2012-10-12', 'RUK'); return false;\"><img src=\"http://ui.racingpost.com/release/v17/ico/video.17.0.gif\" alt=\"Video\" title=\"Video\"></a></td>\n" +
-                " <td>\n" +
-                " <a href=\"http://www.racingpost.com/horses/result_home.sd?race_id=563992&amp;r_date=2012-10-12&amp;popup=yes\" onclick=\"scorecards.send(563992);return Html.popup(this, {width:695, height:800})\" title=\"32Red Supporting British Racing Nursery\">12Oct12</a> &nbsp;\n" +
-                " </td>\n" +
-                " <td>\n" +
-                " <b class=\"black\">\n" +
-                " <a href=\"http://www.racingpost.com/horses/course_home.sd?crs_id=513\" onclick=\"return Html.popup(this, {width:695, height:800})\" title=\"Course (Click to view details): left-handed 7 1/2f oval.\">Wol</a> 9St </b>\n" +
-                " C62yHc 1K </td>\n" +
-                " <td>9-4</td>\n" +
-                " <td>\n" +
-                " <b class=\"black\">7</b>/11 <a href=\"http://www.racingpost.com/horses/result_home.sd?race_id=563992&amp;r_date=&amp;popup=yes\" onclick=\"scorecards.send(563992);return Html.popup(this, {width:695, height:800})\" title=\"chased leaders, ridden over 2f out, stayed on same pace from over 1f out\">(6¼L Nine Iron 9-4)</a> v 16/1 </td>\n" +
-                " <td>\n" +
-                " <a href=\"http://www.racingpost.com/horses/jockey_home.sd?jockey_id=80421\" onclick=\"scorecards.send(&quot;jockey_name&quot;);return Html.popup(this, {width:695, height:800})\" title=\"Full details about this JOCKEY\">Stevie Donohoe</a> </td>\n" +
-                " <td class=\"num\">62</td>\n" +
-                " <td class=\"num\"><span class=\"red bold\">*</span></td>\n" +
-                " <td class=\"num last\"><span class=\"red bold\">*</span></td>\n" +
-                " </tr>\n" +
-                " <tr>\n" +
-                " <td class=\"v\"><a href=\"#\" onclick=\"scorecards.sendSpecificDesc(&quot;ruk_video&quot;, &quot;513, 2012-10-04, 12:00&quot;);panels.mediaCentre.replayPopup($(this), 563602, 807841, '2012-10-04', 'RUK'); return false;\"><img src=\"http://ui.racingpost.com/release/v17/ico/video.17.0.gif\" alt=\"Video\" title=\"Video\"></a></td>\n" +
-                " <td>\n" +
-                " <a href=\"http://www.racingpost.com/horses/result_home.sd?race_id=563602&amp;r_date=2012-10-04&amp;popup=yes\" onclick=\"scorecards.send(563602);return Html.popup(this, {width:695, height:800})\" title=\"ABETA, &quot;Thanks-To-All&quot; Our Customers Selling Stakes\">04Oct12</a> &nbsp;\n" +
-                " </td>\n" +
-                " <td>\n" +
-                " <b class=\"black\">\n" +
-                " <a href=\"http://www.racingpost.com/horses/course_home.sd?crs_id=513\" onclick=\"return Html.popup(this, {width:695, height:800})\" title=\"Course (Click to view details): left-handed 7 1/2f oval.\">Wol</a> 7St </b>\n" +
-                " C62ySl 1K </td>\n" +
-                " <td>9-2</td>\n" +
-                " <td>\n" +
-                " <b class=\"black\">2</b>/10 <a href=\"http://www.racingpost.com/horses/result_home.sd?race_id=563602&amp;r_date=&amp;popup=yes\" onclick=\"scorecards.send(563602);return Html.popup(this, {width:695, height:800})\" title=\"slowly into stride, driven along in rear early, headway halfway, ridden over 1f out, ran on\">(¾L Sutton Sid 8-11)</a> v 7/2 </td>\n" +
-                " <td>\n" +
-                " <a href=\"http://www.racingpost.com/horses/jockey_home.sd?jockey_id=84857\" onclick=\"scorecards.send(&quot;jockey_name&quot;);return Html.popup(this, {width:695, height:800})\" title=\"Full details about this JOCKEY\">Luke Morris</a> </td>\n" +
-                " <td class=\"num\">62</td>\n" +
-                " <td class=\"num\"><span class=\"red bold\">*</span></td>\n" +
-                " <td class=\"num last\"><span class=\"red bold\">*</span></td>\n" +
-                " </tr>\n" +
-                " <tr>\n" +
-                " <td class=\"v\"><a href=\"#\" onclick=\"scorecards.sendSpecificDesc(&quot;ruk_video&quot;, &quot;7, 2012-09-21, 12:00&quot;);panels.mediaCentre.replayPopup($(this), 563898, 807841, '2012-09-21', 'RUK'); return false;\"><img src=\"http://ui.racingpost.com/release/v17/ico/video.17.0.gif\" alt=\"Video\" title=\"Video\"></a></td>\n" +
-                " <td>\n" +
-                " <a href=\"http://www.racingpost.com/horses/result_home.sd?race_id=563898&amp;r_date=2012-09-21&amp;popup=yes\" onclick=\"scorecards.send(563898);return Html.popup(this, {width:695, height:800})\" title=\"Farewell To Lynda Baxter Nursery\">21Sep12</a> &nbsp;\n" +
-                " </td>\n" +
-                " <td>\n" +
-                " <b class=\"black\">\n" +
-                " <a href=\"http://www.racingpost.com/horses/course_home.sd?crs_id=7\" onclick=\"return Html.popup(this, {width:695, height:800})\" title=\"Course (Click to view details): left-handed sharp track\">Bri</a> 8Fm </b>\n" +
-                " C62yHc 2K </td>\n" +
-                " <td>9-7</td>\n" +
-                " <td>\n" +
-                " <b class=\"black\">2</b>/8 <a href=\"http://www.racingpost.com/horses/result_home.sd?race_id=563898&amp;r_date=&amp;popup=yes\" onclick=\"scorecards.send(563898);return Html.popup(this, {width:695, height:800})\" title=\"took keen hold, chased leaders, ridden and every chance 2f out, led just inside final furlong, soon headed and stayed on same pace\">(1½L Pink Mischief 8-10)</a> v 6/1 </td>\n" +
-                " <td>\n" +
-                " <a href=\"http://www.racingpost.com/horses/jockey_home.sd?jockey_id=76878\" onclick=\"scorecards.send(&quot;jockey_name&quot;);return Html.popup(this, {width:695, height:800})\" title=\"Full details about this JOCKEY\">Cathy Gannon</a> </td>\n" +
-                " <td class=\"num\">60</td>\n" +
-                " <td class=\"num\"><span class=\"red bold\">*</span></td>\n" +
-                " <td class=\"num last\"><span class=\"red bold\">*</span></td>\n" +
-                " </tr>\n" +
-                " <tr>\n" +
-                " <td class=\"v\"><a href=\"#\" onclick=\"scorecards.sendSpecificDesc(&quot;ruk_video&quot;, &quot;12, 2012-09-13, 12:00&quot;);panels.mediaCentre.replayPopup($(this), 562466, 807841, '2012-09-13', 'RUK'); return false;\"><img src=\"http://ui.racingpost.com/release/v17/ico/video.17.0.gif\" alt=\"Video\" title=\"Video\"></a></td>\n" +
-                " <td>\n" +
-                " <a href=\"http://www.racingpost.com/horses/result_home.sd?race_id=562466&amp;r_date=2012-09-13&amp;popup=yes\" onclick=\"scorecards.send(562466);return Html.popup(this, {width:695, height:800})\" title=\"Morgan Cole LLP Supports Ty Hafan Nursery\">13Sep12</a> &nbsp;\n" +
-                " </td>\n" +
-                " <td>\n" +
-                " <b class=\"black\">\n" +
-                " <a href=\"http://www.racingpost.com/horses/course_home.sd?crs_id=12\" onclick=\"return Html.popup(this, {width:695, height:800})\" title=\"Course (Click to view details): left-handed, essentially galloping track, despite pronounced undulations\">Chp</a> 8Gd </b>\n" +
-                " C62yHc 1K </td>\n" +
-                " <td>9-1</td>\n" +
-                " <td>\n" +
-                " <b class=\"black\">3</b>/16 <a href=\"http://www.racingpost.com/horses/result_home.sd?race_id=562466&amp;r_date=&amp;popup=yes\" onclick=\"scorecards.send(562466);return Html.popup(this, {width:695, height:800})\" title=\"chased leaders, staying on when badly hampered inside final furlong, rallied to take 3rd last strides\">(¾L Knight's Parade 8-13)</a> v 50/1 </td>\n" +
-                " <td>\n" +
-                " <a href=\"http://www.racingpost.com/horses/jockey_home.sd?jockey_id=86660\" onclick=\"scorecards.send(&quot;jockey_name&quot;);return Html.popup(this, {width:695, height:800})\" title=\"Full details about this JOCKEY\">Matthew Cosham</a> </td>\n" +
-                " <td class=\"num\">60</td>\n" +
-                " <td class=\"num\"><span class=\"red bold\">*</span></td>\n" +
-                " <td class=\"num last\"><span class=\"red bold\">*</span></td>\n" +
-                " </tr>\n" +
-                " <tr>\n" +
-                " <td class=\"v\"><a href=\"#\" onclick=\"scorecards.sendSpecificDesc(&quot;ruk_video&quot;, &quot;5, 2012-09-10, 12:00&quot;);panels.mediaCentre.replayPopup($(this), 562417, 807841, '2012-09-10', 'RUK'); return false;\"><img src=\"http://ui.racingpost.com/release/v17/ico/video.17.0.gif\" alt=\"Video\" title=\"Video\"></a></td>\n" +
-                " <td>\n" +
-                " <a href=\"http://www.racingpost.com/horses/result_home.sd?race_id=562417&amp;r_date=2012-09-10&amp;popup=yes\" onclick=\"scorecards.send(562417);return Html.popup(this, {width:695, height:800})\" title=\"Post Weekend Nursery\">10Sep12</a> &nbsp;\n" +
-                " </td>\n" +
-                " <td>\n" +
-                " <b class=\"black\">\n" +
-                " <a href=\"http://www.racingpost.com/horses/course_home.sd?crs_id=5\" onclick=\"return Html.popup(this, {width:695, height:800})\" title=\"Course (Click to view details): left-handed galloping track\">Bat</a> 10Fm </b>\n" +
-                " C52yHc 2K </td>\n" +
-                " <td>8-11</td>\n" +
-                " <td>\n" +
-                " <b class=\"black\">9</b>/9 <a href=\"http://www.racingpost.com/horses/result_home.sd?race_id=562417&amp;r_date=&amp;popup=yes\" onclick=\"scorecards.send(562417);return Html.popup(this, {width:695, height:800})\" title=\"slowly into stride, ridden 4f out, always well behind\">(36L Felix Fabulla 9-4)</a> 40/1 </td>\n" +
-                " <td>\n" +
-                " <a href=\"http://www.racingpost.com/horses/jockey_home.sd?jockey_id=76878\" onclick=\"scorecards.send(&quot;jockey_name&quot;);return Html.popup(this, {width:695, height:800})\" title=\"Full details about this JOCKEY\">Cathy Gannon</a> </td>\n" +
-                " <td class=\"num\">60</td>\n" +
-                " <td class=\"num\"><span class=\"red bold\">*</span></td>\n" +
-                " <td class=\"num last\"><span class=\"red bold\">*</span></td>\n" +
-                " </tr>\n" +
-                " </tbody></table>\n" +
-                " <span id=\"barrier_RPR-TS_In_Form101482407002\" class=\"bar prpTsInfo\"><span id=\"ruli_33\"><span class=\"red bold\">*</span> Historical RP Ratings and Topspeed Ratings are part of Racing Post Members' Club <a href=\"#\" class=\"blue\" onclick=\"javascript:callLogin('special_offer');\"> Log in to view</a></span></span></div>\n" +
-                "<div id=\"sc_raceHorseNotes_807841\" class=\"notes\" style=\"display: none; \"></div>\n" +
-                "\n" +
-                " </td>\n" +
-                " </tr>\n" +
-                " <tr>\n" +
-                " <td colspan=\"7\"><tt><i></i></tt></td>\n" +
-                " </tr>\n" +
-                " </tbody><tbody id=\"sc_61619988\">\n" +
-                " <tr class=\"cr\">\n" +
-                " <td class=\"t\">\n" +
-                " <strong>9</strong><sup>5</sup> <em>5886</em>\n" +
-                " </td>\n" +
-                " <td class=\"s\">\n" +
-                " <a href=\"http://www.racingpost.com/horses/owner_home.sd?owner_id=35637\" onclick=\"scorecards.send(&quot;owner_name&quot;);return Html.popup(this, {width:695, height:800})\" title=\"Full details about this OWNER\"><img src=\"http://images.racingpost.com/png_silks/7/3/6/35637.png\" class=\"iepng\" alt=\"Owner details\" title=\"Full details about this OWNER\" width=\"40\" height=\"29\"></a> </td>\n" +
-                " \n" +
-                " <td class=\"h\">\n" +
-                " <div class=\"nm\">\n" +
-                " <a href=\"http://www.racingpost.com/horses/horse_home.sd?race_id=564393&amp;r_date=2012-10-19&amp;horse_id=816300\" onclick=\"scorecards.send(&quot;horse_name&quot;);return Html.popup(this, {width:695, height:800})\" title=\"Full details about this HORSE\"><b>HOT MUSTARD</b></a> \n" +
-                " <a href=\"#\" id=\"sc_pencil_816300\" title=\"Show/Hide My Notes for this runner\"></a> </div>\n" +
-                "\n" +
-                " <div class=\"oddsBar\">\n" +
-                " <div><div style=\"width: 9%\"></div></div>\n" +
-                " <span>9%</span>\n" +
-                " </div>\n" +
-                " </td>\n" +
-                " <td class=\"two c\">\n" +
-                " <div class=\"tips\">1</div>\n" +
-                " <div class=\"rpr\">70</div>\n" +
-                " <div class=\"ts\">—</div>\n" +
-                " </td>\n" +
-                " <td class=\"two jt\">\n" +
-                " <div>\n" +
-                " <a href=\"http://www.racingpost.com/horses/trainer_home.sd?trainer_id=4113\" onclick=\"scorecards.send(&quot;trainer_name&quot;);return Html.popup(this, {width:695, height:800})\" title=\"Full details about this TRAINER\">Michael Bell</a><sup><span title=\"the percentage of the stable's runners that have Run To Form in the last 14 days, based on RPR\">47</span></sup> </div>\n" +
-                " <div>\n" +
-                " <a href=\"http://www.racingpost.com/horses/jockey_home.sd?jockey_id=78920\" onclick=\"scorecards.send(&quot;jockey_name&quot;);return Html.popup(this, {width:695, height:800})\" title=\"Full details about this JOCKEY\">Hayley Turner</a> </div>\n" +
-                " </td>\n" +
-                " <td class=\"two awo\">\n" +
-                " <div>\n" +
-                " 2 &nbsp;\n" +
-                " 9-4 </div>\n" +
-                " <div>\n" +
-                " 62 </div>\n" +
-                " </td>\n" +
-                " <td class=\"bk\" id=\"sc_61619988_bk\"><button type=\"button\" class=\"btn btnBet btnLight\" title=\"8 with Ladbrokes - Click to bet\"><div><div>8</div></div></button><em>7</em><em>8</em><em>13/2</em></td>\n" +
-                " </tr>\n" +
-                " <tr>\n" +
-                " <td class=\"cardItemInfo\" colspan=\"7\">\n" +
-                " <p class=\"diomed\">\n" +
-                " More expected on nursery debut but never went; better than that </p>\n" +
-                " <div class=\"forms\">\n" +
-                " <table class=\"grid smallSpaceGrid\">\n" +
-                " <tbody><tr class=\"noSpace\">\n" +
-                " <th class=\"v\">&nbsp;</th>\n" +
-                " <th class=\"date\">DATE</th>\n" +
-                " <th class=\"raceCond\">RACE CONDITIONS</th>\n" +
-                " <th class=\"wgt\">WGT</th>\n" +
-                " <th class=\"raceOut\">RACE OUTCOME</th>\n" +
-                " <th class=\"jock\">JOCKEY</th>\n" +
-                " <th class=\"num\">OR</th>\n" +
-                " <th class=\"num\">TS</th>\n" +
-                " <th class=\"num last\">RPR</th>\n" +
-                " </tr>\n" +
-                " <tr>\n" +
-                " <td class=\"v\"><a href=\"#\" onclick=\"scorecards.sendSpecificDesc(&quot;ruk_video&quot;, &quot;104, 2012-09-20, 12:00&quot;);panels.mediaCentre.replayPopup($(this), 562867, 816300, '2012-09-20', 'RUK'); return false;\"><img src=\"http://ui.racingpost.com/release/v17/ico/video.17.0.gif\" alt=\"Video\" title=\"Video\"></a></td>\n" +
-                " <td>\n" +
-                " <a href=\"http://www.racingpost.com/horses/result_home.sd?race_id=562867&amp;r_date=2012-09-20&amp;popup=yes\" onclick=\"scorecards.send(562867);return Html.popup(this, {width:695, height:800})\" title=\"Seajacks Nursery\">20Sep12</a> &nbsp;\n" +
-                " </td>\n" +
-                " <td>\n" +
-                " <b class=\"black\">\n" +
-                " <a href=\"http://www.racingpost.com/horses/course_home.sd?crs_id=104\" onclick=\"return Html.popup(this, {width:695, height:800})\" title=\"Course (Click to view details): left-handed, galloping track\">Yar</a> 8GF </b>\n" +
-                " C52yHc 2K </td>\n" +
-                " <td>9-7</td>\n" +
-                " <td>\n" +
-                " <b class=\"black\">6</b>/6 <a href=\"http://www.racingpost.com/horses/result_home.sd?race_id=562867&amp;r_date=&amp;popup=yes\" onclick=\"scorecards.send(562867);return Html.popup(this, {width:695, height:800})\" title=\"in touch in last pair, ridden and no response 2f out, beaten and heavily eased from over 1f out, tailed off\">(59L Aseela 9-4)</a> 13/2 </td>\n" +
-                " <td>\n" +
-                " <a href=\"http://www.racingpost.com/horses/jockey_home.sd?jockey_id=78920\" onclick=\"scorecards.send(&quot;jockey_name&quot;);return Html.popup(this, {width:695, height:800})\" title=\"Full details about this JOCKEY\">Hayley Turner</a> </td>\n" +
-                " <td class=\"num\">64</td>\n" +
-                " <td class=\"num\"><span class=\"red bold\">*</span></td>\n" +
-                " <td class=\"num last\"><span class=\"red bold\">*</span></td>\n" +
-                " </tr>\n" +
-                " <tr>\n" +
-                " <td class=\"v\"><a href=\"#\" onclick=\"scorecards.sendSpecificDesc(&quot;ruk_video&quot;, &quot;36, 2012-08-05, 12:00&quot;);panels.mediaCentre.replayPopup($(this), 560143, 816300, '2012-08-05', 'RUK'); return false;\"><img src=\"http://ui.racingpost.com/release/v17/ico/video.17.0.gif\" alt=\"Video\" title=\"Video\"></a></td>\n" +
-                " <td>\n" +
-                " <a href=\"http://www.racingpost.com/horses/result_home.sd?race_id=560143&amp;r_date=2012-08-05&amp;popup=yes\" onclick=\"scorecards.send(560143);return Html.popup(this, {width:695, height:800})\" title=\"Academy Insurance Irish EBF Maiden Stakes (Div I)\">05Aug12</a> &nbsp;\n" +
-                " </td>\n" +
-                " <td>\n" +
-                " <b class=\"black\">\n" +
-                " <a href=\"http://www.racingpost.com/horses/course_home.sd?crs_id=36\" onclick=\"return Html.popup(this, {width:695, height:800})\" title=\"Course (Click to view details): left-handed, galloping track\">Nby</a> 6GF </b>\n" +
-                " C42yMd 4K </td>\n" +
-                " <td>9-3</td>\n" +
-                " <td>\n" +
-                " <b class=\"black\">8</b>/11 <a href=\"http://www.racingpost.com/horses/result_home.sd?race_id=560143&amp;r_date=&amp;popup=yes\" onclick=\"scorecards.send(560143);return Html.popup(this, {width:695, height:800})\" title=\"slowly into stride, soon chasing leaders, ridden and one pace final 2f\">(7L Derwent 9-3)</a> 14/1 </td>\n" +
-                " <td>\n" +
-                " <a href=\"http://www.racingpost.com/horses/jockey_home.sd?jockey_id=78920\" onclick=\"scorecards.send(&quot;jockey_name&quot;);return Html.popup(this, {width:695, height:800})\" title=\"Full details about this JOCKEY\">Hayley Turner</a> </td>\n" +
-                " <td class=\"num\">—</td>\n" +
-                " <td class=\"num\"><span class=\"red bold\">*</span></td>\n" +
-                " <td class=\"num last\"><span class=\"red bold\">*</span></td>\n" +
-                " </tr>\n" +
-                " <tr>\n" +
-                " <td class=\"v\"><a href=\"#\" onclick=\"scorecards.sendSpecificDesc(&quot;ruk_video&quot;, &quot;174, 2012-07-27, 12:00&quot;);panels.mediaCentre.replayPopup($(this), 559677, 816300, '2012-07-27', 'RUK'); return false;\"><img src=\"http://ui.racingpost.com/release/v17/ico/video.17.0.gif\" alt=\"Video\" title=\"Video\"></a></td>\n" +
-                " <td>\n" +
-                " <a href=\"http://www.racingpost.com/horses/result_home.sd?race_id=559677&amp;r_date=2012-07-27&amp;popup=yes\" onclick=\"scorecards.send(559677);return Html.popup(this, {width:695, height:800})\" title=\"Audi Cambridge Median Auction Maiden Stakes\">27Jul12</a> &nbsp;\n" +
-                " </td>\n" +
-                " <td>\n" +
-                " <b class=\"black\">\n" +
-                " <a href=\"http://www.racingpost.com/horses/course_home.sd?crs_id=174\" onclick=\"return Html.popup(this, {width:695, height:800})\" title=\"Course (Click to view details): right-handed, galloping track\">Nmk</a> 6GF </b>\n" +
-                " C52yMd 3K </td>\n" +
-                " <td>9-3</td>\n" +
-                " <td>\n" +
-                " <b class=\"black\">8</b>/13 <a href=\"http://www.racingpost.com/horses/result_home.sd?race_id=559677&amp;r_date=&amp;popup=yes\" onclick=\"scorecards.send(559677);return Html.popup(this, {width:695, height:800})\" title=\"held up in last quartet, ridden and effort but still plenty to do when not clear run and switched right 1f out, kept on but no threat to winner final furlong\">(8¾L The Gold Cheongsam 8-12)</a> 25/1 </td>\n" +
-                " <td>\n" +
-                " <a href=\"http://www.racingpost.com/horses/jockey_home.sd?jockey_id=78935\" onclick=\"scorecards.send(&quot;jockey_name&quot;);return Html.popup(this, {width:695, height:800})\" title=\"Full details about this JOCKEY\">Tom Queally</a> </td>\n" +
-                " <td class=\"num\">—</td>\n" +
-                " <td class=\"num\"><span class=\"red bold\">*</span></td>\n" +
-                " <td class=\"num last\"><span class=\"red bold\">*</span></td>\n" +
-                " </tr>\n" +
-                " <tr>\n" +
-                " <td class=\"v\"><a href=\"#\" onclick=\"scorecards.sendSpecificDesc(&quot;ruk_video&quot;, &quot;93, 2012-07-16, 12:00&quot;);panels.mediaCentre.replayPopup($(this), 559129, 816300, '2012-07-16', 'RUK'); return false;\"><img src=\"http://ui.racingpost.com/release/v17/ico/video.17.0.gif\" alt=\"Video\" title=\"Video\"></a></td>\n" +
-                " <td>\n" +
-                " <a href=\"http://www.racingpost.com/horses/result_home.sd?race_id=559129&amp;r_date=2012-07-16&amp;popup=yes\" onclick=\"scorecards.send(559129);return Html.popup(this, {width:695, height:800})\" title=\"Skybet EBF Maiden Stakes\">16Jul12</a> &nbsp;\n" +
-                " </td>\n" +
-                " <td>\n" +
-                " <b class=\"black\">\n" +
-                " <a href=\"http://www.racingpost.com/horses/course_home.sd?crs_id=93\" onclick=\"return Html.popup(this, {width:695, height:800})\" title=\"Course (Click to view details): figure of eight, fairly sharp track\">Wdr</a> 6Hy </b>\n" +
-                " C52yMd 3K </td>\n" +
-                " <td>9-3</td>\n" +
-                " <td>\n" +
-                " <b class=\"black\">5</b>/8 <a href=\"http://www.racingpost.com/horses/result_home.sd?race_id=559129&amp;r_date=&amp;popup=yes\" onclick=\"scorecards.send(559129);return Html.popup(this, {width:695, height:800})\" title=\"started slowly, rousted along in detached last, some progress over 2f out, one pace over 1f out\">(9½L Ashaadd 9-3)</a> 7/1 </td>\n" +
-                " <td>\n" +
-                " <a href=\"http://www.racingpost.com/horses/jockey_home.sd?jockey_id=78920\" onclick=\"scorecards.send(&quot;jockey_name&quot;);return Html.popup(this, {width:695, height:800})\" title=\"Full details about this JOCKEY\">Hayley Turner</a> </td>\n" +
-                " <td class=\"num\">—</td>\n" +
-                " <td class=\"num\"><span class=\"red bold\">*</span></td>\n" +
-                " <td class=\"num last\"><span class=\"red bold\">*</span></td>\n" +
-                " </tr>\n" +
-                " </tbody></table>\n" +
-                " <span id=\"barrier_RPR-TS_In_Form61936282771\" class=\"bar prpTsInfo\"><span id=\"ruli_33\"><span class=\"red bold\">*</span> Historical RP Ratings and Topspeed Ratings are part of Racing Post Members' Club <a href=\"#\" class=\"blue\" onclick=\"javascript:callLogin('special_offer');\"> Log in to view</a></span></span></div>\n" +
-                "<div id=\"sc_raceHorseNotes_816300\" class=\"notes\" style=\"display: none; \"></div>\n" +
-                "\n" +
-                " </td>\n" +
-                " </tr>\n" +
-                " <tr>\n" +
-                " <td colspan=\"7\"><tt><i></i></tt></td>\n" +
-                " </tr>\n" +
-                " </tbody><tbody id=\"sc_61619985\">\n" +
-                " <tr class=\"cr\">\n" +
-                " <td class=\"t\">\n" +
-                " <strong>5</strong><sup>3</sup> <em>946</em>\n" +
-                " </td>\n" +
-                " <td class=\"s\">\n" +
-                " <a href=\"http://www.racingpost.com/horses/owner_home.sd?owner_id=124860\" onclick=\"scorecards.send(&quot;owner_name&quot;);return Html.popup(this, {width:695, height:800})\" title=\"Full details about this OWNER\"><img src=\"http://images.racingpost.com/png_silks/0/6/8/124860.png\" class=\"iepng\" alt=\"Owner details\" title=\"Full details about this OWNER\" width=\"40\" height=\"29\"></a> </td>\n" +
-                " \n" +
-                " <td class=\"h\">\n" +
-                " <div class=\"nm\">\n" +
-                " <a href=\"http://www.racingpost.com/horses/horse_home.sd?race_id=564393&amp;r_date=2012-10-19&amp;horse_id=815258\" onclick=\"scorecards.send(&quot;horse_name&quot;);return Html.popup(this, {width:695, height:800})\" title=\"Full details about this HORSE\"><b>BYRON´S DREAM</b></a> \n" +
-                " <a href=\"#\" id=\"sc_pencil_815258\" title=\"Show/Hide My Notes for this runner\"></a> </div>\n" +
-                "\n" +
-                " <div class=\"oddsBar\">\n" +
-                " <div><div style=\"width: 6%\"></div></div>\n" +
-                " <span>6%</span>\n" +
-                " </div>\n" +
-                " </td>\n" +
-                " <td class=\"two c\">\n" +
-                " <div class=\"tips\">0</div>\n" +
-                " <div class=\"rpr\">68</div>\n" +
-                " <div class=\"ts\">—</div>\n" +
-                " </td>\n" +
-                " <td class=\"two jt\">\n" +
-                " <div>\n" +
-                " <a href=\"http://www.racingpost.com/horses/trainer_home.sd?trainer_id=14335\" onclick=\"scorecards.send(&quot;trainer_name&quot;);return Html.popup(this, {width:695, height:800})\" title=\"Full details about this TRAINER\">Jedd O´Keeffe</a><sup><span title=\"the percentage of the stable's runners that have Run To Form in the last 14 days, based on RPR\">50</span></sup> </div>\n" +
-                " <div>\n" +
-                " <a href=\"http://www.racingpost.com/horses/jockey_home.sd?jockey_id=76831\" onclick=\"scorecards.send(&quot;jockey_name&quot;);return Html.popup(this, {width:695, height:800})\" title=\"Full details about this JOCKEY\">Tom Eaves</a> </div>\n" +
-                " </td>\n" +
-                " <td class=\"two awo\">\n" +
-                " <div>\n" +
-                " 2 &nbsp;\n" +
-                " 9-6 </div>\n" +
-                " <div>\n" +
-                " 64 </div>\n" +
-                " </td>\n" +
-                " <td class=\"bk\" id=\"sc_61619985_bk\"><button type=\"button\" class=\"btn btnBet btnLight\" title=\"10 with Ladbrokes - Click to bet\"><div><div>10</div></div></button><em>11</em><em>9</em><em>10</em><em>9</em></td>\n" +
-                " </tr>\n" +
-                " <tr>\n" +
-                " <td class=\"cardItemInfo\" colspan=\"7\">\n" +
-                " <p class=\"diomed\">\n").append(" Off since too free in the summer; trainer modest record with 2yos </p>\n" +
-                " <div class=\"forms\">\n" +
-                " <table class=\"grid smallSpaceGrid\">\n" +
-                " <tbody><tr class=\"noSpace\">\n" +
-                " <th class=\"v\">&nbsp;</th>\n" +
-                " <th class=\"date\">DATE</th>\n" +
-                " <th class=\"raceCond\">RACE CONDITIONS</th>\n" +
-                " <th class=\"wgt\">WGT</th>\n" +
-                " <th class=\"raceOut\">RACE OUTCOME</th>\n" +
-                " <th class=\"jock\">JOCKEY</th>\n" +
-                " <th class=\"num\">OR</th>\n" +
-                " <th class=\"num\">TS</th>\n" +
-                " <th class=\"num last\">RPR</th>\n" +
-                " </tr>\n" +
-                " <tr>\n" +
-                " <td class=\"v\"><a href=\"#\" onclick=\"scorecards.sendSpecificDesc(&quot;ruk_video&quot;, &quot;80, 2012-08-13, 12:00&quot;);panels.mediaCentre.replayPopup($(this), 560841, 815258, '2012-08-13', 'RUK'); return false;\"><img src=\"http://ui.racingpost.com/release/v17/ico/video.17.0.gif\" alt=\"Video\" title=\"Video\"></a></td>\n" +
-                " <td>\n" +
-                " <a href=\"http://www.racingpost.com/horses/result_home.sd?race_id=560841&amp;r_date=2012-08-13&amp;popup=yes\" onclick=\"scorecards.send(560841);return Html.popup(this, {width:695, height:800})\" title=\"TurfTV.co.uk Maiden Auction Stakes\">13Aug12</a> &nbsp;\n" +
-                " </td>\n" +
-                " <td>\n" +
-                " <b class=\"black\">\n" +
-                " <a href=\"http://www.racingpost.com/horses/course_home.sd?crs_id=80\" onclick=\"return Html.popup(this, {width:695, height:800})\" title=\"Course (Click to view details): left-handed, fairly sharp track\">Thi</a> 7GF </b>\n" +
-                " C52yMdAc 2K </td>\n" +
-                " <td>8-9</td>\n" +
-                " <td>\n" +
-                " <b class=\"black\">6</b>/8 <a href=\"http://www.racingpost.com/horses/result_home.sd?race_id=560841&amp;r_date=&amp;popup=yes\" onclick=\"scorecards.send(560841);return Html.popup(this, {width:695, height:800})\" title=\"took keen hold early, in touch, headway to chase leaders 3f out, soon ridden and weakened 2f out\">(10½L Kolonel Kirkup 8-9)</a> 10/1 </td>\n" +
-                " <td>\n" +
-                " <a href=\"http://www.racingpost.com/horses/jockey_home.sd?jockey_id=82605\" onclick=\"scorecards.send(&quot;jockey_name&quot;);return Html.popup(this, {width:695, height:800})\" title=\"Full details about this JOCKEY\">Frederik Tylicki</a> </td>\n" +
-                " <td class=\"num\">—</td>\n" +
-                " <td class=\"num\"><span class=\"red bold\">*</span></td>\n" +
-                " <td class=\"num last\"><span class=\"red bold\">*</span></td>\n" +
-                " </tr>\n" +
-                " <tr>\n" +
-                " <td class=\"v\"><a href=\"#\" onclick=\"scorecards.sendSpecificDesc(&quot;ruk_video&quot;, &quot;8, 2012-07-29, 12:00&quot;);panels.mediaCentre.replayPopup($(this), 559736, 815258, '2012-07-29', 'RUK'); return false;\"><img src=\"http://ui.racingpost.com/release/v17/ico/video.17.0.gif\" alt=\"Video\" title=\"Video\"></a></td>\n" +
-                " <td>\n" +
-                " <a href=\"http://www.racingpost.com/horses/result_home.sd?race_id=559736&amp;r_date=2012-07-29&amp;popup=yes\" onclick=\"scorecards.send(559736);return Html.popup(this, {width:695, height:800})\" title=\"Read Hayley At racinguk.com Every Friday Maiden Auction Stakes\">29Jul12</a> &nbsp;\n" +
-                " </td>\n" +
-                " <td>\n" +
-                " <b class=\"black\">\n" +
-                " <a href=\"http://www.racingpost.com/horses/course_home.sd?crs_id=8\" onclick=\"return Html.popup(this, {width:695, height:800})\" title=\"Course (Click to view details): right-handed, galloping track (sprint course testing)\">Crl</a> 6Gd </b>\n" +
-                " C52yMdAc 2K </td>\n" +
-                " <td>8-9</td>\n" +
-                " <td>\n" +
-                " <b class=\"black\">4</b>/12 <a href=\"http://www.racingpost.com/horses/result_home.sd?race_id=559736&amp;r_date=&amp;popup=yes\" onclick=\"scorecards.send(559736);return Html.popup(this, {width:695, height:800})\" title=\"behind and soon pushed along, headway on outside over 2f out, kept on final furlong, never able to challenge\">(4¼L Ishigunnaeatit 8-7)</a> 50/1 </td>\n" +
-                " <td>\n" +
-                " <a href=\"http://www.racingpost.com/horses/jockey_home.sd?jockey_id=82605\" onclick=\"scorecards.send(&quot;jockey_name&quot;);return Html.popup(this, {width:695, height:800})\" title=\"Full details about this JOCKEY\">Frederik Tylicki</a> </td>\n" +
-                " <td class=\"num\">—</td>\n" +
-                " <td class=\"num\"><span class=\"red bold\">*</span></td>\n" +
-                " <td class=\"num last\"><span class=\"red bold\">*</span></td>\n" +
-                " </tr>\n" +
-                " <tr>\n" +
-                " <td class=\"v\"><a href=\"#\" onclick=\"scorecards.sendSpecificDesc(&quot;ruk_video&quot;, &quot;15, 2012-06-30, 12:00&quot;);panels.mediaCentre.replayPopup($(this), 557550, 815258, '2012-06-30', 'RUK'); return false;\"><img src=\"http://ui.racingpost.com/release/v17/ico/video.17.0.gif\" alt=\"Video\" title=\"Video\"></a></td>\n" +
-                " <td>\n" +
-                " <a href=\"http://www.racingpost.com/horses/result_home.sd?race_id=557550&amp;r_date=2012-06-30&amp;popup=yes\" onclick=\"scorecards.send(557550);return Html.popup(this, {width:695, height:800})\" title=\"Quadro Services Precast Concrete &amp; Modular Installation Maiden Stakes\">30Jun12</a> &nbsp;\n" +
-                " </td>\n" +
-                " <td>\n" +
-                " <b class=\"black\">\n" +
-                " <a href=\"http://www.racingpost.com/horses/course_home.sd?crs_id=15\" onclick=\"return Html.popup(this, {width:695, height:800})\" title=\"Course (Click to view details): left-handed, galloping track\">Don</a> 7Gd </b>\n" +
-                " C52yMd 2K </td>\n" +
-                " <td>8-12</td>\n" +
-                " <td>\n" +
-                " <b class=\"black\">9</b>/16 <a href=\"http://www.racingpost.com/horses/result_home.sd?race_id=557550&amp;r_date=&amp;popup=yes\" onclick=\"scorecards.send(557550);return Html.popup(this, {width:695, height:800})\" title=\"dwelt, soon in touch, chased leaders halfway, ridden along well over 2f out and gradually weakened\">(15L Azrur 9-3)</a> 66/1 </td>\n" +
-                " <td>\n" +
-                " <a href=\"http://www.racingpost.com/horses/jockey_home.sd?jockey_id=85755\" onclick=\"scorecards.send(&quot;jockey_name&quot;);return Html.popup(this, {width:695, height:800})\" title=\"Full details about this JOCKEY\">Justin Newman</a> </td>\n" +
-                " <td class=\"num\">—</td>\n" +
-                " <td class=\"num\"><span class=\"red bold\">*</span></td>\n" +
-                " <td class=\"num last\"><span class=\"red bold\">*</span></td>\n" +
-                " </tr>\n" +
-                " </tbody></table>\n" +
-                " <span id=\"barrier_RPR-TS_In_Form81154286284\" class=\"bar prpTsInfo\"><span id=\"ruli_33\"><span class=\"red bold\">*</span> Historical RP Ratings and Topspeed Ratings are part of Racing Post Members' Club <a href=\"#\" class=\"blue\" onclick=\"javascript:callLogin('special_offer');\"> Log in to view</a></span></span></div>\n" +
-                "<div id=\"sc_raceHorseNotes_815258\" class=\"notes\" style=\"display: none; \"></div>\n" +
-                "\n" +
-                " </td>\n" +
-                " </tr>\n" +
-                " <tr>\n" +
-                " <td colspan=\"7\"><tt><i></i></tt></td>\n" +
-                " </tr>\n" +
-                " </tbody><tbody id=\"sc_61619981\">\n" +
-                " <tr class=\"cr\">\n" +
-                " <td class=\"t\">\n" +
-                " <strong>6</strong><sup>4</sup> <em>6047</em>\n" +
-                " </td>\n" +
-                " <td class=\"s\">\n" +
-                " <a href=\"http://www.racingpost.com/horses/owner_home.sd?owner_id=184701\" onclick=\"scorecards.send(&quot;owner_name&quot;);return Html.popup(this, {width:695, height:800})\" title=\"Full details about this OWNER\"><img src=\"http://images.racingpost.com/png_silks/1/0/7/184701.png\" class=\"iepng\" alt=\"Owner details\" title=\"Full details about this OWNER\" width=\"40\" height=\"29\"></a> </td>\n" +
-                " \n" +
-                " <td class=\"h\">\n" +
-                " <div class=\"nm\">\n" +
-                " <a href=\"http://www.racingpost.com/horses/horse_home.sd?race_id=564393&amp;r_date=2012-10-19&amp;horse_id=808986\" onclick=\"scorecards.send(&quot;horse_name&quot;);return Html.popup(this, {width:695, height:800})\" title=\"Full details about this HORSE\"><b>AL KHISA</b></a> <span>\n" +
-                " p </span>\n" +
-                " \n" +
-                " <a href=\"#\" id=\"sc_pencil_808986\" title=\"Show/Hide My Notes for this runner\"></a> </div>\n" +
-                "\n" +
-                " <div class=\"oddsBar\">\n" +
-                " <div><div style=\"width: 9%\"></div></div>\n" +
-                " <span>9%</span>\n" +
-                " </div>\n" +
-                " </td>\n" +
-                " <td class=\"two c\">\n" +
-                " <div class=\"tips\">1</div>\n" +
-                " <div class=\"rpr\">71</div>\n" +
-                " <div class=\"ts\">—</div>\n" +
-                " </td>\n" +
-                " <td class=\"two jt\">\n" +
-                " <div>\n" +
-                " <a href=\"http://www.racingpost.com/horses/trainer_home.sd?trainer_id=22525\" onclick=\"scorecards.send(&quot;trainer_name&quot;);return Html.popup(this, {width:695, height:800})\" title=\"Full details about this TRAINER\">Kevin Ryan</a><sup><span title=\"the percentage of the stable's runners that have Run To Form in the last 14 days, based on RPR\">59</span></sup> </div>\n" +
-                " <div>\n" +
-                " <a href=\"http://www.racingpost.com/horses/jockey_home.sd?jockey_id=84983\" onclick=\"scorecards.send(&quot;jockey_name&quot;);return Html.popup(this, {width:695, height:800})\" title=\"Full details about this JOCKEY\">Amy Ryan</a> </div>\n" +
-                " </td>\n" +
-                " <td class=\"two awo\">\n" +
-                " <div>\n" +
-                " 2 &nbsp;\n" +
-                " 9-6 </div>\n" +
-                " <div>\n" +
-                " 64 </div>\n" +
-                " </td>\n" +
-                " <td class=\"bk\" id=\"sc_61619981_bk\"><button type=\"button\" class=\"btn btnBet btnLight\" title=\"14 with Ladbrokes - Click to bet\"><div><div>14</div></div></button><em>12</em><em>14</em><em>12</em><em>11</em></td>\n" +
-                " </tr>\n" +
-                " <tr>\n" +
-                " <td class=\"cardItemInfo\" colspan=\"7\">\n" +
-                " <p class=\"diomed\">\n" +
-                " Mainly run on soft turf; needs to improve for the extra furlong </p>\n" +
-                " <div class=\"forms\">\n" +
-                " <table class=\"grid smallSpaceGrid\">\n" +
-                " <tbody><tr class=\"noSpace\">\n" +
-                " <th class=\"v\">&nbsp;</th>\n" +
-                " <th class=\"date\">DATE</th>\n" +
-                " <th class=\"raceCond\">RACE CONDITIONS</th>\n" +
-                " <th class=\"wgt\">WGT</th>\n" +
-                " <th class=\"raceOut\">RACE OUTCOME</th>\n" +
-                " <th class=\"jock\">JOCKEY</th>\n" +
-                " <th class=\"num\">OR</th>\n" +
-                " <th class=\"num\">TS</th>\n" +
-                " <th class=\"num last\">RPR</th>\n" +
-                " </tr>\n" +
-                " <tr>\n" +
-                " <td class=\"v\"><a href=\"#\" onclick=\"scorecards.sendSpecificDesc(&quot;ruk_video&quot;, &quot;10, 2012-10-09, 12:00&quot;);panels.mediaCentre.replayPopup($(this), 563947, 808986, '2012-10-09', 'RUK'); return false;\"><img src=\"http://ui.racingpost.com/release/v17/ico/video.17.0.gif\" alt=\"Video\" title=\"Video\"></a></td>\n" +
-                " <td>\n" +
-                " <a href=\"http://www.racingpost.com/horses/result_home.sd?race_id=563947&amp;r_date=2012-10-09&amp;popup=yes\" onclick=\"scorecards.send(563947);return Html.popup(this, {width:695, height:800})\" title=\"yorkshire-outdoors.co.uk Adventure Activities Nursery (Div I)\">09Oct12</a> &nbsp;\n" +
-                " </td>\n" +
-                " <td>\n" +
-                " <b class=\"black\">\n" +
-                " <a href=\"http://www.racingpost.com/horses/course_home.sd?crs_id=10\" onclick=\"return Html.popup(this, {width:695, height:800})\" title=\"Course (Click to view details): left-handed, very sharp track\">Cat</a> 6Sft </b>\n" +
-                " C62yHc 2K </td>\n" +
-                " <td>9-7</td>\n" +
-                " <td>\n" +
-                " <b class=\"black\">7</b>/10 <a href=\"http://www.racingpost.com/horses/result_home.sd?race_id=563947&amp;r_date=&amp;popup=yes\" onclick=\"scorecards.send(563947);return Html.popup(this, {width:695, height:800})\" title=\"mid-division, driven over 2f out, never a factor\">(6¼L Mixed Message 9-5)</a> 10/1 </td>\n" +
-                " <td>\n" +
-                " <a href=\"http://www.racingpost.com/horses/jockey_home.sd?jockey_id=84983\" onclick=\"scorecards.send(&quot;jockey_name&quot;);return Html.popup(this, {width:695, height:800})\" title=\"Full details about this JOCKEY\">Amy Ryan</a> </td>\n" +
-                " <td class=\"num\">64</td>\n" +
-                " <td class=\"num\"><span class=\"red bold\">*</span></td>\n" +
-                " <td class=\"num last\"><span class=\"red bold\">*</span></td>\n" +
-                " </tr>\n" +
-                " <tr>\n" +
-                " <td class=\"v\"><a href=\"#\" onclick=\"scorecards.sendSpecificDesc(&quot;ruk_video&quot;, &quot;8, 2012-06-27, 12:00&quot;);panels.mediaCentre.replayPopup($(this), 557447, 808986, '2012-06-27', 'RUK'); return false;\"><img src=\"http://ui.racingpost.com/release/v17/ico/video.17.0.gif\" alt=\"Video\" title=\"Video\"></a></td>\n" +
-                " <td>\n" +
-                " <a href=\"http://www.racingpost.com/horses/result_home.sd?race_id=557447&amp;r_date=2012-06-27&amp;popup=yes\" onclick=\"scorecards.send(557447);return Html.popup(this, {width:695, height:800})\" title=\"APD 25 Year Anniversary Maiden Auction Stakes\">27Jun12</a> &nbsp;\n" +
-                " </td>\n" +
-                " <td>\n" +
-                " <b class=\"black\">\n" +
-                " <a href=\"http://www.racingpost.com/horses/course_home.sd?crs_id=8\" onclick=\"return Html.popup(this, {width:695, height:800})\" title=\"Course (Click to view details): right-handed, galloping track (sprint course testing)\">Crl</a> 5Sft </b>\n" +
-                " C52yMdAc 2K </td>\n" +
-                " <td>8-8</td>\n" +
-                " <td>\n" +
-                " <b class=\"black\">4</b>/8 <a href=\"http://www.racingpost.com/horses/result_home.sd?race_id=557447&amp;r_date=&amp;popup=yes\" onclick=\"scorecards.send(557447);return Html.popup(this, {width:695, height:800})\" title=\"held up, pushed along halfway, headway over 1f out, kept on final furlong, never able to challenge\">(2¾L Blue Lotus 8-11)</a> 40/1 </td>\n" +
-                " <td>\n" +
-                " <a href=\"http://www.racingpost.com/horses/jockey_home.sd?jockey_id=84983\" onclick=\"scorecards.send(&quot;jockey_name&quot;);return Html.popup(this, {width:695, height:800})\" title=\"Full details about this JOCKEY\">Amy Ryan</a> </td>\n" +
-                " <td class=\"num\">—</td>\n" +
-                " <td class=\"num\"><span class=\"red bold\">*</span></td>\n" +
-                " <td class=\"num last\"><span class=\"red bold\">*</span></td>\n" +
-                " </tr>\n" +
-                " <tr>\n" +
-                " <td class=\"v\"><a href=\"#\" onclick=\"scorecards.sendSpecificDesc(&quot;ruk_video&quot;, &quot;23, 2012-05-25, 12:00&quot;);panels.mediaCentre.replayPopup($(this), 554393, 808986, '2012-05-25', 'RUK'); return false;\"><img src=\"http://ui.racingpost.com/release/v17/ico/video.17.0.gif\" alt=\"Video\" title=\"Video\"></a></td>\n" +
-                " <td>\n" +
-                " <a href=\"http://www.racingpost.com/horses/result_home.sd?race_id=554393&amp;r_date=2012-05-25&amp;popup=yes\" onclick=\"scorecards.send(554393);return Html.popup(this, {width:695, height:800})\" title=\"E B F PHS Compliance Maiden Fillies' Stakes\">25May12</a> &nbsp;\n" +
-                " </td>\n" +
-                " <td>\n" +
-                " <b class=\"black\">\n" +
-                " <a href=\"http://www.racingpost.com/horses/course_home.sd?crs_id=23\" onclick=\"return Html.popup(this, {width:695, height:800})\" title=\"Course (Click to view details): left-handed, galloping track\">Hay</a> 6GF </b>\n" +
-                " C52yMd 3K </td>\n" +
-                " <td>9-0</td>\n" +
-                " <td>\n" +
-                " <b class=\"black\">11</b>/12 <a href=\"http://www.racingpost.com/horses/result_home.sd?race_id=554393&amp;r_date=&amp;popup=yes\" onclick=\"scorecards.send(554393);return Html.popup(this, {width:695, height:800})\" title=\"led, headed before halfway, weakened 2f out, eased when well beaten inside final furlong\">(23L Kosika 9-0)</a> 16/1 </td>\n" +
-                " <td>\n" +
-                " <a href=\"http://www.racingpost.com/horses/jockey_home.sd?jockey_id=13689\" onclick=\"scorecards.send(&quot;jockey_name&quot;);return Html.popup(this, {width:695, height:800})\" title=\"Full details about this JOCKEY\">Jamie Spencer</a> </td>\n" +
-                " <td class=\"num\">—</td>\n" +
-                " <td class=\"num\"><span class=\"red bold\">*</span></td>\n" +
-                " <td class=\"num last\"><span class=\"red bold\">*</span></td>\n" +
-                " </tr>\n" +
-                " <tr>\n" +
-                " <td class=\"v\"><a href=\"#\" onclick=\"scorecards.sendSpecificDesc(&quot;ruk_video&quot;, &quot;6, 2012-04-18, 12:00&quot;);panels.mediaCentre.replayPopup($(this), 553418, 808986, '2012-04-18', 'RUK'); return false;\"><img src=\"http://ui.racingpost.com/release/v17/ico/video.17.0.gif\" alt=\"Video\" title=\"Video\"></a></td>\n" +
-                " <td>\n" +
-                " <a href=\"http://www.racingpost.com/horses/result_home.sd?race_id=553418&amp;r_date=2012-04-18&amp;popup=yes\" onclick=\"scorecards.send(553418);return Html.popup(this, {width:695, height:800})\" title=\"Andy Taylor Snr Is 70 Today Maiden Auction Stakes (Div II)\">18Apr12</a> &nbsp;\n" +
-                " </td>\n" +
-                " <td>\n" +
-                " <b class=\"black\">\n" +
-                " <a href=\"http://www.racingpost.com/horses/course_home.sd?crs_id=6\" onclick=\"return Html.popup(this, {width:695, height:800})\" title=\"Course (Click to view details): right-handed, essentially galloping track (sprint course testing)\">Bev</a> 5Sft </b>\n" +
-                " C52yMdAc 2K </td>\n" +
-                " <td>8-5</td>\n" +
-                " <td>\n" +
-                " <b class=\"black\">6</b>/12 <a href=\"http://www.racingpost.com/horses/result_home.sd?race_id=553418&amp;r_date=&amp;popup=yes\" onclick=\"scorecards.send(553418);return Html.popup(this, {width:695, height:800})\" title=\"went left start, soon driven along, kept on final 2f, never near leaders\">(6½L Tharawal Lady 8-8)</a> 10/1 </td>\n" +
-                " <td>\n" +
-                " <a href=\"http://www.racingpost.com/horses/jockey_home.sd?jockey_id=84983\" onclick=\"scorecards.send(&quot;jockey_name&quot;);return Html.popup(this, {width:695, height:800})\" title=\"Full details about this JOCKEY\">Amy Ryan</a> </td>\n" +
-                " <td class=\"num\">—</td>\n" +
-                " <td class=\"num\"><span class=\"red bold\">*</span></td>\n" +
-                " <td class=\"num last\"><span class=\"red bold\">*</span></td>\n" +
-                " </tr>\n" +
-                " </tbody></table>\n" +
-                " <span id=\"barrier_RPR-TS_In_Form51465167004\" class=\"bar prpTsInfo\"><span id=\"ruli_33\"><span class=\"red bold\">*</span> Historical RP Ratings and Topspeed Ratings are part of Racing Post Members' Club <a href=\"#\" class=\"blue\" onclick=\"javascript:callLogin('special_offer');\"> Log in to view</a></span></span></div>\n" +
-                "<div id=\"sc_raceHorseNotes_808986\" class=\"notes\" style=\"display: none; \"></div>\n" +
-                "\n" +
-                " </td>\n" +
-                " </tr>\n" +
-                " <tr>\n" +
-                " <td colspan=\"7\"><tt><i></i></tt></td>\n" +
-                " </tr>\n" +
-                " </tbody><tbody id=\"sc_61619979\">\n" +
-                " <tr class=\"cr\">\n" +
-                " <td class=\"t\">\n" +
-                " <strong>3</strong><sup>9</sup> <em>6<b>3</b>28</em>\n" +
-                " </td>\n" +
-                " <td class=\"s\">\n" +
-                " <a href=\"http://www.racingpost.com/horses/owner_home.sd?owner_id=191236\" onclick=\"scorecards.send(&quot;owner_name&quot;);return Html.popup(this, {width:695, height:800})\" title=\"Full details about this OWNER\"><img src=\"http://images.racingpost.com/png_silks/6/3/2/191236.png\" class=\"iepng\" alt=\"Owner details\" title=\"Full details about this OWNER\" width=\"40\" height=\"29\"></a> </td>\n" +
-                " \n" +
-                " <td class=\"h\">\n" +
-                " <div class=\"nm\">\n" +
-                " <a href=\"http://www.racingpost.com/horses/horse_home.sd?race_id=564393&amp;r_date=2012-10-19&amp;horse_id=805513\" onclick=\"scorecards.send(&quot;horse_name&quot;);return Html.popup(this, {width:695, height:800})\" title=\"Full details about this HORSE\"><b>OUR THREE GRACES</b></a> \n" +
-                " <a href=\"#\" id=\"sc_pencil_805513\" title=\"Show/Hide My Notes for this runner\"></a> </div>\n" +
-                "\n" +
-                " <div class=\"oddsBar\">\n" +
-                " <div><div style=\"width: 6%\"></div></div>\n" +
-                " <span>6%</span>\n" +
-                " </div>\n" +
-                " </td>\n" +
-                " <td class=\"two c\">\n" +
-                " <div class=\"tips\">0</div>\n" +
-                " <div class=\"rpr\">72</div>\n" +
-                " <div class=\"ts\">56 </div>\n" +
-                " </td>\n" +
-                " <td class=\"two jt\">\n" +
-                " <div>\n" +
-                " <a href=\"http://www.racingpost.com/horses/trainer_home.sd?trainer_id=7833\" onclick=\"scorecards.send(&quot;trainer_name&quot;);return Html.popup(this, {width:695, height:800})\" title=\"Full details about this TRAINER\">Gary Moore</a><sup><span title=\"the percentage of the stable's runners that have Run To Form in the last 14 days, based on RPR\">33</span></sup> </div>\n" +
-                " <div>\n" +
-                " <a href=\"http://www.racingpost.com/horses/jockey_home.sd?jockey_id=78224\" onclick=\"scorecards.send(&quot;jockey_name&quot;);return Html.popup(this, {width:695, height:800})\" title=\"Full details about this JOCKEY\">George Baker</a> </div>\n" +
-                " </td>\n" +
-                " <td class=\"two awo\">\n" +
-                " <div>\n" +
-                " 2 &nbsp;\n" +
-                " 9-7 </div>\n" +
-                " <div>\n" +
-                " 65 </div>\n" +
-                " </td>\n" +
-                " <td class=\"bk\" id=\"sc_61619979_bk\"><button type=\"button\" class=\"btn btnBet btnLight\" title=\"16 with Ladbrokes - Click to bet\"><div><div>16</div></div></button><em>14</em><em>16</em><em>14</em><em>12</em></td>\n" +
-                " </tr>\n" +
-                " <tr>\n" +
-                " <td class=\"cardItemInfo\" colspan=\"7\">\n" +
-                " <p class=\"diomed\">\n" +
-                " Didn´t prove her stamina from a tough draw latest; more needed </p>\n" +
-                " <div class=\"forms\">\n" +
-                " <table class=\"grid smallSpaceGrid\">\n" +
-                " <tbody><tr class=\"noSpace\">\n" +
-                " <th class=\"v\">&nbsp;</th>\n" +
-                " <th class=\"date\">DATE</th>\n" +
-                " <th class=\"raceCond\">RACE CONDITIONS</th>\n" +
-                " <th class=\"wgt\">WGT</th>\n" +
-                " <th class=\"raceOut\">RACE OUTCOME</th>\n" +
-                " <th class=\"jock\">JOCKEY</th>\n" +
-                " <th class=\"num\">OR</th>\n" +
-                " <th class=\"num\">TS</th>\n" +
-                " <th class=\"num last\">RPR</th>\n" +
-                " </tr>\n" +
-                " <tr>\n" +
-                " <td class=\"v\"><a href=\"#\" onclick=\"scorecards.sendSpecificDesc(&quot;ruk_video&quot;, &quot;31, 2012-08-22, 12:00&quot;);panels.mediaCentre.replayPopup($(this), 561279, 805513, '2012-08-22', 'RUK'); return false;\"><img src=\"http://ui.racingpost.com/release/v17/ico/video.17.0.gif\" alt=\"Video\" title=\"Video\"></a></td>\n" +
-                " <td>\n" +
-                " <a href=\"http://www.racingpost.com/horses/result_home.sd?race_id=561279&amp;r_date=2012-08-22&amp;popup=yes\" onclick=\"scorecards.send(561279);return Html.popup(this, {width:695, height:800})\" title=\"Horseback UK Nursery\">22Aug12</a> &nbsp;\n" +
-                " </td>\n" +
-                " <td>\n" +
-                " <b class=\"black\">\n" +
-                " <a href=\"http://www.racingpost.com/horses/course_home.sd?crs_id=31\" onclick=\"return Html.popup(this, {width:695, height:800})\" title=\"Course (Click to view details): left-handed, sharp track\">Lin</a> 7GF </b>\n" +
-                " C52yHc 2K </td>\n" +
-                " <td>9-4</td>\n" +
-                " <td>\n" +
-                " <b class=\"black\">8</b>/9 <a href=\"http://www.racingpost.com/horses/result_home.sd?race_id=561279&amp;r_date=&amp;popup=yes\" onclick=\"scorecards.send(561279);return Html.popup(this, {width:695, height:800})\" title=\"chased winner to over 2f out, weakened well over 1f out, eased\">(10½L Spithead 8-13)</a> 10/1 </td>\n" +
-                " <td>\n" +
-                " <a href=\"http://www.racingpost.com/horses/jockey_home.sd?jockey_id=13026\" onclick=\"scorecards.send(&quot;jockey_name&quot;);return Html.popup(this, {width:695, height:800})\" title=\"Full details about this JOCKEY\">Fergus Sweeney</a> </td>\n" +
-                " <td class=\"num\">65</td>\n" +
-                " <td class=\"num\"><span class=\"red bold\">*</span></td>\n" +
-                " <td class=\"num last\"><span class=\"red bold\">*</span></td>\n" +
-                " </tr>\n" +
-                " <tr>\n" +
-                " <td class=\"v\"><a href=\"#\" onclick=\"scorecards.sendSpecificDesc(&quot;ruk_video&quot;, &quot;5, 2012-08-07, 12:00&quot;);panels.mediaCentre.replayPopup($(this), 560439, 805513, '2012-08-07', 'RUK'); return false;\"><img src=\"http://ui.racingpost.com/release/v17/ico/video.17.0.gif\" alt=\"Video\" title=\"Video\"></a></td>\n" +
-                " <td>\n" +
-                " <a href=\"http://www.racingpost.com/horses/result_home.sd?race_id=560439&amp;r_date=2012-08-07&amp;popup=yes\" onclick=\"scorecards.send(560439);return Html.popup(this, {width:695, height:800})\" title=\"Freebets.co.uk Maiden Auction Fillies' Stakes\">07Aug12</a> &nbsp;\n" +
-                " </td>\n" +
-                " <td>\n" +
-                " <b class=\"black\">\n" +
-                " <a href=\"http://www.racingpost.com/horses/course_home.sd?crs_id=5\" onclick=\"return Html.popup(this, {width:695, height:800})\" title=\"Course (Click to view details): left-handed galloping track\">Bat</a> 6Gd </b>\n" +
-                " C62yMd 1K </td>\n" +
-                " <td>8-8</td>\n" +
-                " <td>\n" +
-                " <b class=\"black\">2</b>/7 <a href=\"http://www.racingpost.com/horses/result_home.sd?race_id=560439&amp;r_date=&amp;popup=yes\" onclick=\"scorecards.send(560439);return Html.popup(this, {width:695, height:800})\" title=\"soon led, narrowly headed 2f out, stayed pressing leader and still upsides until outpaced by winner final 120yds\">(2¼L Entwined 8-8)</a> 8/1 </td>\n" +
-                " <td>\n" +
-                " <a href=\"http://www.racingpost.com/horses/jockey_home.sd?jockey_id=13026\" onclick=\"scorecards.send(&quot;jockey_name&quot;);return Html.popup(this, {width:695, height:800})\" title=\"Full details about this JOCKEY\">Fergus Sweeney</a> </td>\n" +
-                " <td class=\"num\">—</td>\n" +
-                " <td class=\"num\"><span class=\"red bold\">*</span></td>\n" +
-                " <td class=\"num last\"><span class=\"red bold\">*</span></td>\n" +
-                " </tr>\n" +
-                " <tr>\n" +
-                " <td class=\"v\"><a href=\"#\" onclick=\"scorecards.sendSpecificDesc(&quot;ruk_video&quot;, &quot;393, 2012-07-30, 12:00&quot;);panels.mediaCentre.replayPopup($(this), 561132, 805513, '2012-07-30', 'RUK'); return false;\"><img src=\"http://ui.racingpost.com/release/v17/ico/video.17.0.gif\" alt=\"Video\" title=\"Video\"></a></td>\n" +
-                " <td>\n" +
-                " <a href=\"http://www.racingpost.com/horses/result_home.sd?race_id=561132&amp;r_date=2012-07-30&amp;popup=yes\" onclick=\"scorecards.send(561132);return Html.popup(this, {width:695, height:800})\" title=\"£32 Bonus At 32Red.com Maiden Fillies' Stakes\">30Jul12</a> &nbsp;\n" +
-                " </td>\n" +
-                " <td>\n" +
-                " <b class=\"black\">\n" +
-                " <a href=\"http://www.racingpost.com/horses/course_home.sd?crs_id=393\" onclick=\"return Html.popup(this, {width:695, height:800})\" title=\"Course (Click to view details): AW Polytrack: left-handed\">Lin</a> 6St </b>\n" +
-                " C52yMd 2K </td>\n" +
-                " <td>9-0</td>\n" +
-                " <td>\n" +
-                " <b class=\"black\">3</b>/6 <a href=\"http://www.racingpost.com/horses/result_home.sd?race_id=561132&amp;r_date=&amp;popup=yes\" onclick=\"scorecards.send(561132);return Html.popup(this, {width:695, height:800})\" title=\"tracked leaders, ridden over 2f out, soon outpaced by leading pair, kept on inside final furlong\">(5L City Girl 9-0)</a> 16/1 </td>\n" +
-                " <td>\n" +
-                " <a href=\"http://www.racingpost.com/horses/jockey_home.sd?jockey_id=79202\" onclick=\"scorecards.send(&quot;jockey_name&quot;);return Html.popup(this, {width:695, height:800})\" title=\"Full details about this JOCKEY\">Ryan Moore</a> </td>\n" +
-                " <td class=\"num\">—</td>\n" +
-                " <td class=\"num\"><span class=\"red bold\">*</span></td>\n" +
-                " <td class=\"num last\"><span class=\"red bold\">*</span></td>\n" +
-                " </tr>\n" +
-                " <tr>\n" +
-                " <td class=\"v\"><a href=\"#\" onclick=\"scorecards.sendSpecificDesc(&quot;ruk_video&quot;, &quot;93, 2012-07-02, 12:00&quot;);panels.mediaCentre.replayPopup($(this), 558040, 805513, '2012-07-02', 'RUK'); return false;\"><img src=\"http://ui.racingpost.com/release/v17/ico/video.17.0.gif\" alt=\"Video\" title=\"Video\"></a></td>\n" +
-                " <td>\n" +
-                " <a href=\"http://www.racingpost.com/horses/result_home.sd?race_id=558040&amp;r_date=2012-07-02&amp;popup=yes\" onclick=\"scorecards.send(558040);return Html.popup(this, {width:695, height:800})\" title=\"Betfred Home of Big Winners Fillies' Median Auction Maiden Stakes\">02Jul12</a> &nbsp;\n" +
-                " </td>\n" +
-                " <td>\n" +
-                " <b class=\"black\">\n" +
-                " <a href=\"http://www.racingpost.com/horses/course_home.sd?crs_id=93\" onclick=\"return Html.popup(this, {width:695, height:800})\" title=\"Course (Click to view details): figure of eight, fairly sharp track\">Wdr</a> 5Gd </b>\n" +
-                " C52yMd 2K </td>\n" +
-                " <td>8-11</td>\n" +
-                " <td>\n" +
-                " <b class=\"black\">6</b>/8 <a href=\"http://www.racingpost.com/horses/result_home.sd?race_id=558040&amp;r_date=&amp;popup=yes\" onclick=\"scorecards.send(558040);return Html.popup(this, {width:695, height:800})\" title=\"dwelt, mostly in last pair, weakened well over 1f out\">(14½L Hoyam 9-0)</a> 20/1 </td>\n" +
-                " <td>\n" +
-                " <a href=\"http://www.racingpost.com/horses/jockey_home.sd?jockey_id=88632\" onclick=\"scorecards.send(&quot;jockey_name&quot;);return Html.popup(this, {width:695, height:800})\" title=\"Full details about this JOCKEY\">Harry Bentley</a> </td>\n" +
-                " <td class=\"num\">—</td>\n" +
-                " <td class=\"num\"><span class=\"red bold\">*</span></td>\n" +
-                " <td class=\"num last\"><span class=\"red bold\">*</span></td>\n" +
-                " </tr>\n" +
-                " </tbody></table>\n" +
-                " <span id=\"barrier_RPR-TS_In_Form71461769403\" class=\"bar prpTsInfo\"><span id=\"ruli_33\"><span class=\"red bold\">*</span> Historical RP Ratings and Topspeed Ratings are part of Racing Post Members' Club <a href=\"#\" class=\"blue\" onclick=\"javascript:callLogin('special_offer');\"> Log in to view</a></span></span></div>\n" +
-                "<div id=\"sc_raceHorseNotes_805513\" class=\"notes\" style=\"display: none; \"></div>\n" +
-                "\n" +
-                " </td>\n" +
-                " </tr>\n" +
-                " <tr>\n" +
-                " <td colspan=\"7\"><tt><i></i></tt></td>\n" +
-                " </tr>\n" +
-                " </tbody><tbody id=\"sc_61619982\">\n" +
-                " <tr class=\"cr\">\n" +
-                " <td class=\"t\">\n" +
-                " <strong>4</strong><sup>7</sup> <em>098795</em>\n" +
-                " </td>\n" +
-                " <td class=\"s\">\n" +
-                " <a href=\"http://www.racingpost.com/horses/owner_home.sd?owner_id=60881\" onclick=\"scorecards.send(&quot;owner_name&quot;);return Html.popup(this, {width:695, height:800})\" title=\"Full details about this OWNER\"><img src=\"http://images.racingpost.com/png_silks/1/8/8/60881.png\" class=\"iepng\" alt=\"Owner details\" title=\"Full details about this OWNER\" width=\"40\" height=\"29\"></a> </td>\n" +
-                " \n" +
-                " <td class=\"h\">\n" +
-                " <div class=\"nm\">\n" +
-                " <a href=\"http://www.racingpost.com/horses/horse_home.sd?race_id=564393&amp;r_date=2012-10-19&amp;horse_id=810609\" onclick=\"scorecards.send(&quot;horse_name&quot;);return Html.popup(this, {width:695, height:800})\" title=\"Full details about this HORSE\"><b>STAND N APPLAUDE</b></a> \n" +
-                " <a href=\"#\" id=\"sc_pencil_810609\" title=\"Show/Hide My Notes for this runner\"></a> </div>\n" +
-                "\n" +
-                " <div class=\"oddsBar\">\n" +
-                " <div><div style=\"width: 5%\"></div></div>\n" +
-                " <span>5%</span>\n" +
-                " </div>\n" +
-                " </td>\n" +
-                " <td class=\"two c\">\n" +
-                " <div class=\"tips\">0</div>\n" +
-                " <div class=\"rpr\">73</div>\n" +
-                " <div class=\"ts\">—</div>\n" +
-                " </td>\n" +
-                " <td class=\"two jt\">\n" +
-                " <div>\n" +
-                " <a href=\"http://www.racingpost.com/horses/trainer_home.sd?trainer_id=8147\" onclick=\"scorecards.send(&quot;trainer_name&quot;);return Html.popup(this, {width:695, height:800})\" title=\"Full details about this TRAINER\">David Nicholls</a><sup><span title=\"the percentage of the stable's runners that have Run To Form in the last 14 days, based on RPR\">40</span></sup> </div>\n" +
-                " <div>\n" +
-                " <a href=\"http://www.racingpost.com/horses/jockey_home.sd?jockey_id=81166\" onclick=\"scorecards.send(&quot;jockey_name&quot;);return Html.popup(this, {width:695, height:800})\" title=\"Full details about this JOCKEY\">Andrew Mullen</a> </div>\n" +
-                " </td>\n" +
-                " <td class=\"two awo\">\n" +
-                " <div>\n" +
-                " 2 &nbsp;\n" +
-                " 9-6 </div>\n" +
-                " <div>\n" +
-                " 64 </div>\n" +
-                " </td>\n" +
-                " <td class=\"bk\" id=\"sc_61619982_bk\"><button type=\"button\" class=\"btn btnBet btnLight\" title=\"16 with Ladbrokes - Click to bet\"><div><div>16</div></div></button><em>20</em><em>16</em></td>\n" +
-                " </tr>\n" +
-                " <tr>\n" +
-                " <td class=\"cardItemInfo\" colspan=\"7\">\n" +
-                " <p class=\"diomed\">\n" +
-                " Best on slow turf to date and completely exposed now </p>\n" +
-                " <div class=\"forms\">\n" +
-                " <table class=\"grid smallSpaceGrid\">\n" +
-                " <tbody><tr class=\"noSpace\">\n" +
-                " <th class=\"v\">&nbsp;</th>\n" +
-                " <th class=\"date\">DATE</th>\n" +
-                " <th class=\"raceCond\">RACE CONDITIONS</th>\n" +
-                " <th class=\"wgt\">WGT</th>\n" +
-                " <th class=\"raceOut\">RACE OUTCOME</th>\n" +
-                " <th class=\"jock\">JOCKEY</th>\n" +
-                " <th class=\"num\">OR</th>\n" +
-                " <th class=\"num\">TS</th>\n" +
-                " <th class=\"num last\">RPR</th>\n" +
-                " </tr>\n" +
-                " <tr>\n" +
-                " <td class=\"v\"><a href=\"#\" onclick=\"scorecards.sendSpecificDesc(&quot;ruk_video&quot;, &quot;10, 2012-10-09, 12:00&quot;);panels.mediaCentre.replayPopup($(this), 565452, 810609, '2012-10-09', 'RUK'); return false;\"><img src=\"http://ui.racingpost.com/release/v17/ico/video.17.0.gif\" alt=\"Video\" title=\"Video\"></a></td>\n" +
-                " <td>\n" +
-                " <a href=\"http://www.racingpost.com/horses/result_home.sd?race_id=565452&amp;r_date=2012-10-09&amp;popup=yes\" onclick=\"scorecards.send(565452);return Html.popup(this, {width:695, height:800})\" title=\"yorkshire-outdoors.co.uk Adventure Activities Nursery (Div II)\">09Oct12</a> &nbsp;\n" +
-                " </td>\n" +
-                " <td>\n" +
-                " <b class=\"black\">\n" +
-                " <a href=\"http://www.racingpost.com/horses/course_home.sd?crs_id=10\" onclick=\"return Html.popup(this, {width:695, height:800})\" title=\"Course (Click to view details): left-handed, very sharp track\">Cat</a> 6Sft </b>\n" +
-                " C62yHc 2K </td>\n" +
-                " <td>9-7</td>\n" +
-                " <td>\n" +
-                " <b class=\"black\">5</b>/12 <a href=\"http://www.racingpost.com/horses/result_home.sd?race_id=565452&amp;r_date=&amp;popup=yes\" onclick=\"scorecards.send(565452);return Html.popup(this, {width:695, height:800})\" title=\"prominent, ridden along 2f out and every chance until driven, edged left and weakened over 1f out\">(4½L Iwilsayzisonlyonce 8-13)</a> 33/1 </td>\n" +
-                " <td>\n" +
-                " <a href=\"http://www.racingpost.com/horses/jockey_home.sd?jockey_id=81166\" onclick=\"scorecards.send(&quot;jockey_name&quot;);return Html.popup(this, {width:695, height:800})\" title=\"Full details about this JOCKEY\">Andrew Mullen</a> </td>\n" +
-                " <td class=\"num\">64</td>\n" +
-                " <td class=\"num\"><span class=\"red bold\">*</span></td>\n" +
-                " <td class=\"num last\"><span class=\"red bold\">*</span></td>\n" +
-                " </tr>\n" +
-                " <tr>\n" +
-                " <td class=\"v\"><a href=\"#\" onclick=\"scorecards.sendSpecificDesc(&quot;ruk_video&quot;, &quot;16, 2012-09-04, 12:00&quot;);panels.mediaCentre.replayPopup($(this), 562088, 810609, '2012-09-04', 'RUK'); return false;\"><img src=\"http://ui.racingpost.com/release/v17/ico/video.17.0.gif\" alt=\"Video\" title=\"Video\"></a></td>\n" +
-                " <td>\n" +
-                " <a href=\"http://www.racingpost.com/horses/result_home.sd?race_id=562088&amp;r_date=2012-09-04&amp;popup=yes\" onclick=\"scorecards.send(562088);return Html.popup(this, {width:695, height:800})\" title=\"TurfTV Nursery\">04Sep12</a> &nbsp;\n" +
-                " </td>\n" +
-                " <td>\n" +
-                " <b class=\"black\">\n" +
-                " <a href=\"http://www.racingpost.com/horses/course_home.sd?crs_id=16\" onclick=\"return Html.popup(this, {width:695, height:800})\" title=\"Course (Click to view details): right-handed, sharp track\">Mus</a> 7GF </b>\n" +
-                " C52yHc 3K </td>\n" +
-                " <td>9-0</td>\n" +
-                " <td>\n" +
-                " <b class=\"black\">9</b>/9 <a href=\"http://www.racingpost.com/horses/result_home.sd?race_id=562088&amp;r_date=&amp;popup=yes\" onclick=\"scorecards.send(562088);return Html.popup(this, {width:695, height:800})\" title=\"led, ridden along and headed over 2f out, switched left over 1f out, no extra when hampered approaching final furlong, eased when beaten\">(21L Tussie Mussie 9-4)</a> 14/1 </td>\n" +
-                " <td>\n" +
-                " <a href=\"http://www.racingpost.com/horses/jockey_home.sd?jockey_id=75464\" onclick=\"scorecards.send(&quot;jockey_name&quot;);return Html.popup(this, {width:695, height:800})\" title=\"Full details about this JOCKEY\">Adrian Nicholls</a> </td>\n" +
-                " <td class=\"num\">64</td>\n" +
-                " <td class=\"num\"><span class=\"red bold\">*</span></td>\n" +
-                " <td class=\"num last\"><span class=\"red bold\">*</span></td>\n" +
-                " </tr>\n" +
-                " <tr>\n" +
-                " <td class=\"v\"><a href=\"#\" onclick=\"scorecards.sendSpecificDesc(&quot;ruk_video&quot;, &quot;47, 2012-08-11, 12:00&quot;);panels.mediaCentre.replayPopup($(this), 560612, 810609, '2012-08-11', 'RUK'); return false;\"><img src=\"http://ui.racingpost.com/release/v17/ico/video.17.0.gif\" alt=\"Video\" title=\"Video\"></a></td>\n" +
-                " <td>\n" +
-                " <a href=\"http://www.racingpost.com/horses/result_home.sd?race_id=560612&amp;r_date=2012-08-11&amp;popup=yes\" onclick=\"scorecards.send(560612);return Html.popup(this, {width:695, height:800})\" title=\"Win A VIP Day Out At redcarracing.co.uk Nursery\">11Aug12</a> &nbsp;\n" +
-                " </td>\n" +
-                " <td>\n" +
-                " <b class=\"black\">\n" +
-                " <a href=\"http://www.racingpost.com/horses/course_home.sd?crs_id=47\" onclick=\"return Html.popup(this, {width:695, height:800})\" title=\"Course (Click to view details): left-handed, galloping track\">Red</a> 6GF </b>\n" +
-                " C42yHc 3K </td>\n" +
-                " <td>8-6</td>\n" +
-                " <td>\n" +
-                " <b class=\"black\">7</b>/7 <a href=\"http://www.racingpost.com/horses/result_home.sd?race_id=560612&amp;r_date=&amp;popup=yes\" onclick=\"scorecards.send(560612);return Html.popup(this, {width:695, height:800})\" title=\"held up, effort over 2f out, soon ridden and no impression approaching final furlong\">(6L Scentpastparadise 9-2)</a> 16/1 </td>\n" +
-                " <td>\n" +
-                " <a href=\"http://www.racingpost.com/horses/jockey_home.sd?jockey_id=75464\" onclick=\"scorecards.send(&quot;jockey_name&quot;);return Html.popup(this, {width:695, height:800})\" title=\"Full details about this JOCKEY\">Adrian Nicholls</a> </td>\n" +
-                " <td class=\"num\">67</td>\n" +
-                " <td class=\"num\"><span class=\"red bold\">*</span></td>\n" +
-                " <td class=\"num last\"><span class=\"red bold\">*</span></td>\n" +
-                " </tr>\n" +
-                " <tr>\n" +
-                " <td class=\"v\"><a href=\"#\" onclick=\"scorecards.sendSpecificDesc(&quot;ruk_video&quot;, &quot;15, 2012-06-17, 12:00&quot;);panels.mediaCentre.replayPopup($(this), 556438, 810609, '2012-06-17', 'RUK'); return false;\"><img src=\"http://ui.racingpost.com/release/v17/ico/video.17.0.gif\" alt=\"Video\" title=\"Video\"></a></td>\n" +
-                " <td>\n" +
-                " <a href=\"http://www.racingpost.com/horses/result_home.sd?race_id=556438&amp;r_date=2012-06-17&amp;popup=yes\" onclick=\"scorecards.send(556438);return Html.popup(this, {width:695, height:800})\" title=\"Coffee Shop Dore Village Sheffield E.B.F. Median Auction Maiden Stakes\">17Jun12</a> &nbsp;\n" +
-                " </td>\n" +
-                " <td>\n" +
-                " <b class=\"black\">\n" +
-                " <a href=\"http://www.racingpost.com/horses/course_home.sd?crs_id=15\" onclick=\"return Html.popup(this, {width:695, height:800})\" title=\"Course (Click to view details): left-handed, galloping track\">Don</a> 6GS </b>\n" +
-                " C52yMd 3K </td>\n" +
-                " <td>8-10</td>\n" +
-                " <td>\n" +
-                " <b class=\"black\">8</b>/15 <a href=\"http://www.racingpost.com/horses/result_home.sd?race_id=556438&amp;r_date=&amp;popup=yes\" onclick=\"scorecards.send(556438);return Html.popup(this, {width:695, height:800})\" title=\"led 2f, close up, ridden along 2f out, gradually weakened\">(6½L Kimberella 9-3)</a> 100/1 </td>\n" +
-                " <td>\n" +
-                " <a href=\"http://www.racingpost.com/horses/jockey_home.sd?jockey_id=88712\" onclick=\"scorecards.send(&quot;jockey_name&quot;);return Html.popup(this, {width:695, height:800})\" title=\"Full details about this JOCKEY\">Shirley Teasdale</a> </td>\n" +
-                " <td class=\"num\">—</td>\n" +
-                " <td class=\"num\"><span class=\"red bold\">*</span></td>\n" +
-                " <td class=\"num last\"><span class=\"red bold\">*</span></td>\n" +
-                " </tr>\n" +
-                " <tr>\n" +
-                " <td class=\"v\"><a href=\"#\" onclick=\"scorecards.sendSpecificDesc(&quot;ruk_video&quot;, &quot;40, 2012-05-22, 12:00&quot;);panels.mediaCentre.replayPopup($(this), 554328, 810609, '2012-05-22', 'RUK'); return false;\"><img src=\"http://ui.racingpost.com/release/v17/ico/video.17.0.gif\" alt=\"Video\" title=\"Video\"></a></td>\n" +
-                " <td>\n" +
-                " <a href=\"http://www.racingpost.com/horses/result_home.sd?race_id=554328&amp;r_date=2012-05-22&amp;popup=yes\" onclick=\"scorecards.send(554328);return Html.popup(this, {width:695, height:800})\" title=\"E B F Think Taxi Think DG 01159500500 Maiden Stakes\">22May12</a> &nbsp;\n" +
-                " </td>\n" +
-                " <td>\n" +
-                " <b class=\"black\">\n" +
-                " <a href=\"http://www.racingpost.com/horses/course_home.sd?crs_id=40\" onclick=\"return Html.popup(this, {width:695, height:800})\" title=\"Course (Click to view details): left-handed, galloping track\">Not</a> 6GF </b>\n" +
-                " C52yMd 3K </td>\n" +
-                " <td>9-3</td>\n" +
-                " <td>\n" +
-                " <b class=\"black\">9</b>/12 <a href=\"http://www.racingpost.com/horses/result_home.sd?race_id=554328&amp;r_date=&amp;popup=yes\" onclick=\"scorecards.send(554328);return Html.popup(this, {width:695, height:800})\" title=\"dwelt and always in rear\">(17½L Windhoek 9-3)</a> 100/1 </td>\n" +
-                " <td>\n" +
-                " <a href=\"http://www.racingpost.com/horses/jockey_home.sd?jockey_id=75464\" onclick=\"scorecards.send(&quot;jockey_name&quot;);return Html.popup(this, {width:695, height:800})\" title=\"Full details about this JOCKEY\">Adrian Nicholls</a> </td>\n" +
-                " <td class=\"num\">—</td>\n" +
-                " <td class=\"num\"><span class=\"red bold\">*</span></td>\n" +
-                " <td class=\"num last\"><span class=\"red bold\">*</span></td>\n" +
-                " </tr>\n" +
-                " <tr>\n" +
-                " <td class=\"v\"><a href=\"#\" onclick=\"scorecards.sendSpecificDesc(&quot;ruk_video&quot;, &quot;16, 2012-05-04, 12:00&quot;);panels.mediaCentre.replayPopup($(this), 552416, 810609, '2012-05-04', 'RUK'); return false;\"><img src=\"http://ui.racingpost.com/release/v17/ico/video.17.0.gif\" alt=\"Video\" title=\"Video\"></a></td>\n" +
-                " <td>\n" +
-                " <a href=\"http://www.racingpost.com/horses/result_home.sd?race_id=552416&amp;r_date=2012-05-04&amp;popup=yes\" onclick=\"scorecards.send(552416);return Html.popup(this, {width:695, height:800})\" title=\"E B F Strides Ahead At RZ Group Maiden Stakes\">04May12</a> &nbsp;\n" +
-                " </td>\n" +
-                " <td>\n" +
-                " <b class=\"black\">\n" +
-                " <a href=\"http://www.racingpost.com/horses/course_home.sd?crs_id=16\" onclick=\"return Html.popup(this, {width:695, height:800})\" title=\"Course (Click to view details): right-handed, sharp track\">Mus</a> 5GS </b>\n" +
-                " C42yMd 5K </td>\n" +
-                " <td>9-3</td>\n" +
-                " <td>\n" +
-                " <b class=\"black\">10</b>/10 <a href=\"http://www.racingpost.com/horses/result_home.sd?race_id=552416&amp;r_date=&amp;popup=yes\" onclick=\"scorecards.send(552416);return Html.popup(this, {width:695, height:800})\" title=\"slightly hampered start, always towards rear\">(12½L Tatlisu 9-3)</a> 33/1 </td>\n" +
-                " <td>\n" +
-                " <a href=\"http://www.racingpost.com/horses/jockey_home.sd?jockey_id=75464\" onclick=\"scorecards.send(&quot;jockey_name&quot;);return Html.popup(this, {width:695, height:800})\" title=\"Full details about this JOCKEY\">Adrian Nicholls</a> </td>\n" +
-                " <td class=\"num\">—</td>\n" +
-                " <td class=\"num\"><span class=\"red bold\">*</span></td>\n" +
-                " <td class=\"num last\"><span class=\"red bold\">*</span></td>\n" +
-                " </tr>\n" +
-                " </tbody></table>\n" +
-                " <span id=\"barrier_RPR-TS_In_Form111189742010\" class=\"bar prpTsInfo\"><span id=\"ruli_33\"><span class=\"red bold\">*</span> Historical RP Ratings and Topspeed Ratings are part of Racing Post Members' Club <a href=\"#\" class=\"blue\" onclick=\"javascript:callLogin('special_offer');\"> Log in to view</a></span></span></div>\n" +
-                "<div id=\"sc_raceHorseNotes_810609\" class=\"notes\" style=\"display: none; \"></div>\n" +
-                "\n" +
-                " </td>\n" +
-                " </tr>\n" +
-                " <tr>\n" +
-                " <td colspan=\"7\"><tt><i></i></tt></td>\n" +
-                " </tr>\n" +
-                " </tbody><tbody id=\"sc_61619986\">\n" +
-                " <tr class=\"cr\">\n" +
-                " <td class=\"t\">\n" +
-                " <strong>11</strong><sup>11</sup> <em>898</em>\n" +
-                " </td>\n" +
-                " <td class=\"s\">\n" +
-                " <a href=\"http://www.racingpost.com/horses/owner_home.sd?owner_id=181047\" onclick=\"scorecards.send(&quot;owner_name&quot;);return Html.popup(this, {width:695, height:800})\" title=\"Full details about this OWNER\"><img src=\"http://images.racingpost.com/png_silks/7/4/0/181047.png\" class=\"iepng\" alt=\"Owner details\" title=\"Full details about this OWNER\" width=\"40\" height=\"29\"></a> </td>\n" +
-                " \n" +
-                " <td class=\"h\">\n" +
-                " <div class=\"nm\">\n" +
-                " <a href=\"http://www.racingpost.com/horses/horse_home.sd?race_id=564393&amp;r_date=2012-10-19&amp;horse_id=815276\" onclick=\"scorecards.send(&quot;horse_name&quot;);return Html.popup(this, {width:695, height:800})\" title=\"Full details about this HORSE\"><b>ALFIE´S ROSE</b></a> \n" +
-                " <a href=\"#\" id=\"sc_pencil_815276\" title=\"Show/Hide My Notes for this runner\"></a> </div>\n" +
-                "\n" +
-                " <div class=\"oddsBar\">\n" +
-                " &nbsp; </div>\n" +
-                " </td>\n" +
-                " <td class=\"two c\">\n" +
-                " <div class=\"tips\">0</div>\n" +
-                " <div class=\"rpr\">61</div>\n" +
-                " <div class=\"ts\">—</div>\n" +
-                " </td>\n" +
-                " <td class=\"two jt\">\n" +
-                " <div>\n" +
-                " <a href=\"http://www.racingpost.com/horses/trainer_home.sd?trainer_id=3415\" onclick=\"scorecards.send(&quot;trainer_name&quot;);return Html.popup(this, {width:695, height:800})\" title=\"Full details about this TRAINER\">William Haggas</a><sup><span title=\"the percentage of the stable's runners that have Run To Form in the last 14 days, based on RPR\">58</span></sup> </div>\n" +
-                " <div>\n" +
-                " <span>DOUBTFUL</span> </div>\n" +
-                " </td>\n" +
-                " <td class=\"two awo\">\n" +
-                " <div>\n" +
-                " 2 &nbsp;\n" +
-                " 9-4 </div>\n" +
-                " <div>\n" +
-                " 62 </div>\n" +
-                " </td>\n" +
-                " <td class=\"bk\" id=\"sc_61619986_bk\"><strong class=\"noBetting\">No betting</strong></td>\n" +
-                " </tr>\n" +
-                " <tr>\n" +
-                " <td class=\"cardItemInfo\" colspan=\"7\">\n" +
-                " <p class=\"diomed\">\n" +
-                " Not gone on in maidens but yard continues in cracking form </p>\n" +
-                " <div class=\"forms\">\n" +
-                " <table class=\"grid smallSpaceGrid\">\n" +
-                " <tbody><tr class=\"noSpace\">\n" +
-                " <th class=\"v\">&nbsp;</th>\n" +
-                " <th class=\"date\">DATE</th>\n" +
-                " <th class=\"raceCond\">RACE CONDITIONS</th>\n" +
-                " <th class=\"wgt\">WGT</th>\n" +
-                " <th class=\"raceOut\">RACE OUTCOME</th>\n" +
-                " <th class=\"jock\">JOCKEY</th>\n" +
-                " <th class=\"num\">OR</th>\n" +
-                " <th class=\"num\">TS</th>\n" +
-                " <th class=\"num last\">RPR</th>\n" +
-                " </tr>\n" +
-                " <tr>\n" +
-                " <td class=\"v\"><a href=\"#\" onclick=\"scorecards.sendSpecificDesc(&quot;ruk_video&quot;, &quot;104, 2012-10-05, 12:00&quot;);panels.mediaCentre.replayPopup($(this), 564655, 815276, '2012-10-05', 'RUK'); return false;\"><img src=\"http://ui.racingpost.com/release/v17/ico/video.17.0.gif\" alt=\"Video\" title=\"Video\"></a></td>\n" +
-                " <td>\n" +
-                " <a href=\"http://www.racingpost.com/horses/result_home.sd?race_id=564655&amp;r_date=2012-10-05&amp;popup=yes\" onclick=\"scorecards.send(564655);return Html.popup(this, {width:695, height:800})\" title=\"Holiday On The Norfolk Broads Maiden Stakes (Div I)\">05Oct12</a> &nbsp;\n" +
-                " </td>\n" +
-                " <td>\n" +
-                " <b class=\"black\">\n" +
-                " <a href=\"http://www.racingpost.com/horses/course_home.sd?crs_id=104\" onclick=\"return Html.popup(this, {width:695, height:800})\" title=\"Course (Click to view details): left-handed, galloping track\">Yar</a> 7Hy </b>\n" +
-                " C52yMd 3K </td>\n" +
-                " <td>9-3</td>\n" +
-                " <td>\n" +
-                " <b class=\"black\">8</b>/9 <a href=\"http://www.racingpost.com/horses/result_home.sd?race_id=564655&amp;r_date=&amp;popup=yes\" onclick=\"scorecards.send(564655);return Html.popup(this, {width:695, height:800})\" title=\"steadied start, held up in last trio, no progress under pressure entering final 2f, never dangerous\">(11L Intimidate 9-3)</a> 50/1 </td>\n" +
-                " <td>\n" +
-                " <a href=\"http://www.racingpost.com/horses/jockey_home.sd?jockey_id=82384\" onclick=\"scorecards.send(&quot;jockey_name&quot;);return Html.popup(this, {width:695, height:800})\" title=\"Full details about this JOCKEY\">Liam Jones</a> </td>\n" +
-                " <td class=\"num\">—</td>\n" +
-                " <td class=\"num\"><span class=\"red bold\">*</span></td>\n" +
-                " <td class=\"num last\"><span class=\"red bold\">*</span></td>\n" +
-                " </tr>\n" +
-                " <tr>\n" +
-                " <td class=\"v\"><a href=\"#\" onclick=\"scorecards.sendSpecificDesc(&quot;ruk_video&quot;, &quot;85, 2012-08-27, 12:00&quot;);panels.mediaCentre.replayPopup($(this), 561643, 815276, '2012-08-27', 'RUK'); return false;\"><img src=\"http://ui.racingpost.com/release/v17/ico/video.17.0.gif\" alt=\"Video\" title=\"Video\"></a></td>\n" +
-                " <td>\n" +
-                " <a href=\"http://www.racingpost.com/horses/result_home.sd?race_id=561643&amp;r_date=2012-08-27&amp;popup=yes\" onclick=\"scorecards.send(561643);return Html.popup(this, {width:695, height:800})\" title=\"Irish Stallion Farms E B F Maiden Stakes (Div I)\">27Aug12</a> &nbsp;\n" +
-                " </td>\n" +
-                " <td>\n" +
-                " <b class=\"black\">\n" +
-                " <a href=\"http://www.racingpost.com/horses/course_home.sd?crs_id=85\" onclick=\"return Html.popup(this, {width:695, height:800})\" title=\"Course (Click to view details): left-handed, sharp track\">War</a> 7GF </b>\n" +
-                " C52yMd 3K </td>\n" +
-                " <td>9-3</td>\n" +
-                " <td>\n" +
-                " <b class=\"black\">9</b>/10 <a href=\"http://www.racingpost.com/horses/result_home.sd?race_id=561643&amp;r_date=&amp;popup=yes\" onclick=\"scorecards.send(561643);return Html.popup(this, {width:695, height:800})\" title=\"slowly into stride, always in rear\">(16L Secretinthepark 9-3)</a> 12/1 </td>\n" +
-                " <td>\n" +
-                " <a href=\"http://www.racingpost.com/horses/jockey_home.sd?jockey_id=82384\" onclick=\"scorecards.send(&quot;jockey_name&quot;);return Html.popup(this, {width:695, height:800})\" title=\"Full details about this JOCKEY\">Liam Jones</a> </td>\n" +
-                " <td class=\"num\">—</td>\n" +
-                " <td class=\"num\"><span class=\"red bold\">*</span></td>\n" +
-                " <td class=\"num last\"><span class=\"red bold\">*</span></td>\n" +
-                " </tr>\n" +
-                " <tr>\n" +
-                " <td class=\"v\"><a href=\"#\" onclick=\"scorecards.sendSpecificDesc(&quot;ruk_video&quot;, &quot;40, 2012-08-17, 12:00&quot;);panels.mediaCentre.replayPopup($(this), 560969, 815276, '2012-08-17', 'RUK'); return false;\"><img src=\"http://ui.racingpost.com/release/v17/ico/video.17.0.gif\" alt=\"Video\" title=\"Video\"></a></td>\n" +
-                " <td>\n" +
-                " <a href=\"http://www.racingpost.com/horses/result_home.sd?race_id=560969&amp;r_date=2012-08-17&amp;popup=yes\" onclick=\"scorecards.send(560969);return Html.popup(this, {width:695, height:800})\" title=\"British Stallion Studs Supporting British Racing E B F Maiden Stakes\">17Aug12</a> &nbsp;\n" +
-                " </td>\n" +
-                " <td>\n" +
-                " <b class=\"black\">\n" +
-                " <a href=\"http://www.racingpost.com/horses/course_home.sd?crs_id=40\" onclick=\"return Html.popup(this, {width:695, height:800})\" title=\"Course (Click to view details): left-handed, galloping track\">Not</a> 6Gd </b>\n" +
-                " C52yMd 3K </td>\n" +
-                " <td>9-3</td>\n" +
-                " <td>\n" +
-                " <b class=\"black\">8</b>/11 <a href=\"http://www.racingpost.com/horses/result_home.sd?race_id=560969&amp;r_date=&amp;popup=yes\" onclick=\"scorecards.send(560969);return Html.popup(this, {width:695, height:800})\" title=\"dwelt and slightly hampered start, green and in rear until some late headway\">(12½L Cour Valant 9-3)</a> 20/1 </td>\n" +
-                " <td>\n" +
-                " <a href=\"http://www.racingpost.com/horses/jockey_home.sd?jockey_id=82384\" onclick=\"scorecards.send(&quot;jockey_name&quot;);return Html.popup(this, {width:695, height:800})\" title=\"Full details about this JOCKEY\">Liam Jones</a> </td>\n" +
-                " <td class=\"num\">—</td>\n" +
-                " <td class=\"num\"><span class=\"red bold\">*</span></td>\n" +
-                " <td class=\"num last\"><span class=\"red bold\">*</span></td>\n" +
-                " </tr>\n" +
-                " </tbody></table>\n")
+                        " C42yHc 4K </td>\n" +
+                        " <td>8-4</td>\n" +
+                        " <td>\n" +
+                        " <b class=\"black\">5</b>/6 <a href=\"http://www.racingpost.com/horses/result_home.sd?race_id=558686&amp;r_date=&amp;popup=yes\" onclick=\"scorecards.send(558686);return Html.popup(this, {width:695, height:800})\" title=\"slowly into stride and squeezed out when not much room shortly after start, behind and outpaced, stayed on inside final furlong, never going pace to get competitive\">(3¾L Bairam 8-12)</a> 5/2J </td>\n" +
+                        " <td>\n" +
+                        " <a href=\"http://www.racingpost.com/horses/jockey_home.sd?jockey_id=79115\" onclick=\"scorecards.send(&quot;jockey_name&quot;);return Html.popup(this, {width:695, height:800})\" title=\"Full details about this JOCKEY\">Patrick Mathers</a> </td>\n" +
+                        " <td class=\"num\">66</td>\n" +
+                        " <td class=\"num\"><span class=\"red bold\">*</span></td>\n" +
+                        " <td class=\"num last\"><span class=\"red bold\">*</span></td>\n" +
+                        " </tr>\n" +
+                        " <tr>\n" +
+                        " <td class=\"v\"><a href=\"#\" onclick=\"scorecards.sendSpecificDesc(&quot;ruk_video&quot;, &quot;37, 2012-06-30, 12:00&quot;);panels.mediaCentre.replayPopup($(this), 557564, 815159, '2012-06-30', 'RUK'); return false;\"><img src=\"http://ui.racingpost.com/release/v17/ico/video.17.0.gif\" alt=\"Video\" title=\"Video\"></a></td>\n" +
+                        " <td>\n" +
+                        " <a href=\"http://www.racingpost.com/horses/result_home.sd?race_id=557564&amp;r_date=2012-06-30&amp;popup=yes\" onclick=\"scorecards.send(557564);return Html.popup(this, {width:695, height:800})\" title=\"Betfred/Irish Stallion Farms E B F Maiden Stakes\">30Jun12</a> &nbsp;\n" +
+                        " </td>\n" +
+                        " <td>\n" +
+                        " <b class=\"black\">\n" +
+                        " <a href=\"http://www.racingpost.com/horses/course_home.sd?crs_id=37\" onclick=\"return Html.popup(this, {width:695, height:800})\" title=\"Course (Click to view details): left-handed, galloping, testing track\">Ncs</a> 5Hy </b>\n" +
+                        " C42yMd 5K </td>\n" +
+                        " <td>8-12</td>\n" +
+                        " <td>\n" +
+                        " <b class=\"black\">1</b>/4 <a href=\"http://www.racingpost.com/horses/result_home.sd?race_id=557564&amp;r_date=&amp;popup=yes\" onclick=\"scorecards.send(557564);return Html.popup(this, {width:695, height:800})\" title=\"tracked leaders, went second over 2f out, ridden along over 1f out, 4 lengths down inside final furlong, stayed on strongly to lead close home\">(½L Opt Out 9-3)</a> 4/1 </td>\n" +
+                        " <td>\n" +
+                        " <a href=\"http://www.racingpost.com/horses/jockey_home.sd?jockey_id=79004\" onclick=\"scorecards.send(&quot;jockey_name&quot;);return Html.popup(this, {width:695, height:800})\" title=\"Full details about this JOCKEY\">Tony Hamilton</a> </td>\n" +
+                        " <td class=\"num\">—</td>\n" +
+                        " <td class=\"num\"><span class=\"red bold\">*</span></td>\n" +
+                        " <td class=\"num last\"><span class=\"red bold\">*</span></td>\n" +
+                        " </tr>\n" +
+                        " </tbody></table>\n" +
+                        " <span id=\"barrier_RPR-TS_In_Form21246390931\" class=\"bar prpTsInfo\"><span id=\"ruli_33\"><span class=\"red bold\">*</span> Historical RP Ratings and Topspeed Ratings are part of Racing Post Members' Club <a href=\"#\" class=\"blue\" onclick=\"javascript:callLogin('special_offer');\"> Log in to view</a></span></span></div>\n" +
+                        "<div id=\"sc_raceHorseNotes_815159\" class=\"notes\" style=\"display: none; \"></div>\n" +
+                        "\n" +
+                        " </td>\n" +
+                        " </tr>\n" +
+                        " <tr>\n" +
+                        " <td colspan=\"7\"><tt><i></i></tt></td>\n" +
+                        " </tr>\n" +
+                        " </tbody><tbody id=\"sc_61619983\">\n" +
+                        " <tr class=\"cr\">\n" +
+                        " <td class=\"t\">\n" +
+                        " <strong>8</strong><sup>6</sup> <em>089<b>5</b></em>\n" +
+                        " </td>\n" +
+                        " <td class=\"s\">\n" +
+                        " <a href=\"http://www.racingpost.com/horses/owner_home.sd?owner_id=204088\" onclick=\"scorecards.send(&quot;owner_name&quot;);return Html.popup(this, {width:695, height:800})\" title=\"Full details about this OWNER\"><img src=\"http://images.racingpost.com/png_silks/8/8/0/204088.png\" class=\"iepng\" alt=\"Owner details\" title=\"Full details about this OWNER\" width=\"40\" height=\"29\"></a> </td>\n" +
+                        " \n" +
+                        " <td class=\"h\">\n" +
+                        " <div class=\"nm\">\n" +
+                        " <a href=\"http://www.racingpost.com/horses/horse_home.sd?race_id=564393&amp;r_date=2012-10-19&amp;horse_id=814315\" onclick=\"scorecards.send(&quot;horse_name&quot;);return Html.popup(this, {width:695, height:800})\" title=\"Full details about this HORSE\"><b>EL MIRAGE</b></a> \n" +
+                        " <a href=\"#\" id=\"sc_pencil_814315\" title=\"Show/Hide My Notes for this runner\"></a> </div>\n" +
+                        "\n" +
+                        " <div class=\"oddsBar\">\n" +
+                        " <div><div style=\"width: 12%\"></div></div>\n" +
+                        " <span>12%</span>\n" +
+                        " </div>\n" +
+                        " </td>\n" +
+                        " <td class=\"two c\">\n" +
+                        " <div class=\"tips\">2</div>\n" +
+                        " <div class=\"rpr\">71</div>\n" +
+                        " <div class=\"ts\">43 </div>\n" +
+                        " </td>\n" +
+                        " <td class=\"two jt\">\n" +
+                        " <div>\n" +
+                        " <a href=\"http://www.racingpost.com/horses/trainer_home.sd?trainer_id=15107\" onclick=\"scorecards.send(&quot;trainer_name&quot;);return Html.popup(this, {width:695, height:800})\" title=\"Full details about this TRAINER\">Dean Ivory</a><sup><span title=\"the percentage of the stable's runners that have Run To Form in the last 14 days, based on RPR\">78</span></sup> </div>\n" +
+                        " <div>\n" +
+                        " <a href=\"http://www.racingpost.com/horses/jockey_home.sd?jockey_id=13700\" onclick=\"scorecards.send(&quot;jockey_name&quot;);return Html.popup(this, {width:695, height:800})\" title=\"Full details about this JOCKEY\">Shane Kelly</a> </div>\n" +
+                        " </td>\n" +
+                        " <td class=\"two awo\">\n" +
+                        " <div>\n" +
+                        " 2 &nbsp;\n" +
+                        " 9-5 </div>\n" +
+                        " <div>\n" +
+                        " 63 </div>\n" +
+                        " </td>\n" +
+                        " <td class=\"bk\" id=\"sc_61619983_bk\"><button type=\"button\" class=\"btn btnBet btnLight\" title=\"5 with Ladbrokes - Click to bet\"><div><div>5</div></div></button><em>11/2</em><em>5</em><em>11/2</em><em>5</em></td>\n" +
+                        " </tr>\n" +
+                        " <tr>\n" +
+                        " <td class=\"cardItemInfo\" colspan=\"7\">\n" +
+                        " <p class=\"diomed\">\n" +
+                        " Best effort yet on AW debut latest; player off an opening 63 </p>\n" +
+                        " <div class=\"forms\">\n" +
+                        " <table class=\"grid smallSpaceGrid\">\n" +
+                        " <tbody><tr class=\"noSpace\">\n" +
+                        " <th class=\"v\">&nbsp;</th>\n" +
+                        " <th class=\"date\">DATE</th>\n" +
+                        " <th class=\"raceCond\">RACE CONDITIONS</th>\n" +
+                        " <th class=\"wgt\">WGT</th>\n" +
+                        " <th class=\"raceOut\">RACE OUTCOME</th>\n" +
+                        " <th class=\"jock\">JOCKEY</th>\n" +
+                        " <th class=\"num\">OR</th>\n" +
+                        " <th class=\"num\">TS</th>\n" +
+                        " <th class=\"num last\">RPR</th>\n" +
+                        " </tr>\n" +
+                        " <tr>\n" +
+                        " <td class=\"v\"><a href=\"#\" onclick=\"scorecards.sendSpecificDesc(&quot;ruk_video&quot;, &quot;1079, 2012-10-11, 12:00&quot;);panels.mediaCentre.replayPopup($(this), 565531, 814315, '2012-10-11', 'RUK'); return false;\"><img src=\"http://ui.racingpost.com/release/v17/ico/video.17.0.gif\" alt=\"Video\" title=\"Video\"></a></td>\n" +
+                        " <td>\n" +
+                        " <a href=\"http://www.racingpost.com/horses/result_home.sd?race_id=565531&amp;r_date=2012-10-11&amp;popup=yes\" onclick=\"scorecards.send(565531);return Html.popup(this, {width:695, height:800})\" title=\"32Red/British Stallion Studs E B F Maiden Stakes (Div II)\">11Oct12</a> &nbsp;\n" +
+                        " </td>\n" +
+                        " <td>\n" +
+                        " <b class=\"black\">\n" +
+                        " <a href=\"http://www.racingpost.com/horses/course_home.sd?crs_id=1079\" onclick=\"return Html.popup(this, {width:695, height:800})\" title=\"Course (Click to view details): AW Polytrack: right-handed\">Kem</a> 6St </b>\n" +
+                        " C52yMd 3K </td>\n" +
+                        " <td>8-12</td>\n" +
+                        " <td>\n" +
+                        " <b class=\"black\">5</b>/9 <a href=\"http://www.racingpost.com/horses/result_home.sd?race_id=565531&amp;r_date=&amp;popup=yes\" onclick=\"scorecards.send(565531);return Html.popup(this, {width:695, height:800})\" title=\"held up in midfield, ridden and effort 2f out, no threat to leaders but stayed on well under pressure inside final furlong, pressing for 3rd close home\">(4½L Exactement 8-12)</a> 33/1 </td>\n" +
+                        " <td>\n" +
+                        " <a href=\"http://www.racingpost.com/horses/jockey_home.sd?jockey_id=13700\" onclick=\"scorecards.send(&quot;jockey_name&quot;);return Html.popup(this, {width:695, height:800})\" title=\"Full details about this JOCKEY\">Shane Kelly</a> </td>\n" +
+                        " <td class=\"num\">63</td>\n" +
+                        " <td class=\"num\"><span class=\"red bold\">*</span></td>\n" +
+                        " <td class=\"num last\"><span class=\"red bold\">*</span></td>\n" +
+                        " </tr>\n" +
+                        " <tr>\n" +
+                        " <td class=\"v\"><a href=\"#\" onclick=\"scorecards.sendSpecificDesc(&quot;ruk_video&quot;, &quot;104, 2012-09-18, 12:00&quot;);panels.mediaCentre.replayPopup($(this), 562809, 814315, '2012-09-18', 'RUK'); return false;\"><img src=\"http://ui.racingpost.com/release/v17/ico/video.17.0.gif\" alt=\"Video\" title=\"Video\"></a></td>\n" +
+                        " <td>\n" +
+                        " <a href=\"http://www.racingpost.com/horses/result_home.sd?race_id=562809&amp;r_date=2012-09-18&amp;popup=yes\" onclick=\"scorecards.send(562809);return Html.popup(this, {width:695, height:800})\" title=\"British Stallion Studs Supporting British Racing E B F Maiden Fillies' Stakes\">18Sep12</a> &nbsp;\n" +
+                        " </td>\n" +
+                        " <td>\n" +
+                        " <b class=\"black\">\n" +
+                        " <a href=\"http://www.racingpost.com/horses/course_home.sd?crs_id=104\" onclick=\"return Html.popup(this, {width:695, height:800})\" title=\"Course (Click to view details): left-handed, galloping track\">Yar</a> 6GF </b>\n" +
+                        " C52yMd 3K </td>\n" +
+                        " <td>9-0</td>\n" +
+                        " <td>\n" +
+                        " <b class=\"black\">9</b>/13 <a href=\"http://www.racingpost.com/horses/result_home.sd?race_id=562809&amp;r_date=&amp;popup=yes\" onclick=\"scorecards.send(562809);return Html.popup(this, {width:695, height:800})\" title=\"pulled hard, chased leaders, 3rd and outpaced over 1f out, soon beaten, weakened inside final furlong\">(9¾L Supernova Heights 9-0)</a> 33/1 </td>\n" +
+                        " <td>\n" +
+                        " <a href=\"http://www.racingpost.com/horses/jockey_home.sd?jockey_id=13700\" onclick=\"scorecards.send(&quot;jockey_name&quot;);return Html.popup(this, {width:695, height:800})\" title=\"Full details about this JOCKEY\">Shane Kelly</a> </td>\n" +
+                        " <td class=\"num\">—</td>\n" +
+                        " <td class=\"num\"><span class=\"red bold\">*</span></td>\n" +
+                        " <td class=\"num last\"><span class=\"red bold\">*</span></td>\n" +
+                        " </tr>\n" +
+                        " <tr>\n" +
+                        " <td class=\"v\"><a href=\"#\" onclick=\"scorecards.sendSpecificDesc(&quot;ruk_video&quot;, &quot;36, 2012-08-17, 12:00&quot;);panels.mediaCentre.replayPopup($(this), 562402, 814315, '2012-08-17', 'RUK'); return false;\"><img src=\"http://ui.racingpost.com/release/v17/ico/video.17.0.gif\" alt=\"Video\" title=\"Video\"></a></td>\n" +
+                        " <td>\n" +
+                        " <a href=\"http://www.racingpost.com/horses/result_home.sd?race_id=562402&amp;r_date=2012-08-17&amp;popup=yes\" onclick=\"scorecards.send(562402);return Html.popup(this, {width:695, height:800})\" title=\"Don Deadman Memorial European Breeders' Fund Maiden Stakes (Div II)\">17Aug12</a> &nbsp;\n" +
+                        " </td>\n" +
+                        " <td>\n" +
+                        " <b class=\"black\">\n" +
+                        " <a href=\"http://www.racingpost.com/horses/course_home.sd?crs_id=36\" onclick=\"return Html.popup(this, {width:695, height:800})\" title=\"Course (Click to view details): left-handed, galloping track\">Nby</a> 7Gd </b>\n" +
+                        " C42yMd 4K </td>\n" +
+                        " <td>8-12</td>\n" +
+                        " <td>\n" +
+                        " <b class=\"black\">8</b>/11 <a href=\"http://www.racingpost.com/horses/result_home.sd?race_id=562402&amp;r_date=&amp;popup=yes\" onclick=\"scorecards.send(562402);return Html.popup(this, {width:695, height:800})\" title=\"chased winner, ridden 2f out, weakened over 1f out\">(11L Related 9-3)</a> 66/1 </td>\n" +
+                        " <td>\n" +
+                        " <a href=\"http://www.racingpost.com/horses/jockey_home.sd?jockey_id=13700\" onclick=\"scorecards.send(&quot;jockey_name&quot;);return Html.popup(this, {width:695, height:800})\" title=\"Full details about this JOCKEY\">Shane Kelly</a> </td>\n" +
+                        " <td class=\"num\">—</td>\n" +
+                        " <td class=\"num\"><span class=\"red bold\">*</span></td>\n" +
+                        " <td class=\"num last\"><span class=\"red bold\">*</span></td>\n" +
+                        " </tr>\n" +
+                        " <tr>\n" +
+                        " <td class=\"v\"><a href=\"#\" onclick=\"scorecards.sendSpecificDesc(&quot;ruk_video&quot;, &quot;174, 2012-06-29, 12:00&quot;);panels.mediaCentre.replayPopup($(this), 557535, 814315, '2012-06-29', 'RUK'); return false;\"><img src=\"http://ui.racingpost.com/release/v17/ico/video.17.0.gif\" alt=\"Video\" title=\"Video\"></a></td>\n" +
+                        " <td>\n" +
+                        " <a href=\"http://www.racingpost.com/horses/result_home.sd?race_id=557535&amp;r_date=2012-06-29&amp;popup=yes\" onclick=\"scorecards.send(557535);return Html.popup(this, {width:695, height:800})\" title=\"Get Your 0800 Number From poptelecom.co.uk EBF Maiden Fillies' Stakes\">29Jun12</a> &nbsp;\n" +
+                        " </td>\n" +
+                        " <td>\n" +
+                        " <b class=\"black\">\n" +
+                        " <a href=\"http://www.racingpost.com/horses/course_home.sd?crs_id=174\" onclick=\"return Html.popup(this, {width:695, height:800})\" title=\"Course (Click to view details): right-handed, galloping track\">Nmk</a> 6Gd </b>\n" +
+                        " C42yMd 4K </td>\n" +
+                        " <td>9-0</td>\n" +
+                        " <td>\n" +
+                        " <b class=\"black\">10</b>/15 <a href=\"http://www.racingpost.com/horses/result_home.sd?race_id=557535&amp;r_date=&amp;popup=yes\" onclick=\"scorecards.send(557535);return Html.popup(this, {width:695, height:800})\" title=\"slowly into stride, held up, pushed along over 2f out, stayed on inside final furlong, never nearer\">(6¼L Reyaadah 9-0)</a> 28/1 </td>\n" +
+                        " <td>\n" +
+                        " <a href=\"http://www.racingpost.com/horses/jockey_home.sd?jockey_id=627\" onclick=\"scorecards.send(&quot;jockey_name&quot;);return Html.popup(this, {width:695, height:800})\" title=\"Full details about this JOCKEY\">Michael Hills</a> </td>\n" +
+                        " <td class=\"num\">—</td>\n" +
+                        " <td class=\"num\"><span class=\"red bold\">*</span></td>\n" +
+                        " <td class=\"num last\"><span class=\"red bold\">*</span></td>\n" +
+                        " </tr>\n" +
+                        " </tbody></table>\n" +
+                        " <span id=\"barrier_RPR-TS_In_Form41686660079\" class=\"bar prpTsInfo\"><span id=\"ruli_33\"><span class=\"red bold\">*</span> Historical RP Ratings and Topspeed Ratings are part of Racing Post Members' Club <a href=\"#\" class=\"blue\" onclick=\"javascript:callLogin('special_offer');\"> Log in to view</a></span></span></div>\n" +
+                        "<div id=\"sc_raceHorseNotes_814315\" class=\"notes\" style=\"display: none; \"></div>\n" +
+                        "\n" +
+                        " </td>\n" +
+                        " </tr>\n" +
+                        " <tr>\n" +
+                        " <td colspan=\"7\"><tt><i></i></tt></td>\n" +
+                        " </tr>\n" +
+                        " </tbody><tbody id=\"sc_61619978\">\n" +
+                        " <tr class=\"cr\">\n" +
+                        " <td class=\"t\">\n" +
+                        " <strong>2</strong><sup>2</sup> <em>64<b>6</b></em>\n" +
+                        " </td>\n" +
+                        " <td class=\"s\">\n" +
+                        " <a href=\"http://www.racingpost.com/horses/owner_home.sd?owner_id=183587\" onclick=\"scorecards.send(&quot;owner_name&quot;);return Html.popup(this, {width:695, height:800})\" title=\"Full details about this OWNER\"><img src=\"http://images.racingpost.com/png_silks/7/8/5/183587.png\" class=\"iepng\" alt=\"Owner details\" title=\"Full details about this OWNER\" width=\"40\" height=\"29\"></a> </td>\n" +
+                        " \n" +
+                        " <td class=\"h\">\n" +
+                        " <div class=\"nm\">\n" +
+                        " <a href=\"http://www.racingpost.com/horses/horse_home.sd?race_id=564393&amp;r_date=2012-10-19&amp;horse_id=805252\" onclick=\"scorecards.send(&quot;horse_name&quot;);return Html.popup(this, {width:695, height:800})\" title=\"Full details about this HORSE\"><b>PEARL BOUNTY</b></a> <span>\n" +
+                        " v<sup>1</sup> </span>\n" +
+                        " \n" +
+                        " <a href=\"#\" id=\"sc_pencil_805252\" title=\"Show/Hide My Notes for this runner\"></a> </div>\n" +
+                        "\n" +
+                        " <div class=\"oddsBar\">\n" +
+                        " <div><div style=\"width: 12%\"></div></div>\n" +
+                        " <span>12%</span>\n" +
+                        " </div>\n" +
+                        " </td>\n" +
+                        " <td class=\"two c\">\n" +
+                        " <div class=\"tips\">1</div>\n" +
+                        " <div class=\"rpr\">65</div>\n" +
+                        " <div class=\"ts\">31 </div>\n" +
+                        " </td>\n" +
+                        " <td class=\"two jt\">\n" +
+                        " <div>\n" +
+                        " <a href=\"http://www.racingpost.com/horses/trainer_home.sd?trainer_id=15605\" onclick=\"scorecards.send(&quot;trainer_name&quot;);return Html.popup(this, {width:695, height:800})\" title=\"Full details about this TRAINER\">Andrew Balding</a><sup><span title=\"the percentage of the stable's runners that have Run To Form in the last 14 days, based on RPR\">59</span></sup> </div>\n" +
+                        " <div>\n" +
+                        " <a href=\"http://www.racingpost.com/horses/jockey_home.sd?jockey_id=88632\" onclick=\"scorecards.send(&quot;jockey_name&quot;);return Html.popup(this, {width:695, height:800})\" title=\"Full details about this JOCKEY\">Harry Bentley</a> </div>\n" +
+                        " </td>\n" +
+                        " <td class=\"two awo\">\n" +
+                        " <div>\n" +
+                        " 2 &nbsp;\n" +
+                        " 9-7 </div>\n" +
+                        " <div>\n" +
+                        " 65 </div>\n" +
+                        " </td>\n" +
+                        " <td class=\"bk\" id=\"sc_61619978_bk\"><button type=\"button\" class=\"btn btnBet btnLight\" title=\"7 with Ladbrokes - Click to bet\"><div><div>7</div></div></button><em>13/2</em><em>6</em><em>13/2</em><em>6</em></td>\n" +
+                        " </tr>\n" +
+                        " <tr>\n" +
+                        " <td class=\"cardItemInfo\" colspan=\"7\">\n" +
+                        " <p class=\"diomed\">\n" +
+                        " Not cheap and capable of better than he´s shown; visor on </p>\n" +
+                        " <div class=\"forms\">\n" +
+                        " <table class=\"grid smallSpaceGrid\">\n" +
+                        " <tbody><tr class=\"noSpace\">\n" +
+                        " <th class=\"v\">&nbsp;</th>\n" +
+                        " <th class=\"date\">DATE</th>\n" +
+                        " <th class=\"raceCond\">RACE CONDITIONS</th>\n" +
+                        " <th class=\"wgt\">WGT</th>\n" +
+                        " <th class=\"raceOut\">RACE OUTCOME</th>\n" +
+                        " <th class=\"jock\">JOCKEY</th>\n" +
+                        " <th class=\"num\">OR</th>\n" +
+                        " <th class=\"num\">TS</th>\n" +
+                        " <th class=\"num last\">RPR</th>\n" +
+                        " </tr>\n" +
+                        " <tr>\n" +
+                        " <td class=\"v\"><a href=\"#\" onclick=\"scorecards.sendSpecificDesc(&quot;ruk_video&quot;, &quot;1079, 2012-08-06, 12:00&quot;);panels.mediaCentre.replayPopup($(this), 560416, 805252, '2012-08-06', 'RUK'); return false;\"><img src=\"http://ui.racingpost.com/release/v17/ico/video.17.0.gif\" alt=\"Video\" title=\"Video\"></a></td>\n" +
+                        " <td>\n" +
+                        " <a href=\"http://www.racingpost.com/horses/result_home.sd?race_id=560416&amp;r_date=2012-08-06&amp;popup=yes\" onclick=\"scorecards.send(560416);return Html.popup(this, {width:695, height:800})\" title=\"Betfair Supporting Grassroots Racing Median Auction Maiden Stakes\">06Aug12</a> &nbsp;\n" +
+                        " </td>\n" +
+                        " <td>\n" +
+                        " <b class=\"black\">\n" +
+                        " <a href=\"http://www.racingpost.com/horses/course_home.sd?crs_id=1079\" onclick=\"return Html.popup(this, {width:695, height:800})\" title=\"Course (Click to view details): AW Polytrack: right-handed\">Kem</a> 6St/Slw </b>\n" +
+                        " C52yMd 2K </td>\n" +
+                        " <td>9-3</td>\n" +
+                        " <td>\n" +
+                        " <b class=\"black\">6</b>/7 <a href=\"http://www.racingpost.com/horses/result_home.sd?race_id=560416&amp;r_date=&amp;popup=yes\" onclick=\"scorecards.send(560416);return Html.popup(this, {width:695, height:800})\" title=\"chased leaders, left pressing leader, every chance and ridden 2f out, found little and beaten just over 1f out, weakened final furlong\">(9¼L Haafaguinea 9-3)</a> 10/1 </td>\n" +
+                        " <td>\n" +
+                        " <a href=\"http://www.racingpost.com/horses/jockey_home.sd?jockey_id=3659\" onclick=\"scorecards.send(&quot;jockey_name&quot;);return Html.popup(this, {width:695, height:800})\" title=\"Full details about this JOCKEY\">Jimmy Fortune</a> </td>\n" +
+                        " <td class=\"num\">—</td>\n" +
+                        " <td class=\"num\"><span class=\"red bold\">*</span></td>\n" +
+                        " <td class=\"num last\"><span class=\"red bold\">*</span></td>\n" +
+                        " </tr>\n" +
+                        " <tr>\n" +
+                        " <td class=\"v\"><a href=\"#\" onclick=\"scorecards.sendSpecificDesc(&quot;ruk_video&quot;, &quot;17, 2012-07-26, 12:00&quot;);panels.mediaCentre.replayPopup($(this), 559647, 805252, '2012-07-26', 'RUK'); return false;\"><img src=\"http://ui.racingpost.com/release/v17/ico/video.17.0.gif\" alt=\"Video\" title=\"Video\"></a></td>\n" +
+                        " <td>\n" +
+                        " <a href=\"http://www.racingpost.com/horses/result_home.sd?race_id=559647&amp;r_date=2012-07-26&amp;popup=yes\" onclick=\"scorecards.send(559647);return Html.popup(this, {width:695, height:800})\" title=\"British Stallion Studs Supporting British Racing E B F Maiden Stakes\">26Jul12</a> &nbsp;\n" +
+                        " </td>\n" +
+                        " <td>\n" +
+                        " <b class=\"black\">\n" +
+                        " <a href=\"http://www.racingpost.com/horses/course_home.sd?crs_id=17\" onclick=\"return Html.popup(this, {width:695, height:800})\" title=\"Course (Click to view details): left-handed, sharp track (very sharp up to 1m)\">Eps</a> 6GF </b>\n" +
+                        " C52yMd 3K </td>\n" +
+                        " <td>9-3</td>\n" +
+                        " <td>\n" +
+                        " <b class=\"black\">4</b>/7 <a href=\"http://www.racingpost.com/horses/result_home.sd?race_id=559647&amp;r_date=&amp;popup=yes\" onclick=\"scorecards.send(559647);return Html.popup(this, {width:695, height:800})\" title=\"held up in 6th, outpaced when ridden 2f out, no danger after\">(10½L Meringue Pie 9-3)</a> 4/1 </td>\n" +
+                        " <td>\n" +
+                        " <a href=\"http://www.racingpost.com/horses/jockey_home.sd?jockey_id=3659\" onclick=\"scorecards.send(&quot;jockey_name&quot;);return Html.popup(this, {width:695, height:800})\" title=\"Full details about this JOCKEY\">Jimmy Fortune</a> </td>\n" +
+                        " <td class=\"num\">—</td>\n" +
+                        " <td class=\"num\"><span class=\"red bold\">*</span></td>\n" +
+                        " <td class=\"num last\"><span class=\"red bold\">*</span></td>\n" +
+                        " </tr>\n" +
+                        " <tr>\n" +
+                        " <td class=\"v\"><a href=\"#\" onclick=\"scorecards.sendSpecificDesc(&quot;ruk_video&quot;, &quot;52, 2012-05-24, 12:00&quot;);panels.mediaCentre.replayPopup($(this), 554367, 805252, '2012-05-24', 'RUK'); return false;\"><img src=\"http://ui.racingpost.com/release/v17/ico/video.17.0.gif\" alt=\"Video\" title=\"Video\"></a></td>\n" +
+                        " <td>\n" +
+                        " <a href=\"http://www.racingpost.com/horses/result_home.sd?race_id=554367&amp;r_date=2012-05-24&amp;popup=yes\" onclick=\"scorecards.send(554367);return Html.popup(this, {width:695, height:800})\" title=\"Betfair Boosts Prize Money At Salisbury E B F Maiden Stakes\">24May12</a> &nbsp;\n" +
+                        " </td>\n" +
+                        " <td>\n" +
+                        " <b class=\"black\">\n" +
+                        " <a href=\"http://www.racingpost.com/horses/course_home.sd?crs_id=52\" onclick=\"return Html.popup(this, {width:695, height:800})\" title=\"Course (Click to view details): right-handed, galloping, testing track\">Sal</a> 5Fm </b>\n" +
+                        " C42yMd 4K </td>\n" +
+                        " <td>9-3</td>\n" +
+                        " <td>\n" +
+                        " <b class=\"black\">6</b>/9 <a href=\"http://www.racingpost.com/horses/result_home.sd?race_id=554367&amp;r_date=&amp;popup=yes\" onclick=\"scorecards.send(554367);return Html.popup(this, {width:695, height:800})\" title=\"little slowly away, in last pair, pushed along 3f out, never any impression on leaders\">(13½L Bungle Inthejungle 9-3)</a> 5/1 </td>\n" +
+                        " <td>\n" +
+                        " <a href=\"http://www.racingpost.com/horses/jockey_home.sd?jockey_id=3659\" onclick=\"scorecards.send(&quot;jockey_name&quot;);return Html.popup(this, {width:695, height:800})\" title=\"Full details about this JOCKEY\">Jimmy Fortune</a> </td>\n" +
+                        " <td class=\"num\">—</td>\n" +
+                        " <td class=\"num\"><span class=\"red bold\">*</span></td>\n" +
+                        " <td class=\"num last\"><span class=\"red bold\">*</span></td>\n" +
+                        " </tr>\n" +
+                        " </tbody></table>\n" +
+                        " <span id=\"barrier_RPR-TS_In_Form31755968315\" class=\"bar prpTsInfo\"><span id=\"ruli_33\"><span class=\"red bold\">*</span> Historical RP Ratings and Topspeed Ratings are part of Racing Post Members' Club <a href=\"#\" class=\"blue\" onclick=\"javascript:callLogin('special_offer');\"> Log in to view</a></span></span></div>\n" +
+                        "<div id=\"sc_raceHorseNotes_805252\" class=\"notes\" style=\"display: none; \"></div>\n" +
+                        "\n" +
+                        " </td>\n" +
+                        " </tr>\n" +
+                        " <tr>\n" +
+                        " <td colspan=\"7\"><tt><i></i></tt></td>\n" +
+                        " </tr>\n" +
+                        " </tbody><tbody id=\"sc_61619980\">\n" +
+                        " <tr class=\"cr\">\n" +
+                        " <td class=\"t\">\n" +
+                        " <strong>1</strong><sup>1</sup> <em>932<b>2</b><b>7</b>7</em>\n" +
+                        " </td>\n" +
+                        " <td class=\"s\">\n" +
+                        " <a href=\"http://www.racingpost.com/horses/owner_home.sd?owner_id=144347\" onclick=\"scorecards.send(&quot;owner_name&quot;);return Html.popup(this, {width:695, height:800})\" title=\"Full details about this OWNER\"><img src=\"http://images.racingpost.com/png_silks/7/4/3/144347.png\" class=\"iepng\" alt=\"Owner details\" title=\"Full details about this OWNER\" width=\"40\" height=\"29\"></a> </td>\n" +
+                        " \n" +
+                        " <td class=\"h\">\n" +
+                        " <div class=\"nm\">\n" +
+                        " <a href=\"http://www.racingpost.com/horses/horse_home.sd?race_id=564393&amp;r_date=2012-10-19&amp;horse_id=807841\" onclick=\"scorecards.send(&quot;horse_name&quot;);return Html.popup(this, {width:695, height:800})\" title=\"Full details about this HORSE\"><b>MISSING AGENT</b></a> <img src=\"http://ui.racingpost.com/ico/distance-d.gif\" class=\"cdbf\" alt=\"\"> <span>\n" +
+                        " v </span>\n" +
+                        " \n" +
+                        " <a href=\"#\" id=\"sc_pencil_807841\" title=\"Show/Hide My Notes for this runner\"></a> </div>\n" +
+                        "\n" +
+                        " <div class=\"oddsBar\">\n" +
+                        " <div><div style=\"width: 5%\"></div></div>\n" +
+                        " <span>5%</span>\n" +
+                        " </div>\n" +
+                        " </td>\n" +
+                        " <td class=\"two c\">\n" +
+                        " <div class=\"tips\">3</div>\n" +
+                        " <div class=\"rpr\">71</div>\n" +
+                        " <div class=\"ts\">67 </div>\n" +
+                        " </td>\n" +
+                        " <td class=\"two jt\">\n" +
+                        " <div>\n" +
+                        " <a href=\"http://www.racingpost.com/horses/trainer_home.sd?trainer_id=3846\" onclick=\"scorecards.send(&quot;trainer_name&quot;);return Html.popup(this, {width:695, height:800})\" title=\"Full details about this TRAINER\">David Evans</a><sup><span title=\"the percentage of the stable's runners that have Run To Form in the last 14 days, based on RPR\">30</span></sup> </div>\n" +
+                        " <div>\n" +
+                        " <a href=\"http://www.racingpost.com/horses/jockey_home.sd?jockey_id=87299\" onclick=\"scorecards.send(&quot;jockey_name&quot;);return Html.popup(this, {width:695, height:800})\" title=\"Full details about this JOCKEY\">Nathan Sweeney</a><sup>5</sup> </div>\n" +
+                        " </td>\n" +
+                        " <td class=\"two awo\">\n" +
+                        " <div>\n" +
+                        " 2 &nbsp;\n" +
+                        " 9-7 </div>\n" +
+                        " <div>\n" +
+                        " 65 </div>\n" +
+                        " </td>\n" +
+                        " <td class=\"bk\" id=\"sc_61619980_bk\"><button type=\"button\" class=\"btn btnBet btnLight\" title=\"8 with Ladbrokes - Click to bet\"><div><div>8</div></div></button><em>9</em><em>10</em><em>11</em><em>10</em></td>\n" +
+                        " </tr>\n" +
+                        " <tr>\n" +
+                        " <td class=\"cardItemInfo\" colspan=\"7\">\n" +
+                        " <p class=\"diomed\">\n" +
+                        " Exposed now; fair effort on Monday; others more likely </p>\n" +
+                        " <div class=\"forms\">\n" +
+                        " <table class=\"grid smallSpaceGrid\">\n" +
+                        " <tbody><tr class=\"noSpace\">\n" +
+                        " <th class=\"v\">&nbsp;</th>\n" +
+                        " <th class=\"date\">DATE</th>\n" +
+                        " <th class=\"raceCond\">RACE CONDITIONS</th>\n" +
+                        " <th class=\"wgt\">WGT</th>\n" +
+                        " <th class=\"raceOut\">RACE OUTCOME</th>\n" +
+                        " <th class=\"jock\">JOCKEY</th>\n" +
+                        " <th class=\"num\">OR</th>\n" +
+                        " <th class=\"num\">TS</th>\n" +
+                        " <th class=\"num last\">RPR</th>\n" +
+                        " </tr>\n" +
+                        " <tr>\n" +
+                        " <td class=\"v\"><a href=\"#\" onclick=\"scorecards.sendSpecificDesc(&quot;ruk_video&quot;, &quot;93, 2012-10-15, 12:00&quot;);panels.mediaCentre.replayPopup($(this), 564319, 807841, '2012-10-15', 'RUK'); return false;\"><img src=\"http://ui.racingpost.com/release/v17/ico/video.17.0.gif\" alt=\"Video\" title=\"Video\"></a></td>\n" +
+                        " <td>\n" +
+                        " <a href=\"http://www.racingpost.com/horses/result_home.sd?race_id=564319&amp;r_date=2012-10-15&amp;popup=yes\" onclick=\"scorecards.send(564319);return Html.popup(this, {width:695, height:800})\" title=\"davisbakerycaribbean.com Nursery\">15Oct12</a> &nbsp;\n" +
+                        " </td>\n" +
+                        " <td>\n" +
+                        " <b class=\"black\">\n" +
+                        " <a href=\"http://www.racingpost.com/horses/course_home.sd?crs_id=93\" onclick=\"return Html.popup(this, {width:695, height:800})\" title=\"Course (Click to view details): figure of eight, fairly sharp track\">Wdr</a> 8Sft </b>\n" +
+                        " C52yHc 2K </td>\n" +
+                        " <td>8-12</td>\n" +
+                        " <td>\n" +
+                        " <b class=\"black\">7</b>/8 <a href=\"http://www.racingpost.com/horses/result_home.sd?race_id=564319&amp;r_date=&amp;popup=yes\" onclick=\"scorecards.send(564319);return Html.popup(this, {width:695, height:800})\" title=\"fractious in stalls, led at good pace, edged off rail halfway, headed well over 2f out, steadily weakened\">(5¾L East Texas Red 8-10)</a> v 20/1 </td>\n" +
+                        " <td>\n" +
+                        " <a href=\"http://www.racingpost.com/horses/jockey_home.sd?jockey_id=83746\" onclick=\"scorecards.send(&quot;jockey_name&quot;);return Html.popup(this, {width:695, height:800})\" title=\"Full details about this JOCKEY\">Silvestre De Sousa</a> </td>\n" +
+                        " <td class=\"num\">65</td>\n" +
+                        " <td class=\"num\"><span class=\"red bold\">*</span></td>\n" +
+                        " <td class=\"num last\"><span class=\"red bold\">*</span></td>\n" +
+                        " </tr>\n" +
+                        " <tr>\n" +
+                        " <td class=\"v\"><a href=\"#\" onclick=\"scorecards.sendSpecificDesc(&quot;ruk_video&quot;, &quot;513, 2012-10-12, 12:00&quot;);panels.mediaCentre.replayPopup($(this), 563992, 807841, '2012-10-12', 'RUK'); return false;\"><img src=\"http://ui.racingpost.com/release/v17/ico/video.17.0.gif\" alt=\"Video\" title=\"Video\"></a></td>\n" +
+                        " <td>\n" +
+                        " <a href=\"http://www.racingpost.com/horses/result_home.sd?race_id=563992&amp;r_date=2012-10-12&amp;popup=yes\" onclick=\"scorecards.send(563992);return Html.popup(this, {width:695, height:800})\" title=\"32Red Supporting British Racing Nursery\">12Oct12</a> &nbsp;\n" +
+                        " </td>\n" +
+                        " <td>\n" +
+                        " <b class=\"black\">\n" +
+                        " <a href=\"http://www.racingpost.com/horses/course_home.sd?crs_id=513\" onclick=\"return Html.popup(this, {width:695, height:800})\" title=\"Course (Click to view details): left-handed 7 1/2f oval.\">Wol</a> 9St </b>\n" +
+                        " C62yHc 1K </td>\n" +
+                        " <td>9-4</td>\n" +
+                        " <td>\n" +
+                        " <b class=\"black\">7</b>/11 <a href=\"http://www.racingpost.com/horses/result_home.sd?race_id=563992&amp;r_date=&amp;popup=yes\" onclick=\"scorecards.send(563992);return Html.popup(this, {width:695, height:800})\" title=\"chased leaders, ridden over 2f out, stayed on same pace from over 1f out\">(6¼L Nine Iron 9-4)</a> v 16/1 </td>\n" +
+                        " <td>\n" +
+                        " <a href=\"http://www.racingpost.com/horses/jockey_home.sd?jockey_id=80421\" onclick=\"scorecards.send(&quot;jockey_name&quot;);return Html.popup(this, {width:695, height:800})\" title=\"Full details about this JOCKEY\">Stevie Donohoe</a> </td>\n" +
+                        " <td class=\"num\">62</td>\n" +
+                        " <td class=\"num\"><span class=\"red bold\">*</span></td>\n" +
+                        " <td class=\"num last\"><span class=\"red bold\">*</span></td>\n" +
+                        " </tr>\n" +
+                        " <tr>\n" +
+                        " <td class=\"v\"><a href=\"#\" onclick=\"scorecards.sendSpecificDesc(&quot;ruk_video&quot;, &quot;513, 2012-10-04, 12:00&quot;);panels.mediaCentre.replayPopup($(this), 563602, 807841, '2012-10-04', 'RUK'); return false;\"><img src=\"http://ui.racingpost.com/release/v17/ico/video.17.0.gif\" alt=\"Video\" title=\"Video\"></a></td>\n" +
+                        " <td>\n" +
+                        " <a href=\"http://www.racingpost.com/horses/result_home.sd?race_id=563602&amp;r_date=2012-10-04&amp;popup=yes\" onclick=\"scorecards.send(563602);return Html.popup(this, {width:695, height:800})\" title=\"ABETA, &quot;Thanks-To-All&quot; Our Customers Selling Stakes\">04Oct12</a> &nbsp;\n" +
+                        " </td>\n" +
+                        " <td>\n" +
+                        " <b class=\"black\">\n" +
+                        " <a href=\"http://www.racingpost.com/horses/course_home.sd?crs_id=513\" onclick=\"return Html.popup(this, {width:695, height:800})\" title=\"Course (Click to view details): left-handed 7 1/2f oval.\">Wol</a> 7St </b>\n" +
+                        " C62ySl 1K </td>\n" +
+                        " <td>9-2</td>\n" +
+                        " <td>\n" +
+                        " <b class=\"black\">2</b>/10 <a href=\"http://www.racingpost.com/horses/result_home.sd?race_id=563602&amp;r_date=&amp;popup=yes\" onclick=\"scorecards.send(563602);return Html.popup(this, {width:695, height:800})\" title=\"slowly into stride, driven along in rear early, headway halfway, ridden over 1f out, ran on\">(¾L Sutton Sid 8-11)</a> v 7/2 </td>\n" +
+                        " <td>\n" +
+                        " <a href=\"http://www.racingpost.com/horses/jockey_home.sd?jockey_id=84857\" onclick=\"scorecards.send(&quot;jockey_name&quot;);return Html.popup(this, {width:695, height:800})\" title=\"Full details about this JOCKEY\">Luke Morris</a> </td>\n" +
+                        " <td class=\"num\">62</td>\n" +
+                        " <td class=\"num\"><span class=\"red bold\">*</span></td>\n" +
+                        " <td class=\"num last\"><span class=\"red bold\">*</span></td>\n" +
+                        " </tr>\n" +
+                        " <tr>\n" +
+                        " <td class=\"v\"><a href=\"#\" onclick=\"scorecards.sendSpecificDesc(&quot;ruk_video&quot;, &quot;7, 2012-09-21, 12:00&quot;);panels.mediaCentre.replayPopup($(this), 563898, 807841, '2012-09-21', 'RUK'); return false;\"><img src=\"http://ui.racingpost.com/release/v17/ico/video.17.0.gif\" alt=\"Video\" title=\"Video\"></a></td>\n" +
+                        " <td>\n" +
+                        " <a href=\"http://www.racingpost.com/horses/result_home.sd?race_id=563898&amp;r_date=2012-09-21&amp;popup=yes\" onclick=\"scorecards.send(563898);return Html.popup(this, {width:695, height:800})\" title=\"Farewell To Lynda Baxter Nursery\">21Sep12</a> &nbsp;\n" +
+                        " </td>\n" +
+                        " <td>\n" +
+                        " <b class=\"black\">\n" +
+                        " <a href=\"http://www.racingpost.com/horses/course_home.sd?crs_id=7\" onclick=\"return Html.popup(this, {width:695, height:800})\" title=\"Course (Click to view details): left-handed sharp track\">Bri</a> 8Fm </b>\n" +
+                        " C62yHc 2K </td>\n" +
+                        " <td>9-7</td>\n" +
+                        " <td>\n" +
+                        " <b class=\"black\">2</b>/8 <a href=\"http://www.racingpost.com/horses/result_home.sd?race_id=563898&amp;r_date=&amp;popup=yes\" onclick=\"scorecards.send(563898);return Html.popup(this, {width:695, height:800})\" title=\"took keen hold, chased leaders, ridden and every chance 2f out, led just inside final furlong, soon headed and stayed on same pace\">(1½L Pink Mischief 8-10)</a> v 6/1 </td>\n" +
+                        " <td>\n" +
+                        " <a href=\"http://www.racingpost.com/horses/jockey_home.sd?jockey_id=76878\" onclick=\"scorecards.send(&quot;jockey_name&quot;);return Html.popup(this, {width:695, height:800})\" title=\"Full details about this JOCKEY\">Cathy Gannon</a> </td>\n" +
+                        " <td class=\"num\">60</td>\n" +
+                        " <td class=\"num\"><span class=\"red bold\">*</span></td>\n" +
+                        " <td class=\"num last\"><span class=\"red bold\">*</span></td>\n" +
+                        " </tr>\n" +
+                        " <tr>\n" +
+                        " <td class=\"v\"><a href=\"#\" onclick=\"scorecards.sendSpecificDesc(&quot;ruk_video&quot;, &quot;12, 2012-09-13, 12:00&quot;);panels.mediaCentre.replayPopup($(this), 562466, 807841, '2012-09-13', 'RUK'); return false;\"><img src=\"http://ui.racingpost.com/release/v17/ico/video.17.0.gif\" alt=\"Video\" title=\"Video\"></a></td>\n" +
+                        " <td>\n" +
+                        " <a href=\"http://www.racingpost.com/horses/result_home.sd?race_id=562466&amp;r_date=2012-09-13&amp;popup=yes\" onclick=\"scorecards.send(562466);return Html.popup(this, {width:695, height:800})\" title=\"Morgan Cole LLP Supports Ty Hafan Nursery\">13Sep12</a> &nbsp;\n" +
+                        " </td>\n" +
+                        " <td>\n" +
+                        " <b class=\"black\">\n" +
+                        " <a href=\"http://www.racingpost.com/horses/course_home.sd?crs_id=12\" onclick=\"return Html.popup(this, {width:695, height:800})\" title=\"Course (Click to view details): left-handed, essentially galloping track, despite pronounced undulations\">Chp</a> 8Gd </b>\n" +
+                        " C62yHc 1K </td>\n" +
+                        " <td>9-1</td>\n" +
+                        " <td>\n" +
+                        " <b class=\"black\">3</b>/16 <a href=\"http://www.racingpost.com/horses/result_home.sd?race_id=562466&amp;r_date=&amp;popup=yes\" onclick=\"scorecards.send(562466);return Html.popup(this, {width:695, height:800})\" title=\"chased leaders, staying on when badly hampered inside final furlong, rallied to take 3rd last strides\">(¾L Knight's Parade 8-13)</a> v 50/1 </td>\n" +
+                        " <td>\n" +
+                        " <a href=\"http://www.racingpost.com/horses/jockey_home.sd?jockey_id=86660\" onclick=\"scorecards.send(&quot;jockey_name&quot;);return Html.popup(this, {width:695, height:800})\" title=\"Full details about this JOCKEY\">Matthew Cosham</a> </td>\n" +
+                        " <td class=\"num\">60</td>\n" +
+                        " <td class=\"num\"><span class=\"red bold\">*</span></td>\n" +
+                        " <td class=\"num last\"><span class=\"red bold\">*</span></td>\n" +
+                        " </tr>\n" +
+                        " <tr>\n" +
+                        " <td class=\"v\"><a href=\"#\" onclick=\"scorecards.sendSpecificDesc(&quot;ruk_video&quot;, &quot;5, 2012-09-10, 12:00&quot;);panels.mediaCentre.replayPopup($(this), 562417, 807841, '2012-09-10', 'RUK'); return false;\"><img src=\"http://ui.racingpost.com/release/v17/ico/video.17.0.gif\" alt=\"Video\" title=\"Video\"></a></td>\n" +
+                        " <td>\n" +
+                        " <a href=\"http://www.racingpost.com/horses/result_home.sd?race_id=562417&amp;r_date=2012-09-10&amp;popup=yes\" onclick=\"scorecards.send(562417);return Html.popup(this, {width:695, height:800})\" title=\"Post Weekend Nursery\">10Sep12</a> &nbsp;\n" +
+                        " </td>\n" +
+                        " <td>\n" +
+                        " <b class=\"black\">\n" +
+                        " <a href=\"http://www.racingpost.com/horses/course_home.sd?crs_id=5\" onclick=\"return Html.popup(this, {width:695, height:800})\" title=\"Course (Click to view details): left-handed galloping track\">Bat</a> 10Fm </b>\n" +
+                        " C52yHc 2K </td>\n" +
+                        " <td>8-11</td>\n" +
+                        " <td>\n" +
+                        " <b class=\"black\">9</b>/9 <a href=\"http://www.racingpost.com/horses/result_home.sd?race_id=562417&amp;r_date=&amp;popup=yes\" onclick=\"scorecards.send(562417);return Html.popup(this, {width:695, height:800})\" title=\"slowly into stride, ridden 4f out, always well behind\">(36L Felix Fabulla 9-4)</a> 40/1 </td>\n" +
+                        " <td>\n" +
+                        " <a href=\"http://www.racingpost.com/horses/jockey_home.sd?jockey_id=76878\" onclick=\"scorecards.send(&quot;jockey_name&quot;);return Html.popup(this, {width:695, height:800})\" title=\"Full details about this JOCKEY\">Cathy Gannon</a> </td>\n" +
+                        " <td class=\"num\">60</td>\n" +
+                        " <td class=\"num\"><span class=\"red bold\">*</span></td>\n" +
+                        " <td class=\"num last\"><span class=\"red bold\">*</span></td>\n" +
+                        " </tr>\n" +
+                        " </tbody></table>\n" +
+                        " <span id=\"barrier_RPR-TS_In_Form101482407002\" class=\"bar prpTsInfo\"><span id=\"ruli_33\"><span class=\"red bold\">*</span> Historical RP Ratings and Topspeed Ratings are part of Racing Post Members' Club <a href=\"#\" class=\"blue\" onclick=\"javascript:callLogin('special_offer');\"> Log in to view</a></span></span></div>\n" +
+                        "<div id=\"sc_raceHorseNotes_807841\" class=\"notes\" style=\"display: none; \"></div>\n" +
+                        "\n" +
+                        " </td>\n" +
+                        " </tr>\n" +
+                        " <tr>\n" +
+                        " <td colspan=\"7\"><tt><i></i></tt></td>\n" +
+                        " </tr>\n" +
+                        " </tbody><tbody id=\"sc_61619988\">\n" +
+                        " <tr class=\"cr\">\n" +
+                        " <td class=\"t\">\n" +
+                        " <strong>9</strong><sup>5</sup> <em>5886</em>\n" +
+                        " </td>\n" +
+                        " <td class=\"s\">\n" +
+                        " <a href=\"http://www.racingpost.com/horses/owner_home.sd?owner_id=35637\" onclick=\"scorecards.send(&quot;owner_name&quot;);return Html.popup(this, {width:695, height:800})\" title=\"Full details about this OWNER\"><img src=\"http://images.racingpost.com/png_silks/7/3/6/35637.png\" class=\"iepng\" alt=\"Owner details\" title=\"Full details about this OWNER\" width=\"40\" height=\"29\"></a> </td>\n" +
+                        " \n" +
+                        " <td class=\"h\">\n" +
+                        " <div class=\"nm\">\n" +
+                        " <a href=\"http://www.racingpost.com/horses/horse_home.sd?race_id=564393&amp;r_date=2012-10-19&amp;horse_id=816300\" onclick=\"scorecards.send(&quot;horse_name&quot;);return Html.popup(this, {width:695, height:800})\" title=\"Full details about this HORSE\"><b>HOT MUSTARD</b></a> \n" +
+                        " <a href=\"#\" id=\"sc_pencil_816300\" title=\"Show/Hide My Notes for this runner\"></a> </div>\n" +
+                        "\n" +
+                        " <div class=\"oddsBar\">\n" +
+                        " <div><div style=\"width: 9%\"></div></div>\n" +
+                        " <span>9%</span>\n" +
+                        " </div>\n" +
+                        " </td>\n" +
+                        " <td class=\"two c\">\n" +
+                        " <div class=\"tips\">1</div>\n" +
+                        " <div class=\"rpr\">70</div>\n" +
+                        " <div class=\"ts\">—</div>\n" +
+                        " </td>\n" +
+                        " <td class=\"two jt\">\n" +
+                        " <div>\n" +
+                        " <a href=\"http://www.racingpost.com/horses/trainer_home.sd?trainer_id=4113\" onclick=\"scorecards.send(&quot;trainer_name&quot;);return Html.popup(this, {width:695, height:800})\" title=\"Full details about this TRAINER\">Michael Bell</a><sup><span title=\"the percentage of the stable's runners that have Run To Form in the last 14 days, based on RPR\">47</span></sup> </div>\n" +
+                        " <div>\n" +
+                        " <a href=\"http://www.racingpost.com/horses/jockey_home.sd?jockey_id=78920\" onclick=\"scorecards.send(&quot;jockey_name&quot;);return Html.popup(this, {width:695, height:800})\" title=\"Full details about this JOCKEY\">Hayley Turner</a> </div>\n" +
+                        " </td>\n" +
+                        " <td class=\"two awo\">\n" +
+                        " <div>\n" +
+                        " 2 &nbsp;\n" +
+                        " 9-4 </div>\n" +
+                        " <div>\n" +
+                        " 62 </div>\n" +
+                        " </td>\n" +
+                        " <td class=\"bk\" id=\"sc_61619988_bk\"><button type=\"button\" class=\"btn btnBet btnLight\" title=\"8 with Ladbrokes - Click to bet\"><div><div>8</div></div></button><em>7</em><em>8</em><em>13/2</em></td>\n" +
+                        " </tr>\n" +
+                        " <tr>\n" +
+                        " <td class=\"cardItemInfo\" colspan=\"7\">\n" +
+                        " <p class=\"diomed\">\n" +
+                        " More expected on nursery debut but never went; better than that </p>\n" +
+                        " <div class=\"forms\">\n" +
+                        " <table class=\"grid smallSpaceGrid\">\n" +
+                        " <tbody><tr class=\"noSpace\">\n" +
+                        " <th class=\"v\">&nbsp;</th>\n" +
+                        " <th class=\"date\">DATE</th>\n" +
+                        " <th class=\"raceCond\">RACE CONDITIONS</th>\n" +
+                        " <th class=\"wgt\">WGT</th>\n" +
+                        " <th class=\"raceOut\">RACE OUTCOME</th>\n" +
+                        " <th class=\"jock\">JOCKEY</th>\n" +
+                        " <th class=\"num\">OR</th>\n" +
+                        " <th class=\"num\">TS</th>\n" +
+                        " <th class=\"num last\">RPR</th>\n" +
+                        " </tr>\n" +
+                        " <tr>\n" +
+                        " <td class=\"v\"><a href=\"#\" onclick=\"scorecards.sendSpecificDesc(&quot;ruk_video&quot;, &quot;104, 2012-09-20, 12:00&quot;);panels.mediaCentre.replayPopup($(this), 562867, 816300, '2012-09-20', 'RUK'); return false;\"><img src=\"http://ui.racingpost.com/release/v17/ico/video.17.0.gif\" alt=\"Video\" title=\"Video\"></a></td>\n" +
+                        " <td>\n" +
+                        " <a href=\"http://www.racingpost.com/horses/result_home.sd?race_id=562867&amp;r_date=2012-09-20&amp;popup=yes\" onclick=\"scorecards.send(562867);return Html.popup(this, {width:695, height:800})\" title=\"Seajacks Nursery\">20Sep12</a> &nbsp;\n" +
+                        " </td>\n" +
+                        " <td>\n" +
+                        " <b class=\"black\">\n" +
+                        " <a href=\"http://www.racingpost.com/horses/course_home.sd?crs_id=104\" onclick=\"return Html.popup(this, {width:695, height:800})\" title=\"Course (Click to view details): left-handed, galloping track\">Yar</a> 8GF </b>\n" +
+                        " C52yHc 2K </td>\n" +
+                        " <td>9-7</td>\n" +
+                        " <td>\n" +
+                        " <b class=\"black\">6</b>/6 <a href=\"http://www.racingpost.com/horses/result_home.sd?race_id=562867&amp;r_date=&amp;popup=yes\" onclick=\"scorecards.send(562867);return Html.popup(this, {width:695, height:800})\" title=\"in touch in last pair, ridden and no response 2f out, beaten and heavily eased from over 1f out, tailed off\">(59L Aseela 9-4)</a> 13/2 </td>\n" +
+                        " <td>\n" +
+                        " <a href=\"http://www.racingpost.com/horses/jockey_home.sd?jockey_id=78920\" onclick=\"scorecards.send(&quot;jockey_name&quot;);return Html.popup(this, {width:695, height:800})\" title=\"Full details about this JOCKEY\">Hayley Turner</a> </td>\n" +
+                        " <td class=\"num\">64</td>\n" +
+                        " <td class=\"num\"><span class=\"red bold\">*</span></td>\n" +
+                        " <td class=\"num last\"><span class=\"red bold\">*</span></td>\n" +
+                        " </tr>\n" +
+                        " <tr>\n" +
+                        " <td class=\"v\"><a href=\"#\" onclick=\"scorecards.sendSpecificDesc(&quot;ruk_video&quot;, &quot;36, 2012-08-05, 12:00&quot;);panels.mediaCentre.replayPopup($(this), 560143, 816300, '2012-08-05', 'RUK'); return false;\"><img src=\"http://ui.racingpost.com/release/v17/ico/video.17.0.gif\" alt=\"Video\" title=\"Video\"></a></td>\n" +
+                        " <td>\n" +
+                        " <a href=\"http://www.racingpost.com/horses/result_home.sd?race_id=560143&amp;r_date=2012-08-05&amp;popup=yes\" onclick=\"scorecards.send(560143);return Html.popup(this, {width:695, height:800})\" title=\"Academy Insurance Irish EBF Maiden Stakes (Div I)\">05Aug12</a> &nbsp;\n" +
+                        " </td>\n" +
+                        " <td>\n" +
+                        " <b class=\"black\">\n" +
+                        " <a href=\"http://www.racingpost.com/horses/course_home.sd?crs_id=36\" onclick=\"return Html.popup(this, {width:695, height:800})\" title=\"Course (Click to view details): left-handed, galloping track\">Nby</a> 6GF </b>\n" +
+                        " C42yMd 4K </td>\n" +
+                        " <td>9-3</td>\n" +
+                        " <td>\n" +
+                        " <b class=\"black\">8</b>/11 <a href=\"http://www.racingpost.com/horses/result_home.sd?race_id=560143&amp;r_date=&amp;popup=yes\" onclick=\"scorecards.send(560143);return Html.popup(this, {width:695, height:800})\" title=\"slowly into stride, soon chasing leaders, ridden and one pace final 2f\">(7L Derwent 9-3)</a> 14/1 </td>\n" +
+                        " <td>\n" +
+                        " <a href=\"http://www.racingpost.com/horses/jockey_home.sd?jockey_id=78920\" onclick=\"scorecards.send(&quot;jockey_name&quot;);return Html.popup(this, {width:695, height:800})\" title=\"Full details about this JOCKEY\">Hayley Turner</a> </td>\n" +
+                        " <td class=\"num\">—</td>\n" +
+                        " <td class=\"num\"><span class=\"red bold\">*</span></td>\n" +
+                        " <td class=\"num last\"><span class=\"red bold\">*</span></td>\n" +
+                        " </tr>\n" +
+                        " <tr>\n" +
+                        " <td class=\"v\"><a href=\"#\" onclick=\"scorecards.sendSpecificDesc(&quot;ruk_video&quot;, &quot;174, 2012-07-27, 12:00&quot;);panels.mediaCentre.replayPopup($(this), 559677, 816300, '2012-07-27', 'RUK'); return false;\"><img src=\"http://ui.racingpost.com/release/v17/ico/video.17.0.gif\" alt=\"Video\" title=\"Video\"></a></td>\n" +
+                        " <td>\n" +
+                        " <a href=\"http://www.racingpost.com/horses/result_home.sd?race_id=559677&amp;r_date=2012-07-27&amp;popup=yes\" onclick=\"scorecards.send(559677);return Html.popup(this, {width:695, height:800})\" title=\"Audi Cambridge Median Auction Maiden Stakes\">27Jul12</a> &nbsp;\n" +
+                        " </td>\n" +
+                        " <td>\n" +
+                        " <b class=\"black\">\n" +
+                        " <a href=\"http://www.racingpost.com/horses/course_home.sd?crs_id=174\" onclick=\"return Html.popup(this, {width:695, height:800})\" title=\"Course (Click to view details): right-handed, galloping track\">Nmk</a> 6GF </b>\n" +
+                        " C52yMd 3K </td>\n" +
+                        " <td>9-3</td>\n" +
+                        " <td>\n" +
+                        " <b class=\"black\">8</b>/13 <a href=\"http://www.racingpost.com/horses/result_home.sd?race_id=559677&amp;r_date=&amp;popup=yes\" onclick=\"scorecards.send(559677);return Html.popup(this, {width:695, height:800})\" title=\"held up in last quartet, ridden and effort but still plenty to do when not clear run and switched right 1f out, kept on but no threat to winner final furlong\">(8¾L The Gold Cheongsam 8-12)</a> 25/1 </td>\n" +
+                        " <td>\n" +
+                        " <a href=\"http://www.racingpost.com/horses/jockey_home.sd?jockey_id=78935\" onclick=\"scorecards.send(&quot;jockey_name&quot;);return Html.popup(this, {width:695, height:800})\" title=\"Full details about this JOCKEY\">Tom Queally</a> </td>\n" +
+                        " <td class=\"num\">—</td>\n" +
+                        " <td class=\"num\"><span class=\"red bold\">*</span></td>\n" +
+                        " <td class=\"num last\"><span class=\"red bold\">*</span></td>\n" +
+                        " </tr>\n" +
+                        " <tr>\n" +
+                        " <td class=\"v\"><a href=\"#\" onclick=\"scorecards.sendSpecificDesc(&quot;ruk_video&quot;, &quot;93, 2012-07-16, 12:00&quot;);panels.mediaCentre.replayPopup($(this), 559129, 816300, '2012-07-16', 'RUK'); return false;\"><img src=\"http://ui.racingpost.com/release/v17/ico/video.17.0.gif\" alt=\"Video\" title=\"Video\"></a></td>\n" +
+                        " <td>\n" +
+                        " <a href=\"http://www.racingpost.com/horses/result_home.sd?race_id=559129&amp;r_date=2012-07-16&amp;popup=yes\" onclick=\"scorecards.send(559129);return Html.popup(this, {width:695, height:800})\" title=\"Skybet EBF Maiden Stakes\">16Jul12</a> &nbsp;\n" +
+                        " </td>\n" +
+                        " <td>\n" +
+                        " <b class=\"black\">\n" +
+                        " <a href=\"http://www.racingpost.com/horses/course_home.sd?crs_id=93\" onclick=\"return Html.popup(this, {width:695, height:800})\" title=\"Course (Click to view details): figure of eight, fairly sharp track\">Wdr</a> 6Hy </b>\n" +
+                        " C52yMd 3K </td>\n" +
+                        " <td>9-3</td>\n" +
+                        " <td>\n" +
+                        " <b class=\"black\">5</b>/8 <a href=\"http://www.racingpost.com/horses/result_home.sd?race_id=559129&amp;r_date=&amp;popup=yes\" onclick=\"scorecards.send(559129);return Html.popup(this, {width:695, height:800})\" title=\"started slowly, rousted along in detached last, some progress over 2f out, one pace over 1f out\">(9½L Ashaadd 9-3)</a> 7/1 </td>\n" +
+                        " <td>\n" +
+                        " <a href=\"http://www.racingpost.com/horses/jockey_home.sd?jockey_id=78920\" onclick=\"scorecards.send(&quot;jockey_name&quot;);return Html.popup(this, {width:695, height:800})\" title=\"Full details about this JOCKEY\">Hayley Turner</a> </td>\n" +
+                        " <td class=\"num\">—</td>\n" +
+                        " <td class=\"num\"><span class=\"red bold\">*</span></td>\n" +
+                        " <td class=\"num last\"><span class=\"red bold\">*</span></td>\n" +
+                        " </tr>\n" +
+                        " </tbody></table>\n" +
+                        " <span id=\"barrier_RPR-TS_In_Form61936282771\" class=\"bar prpTsInfo\"><span id=\"ruli_33\"><span class=\"red bold\">*</span> Historical RP Ratings and Topspeed Ratings are part of Racing Post Members' Club <a href=\"#\" class=\"blue\" onclick=\"javascript:callLogin('special_offer');\"> Log in to view</a></span></span></div>\n" +
+                        "<div id=\"sc_raceHorseNotes_816300\" class=\"notes\" style=\"display: none; \"></div>\n" +
+                        "\n" +
+                        " </td>\n" +
+                        " </tr>\n" +
+                        " <tr>\n" +
+                        " <td colspan=\"7\"><tt><i></i></tt></td>\n" +
+                        " </tr>\n" +
+                        " </tbody><tbody id=\"sc_61619985\">\n" +
+                        " <tr class=\"cr\">\n" +
+                        " <td class=\"t\">\n" +
+                        " <strong>5</strong><sup>3</sup> <em>946</em>\n" +
+                        " </td>\n" +
+                        " <td class=\"s\">\n" +
+                        " <a href=\"http://www.racingpost.com/horses/owner_home.sd?owner_id=124860\" onclick=\"scorecards.send(&quot;owner_name&quot;);return Html.popup(this, {width:695, height:800})\" title=\"Full details about this OWNER\"><img src=\"http://images.racingpost.com/png_silks/0/6/8/124860.png\" class=\"iepng\" alt=\"Owner details\" title=\"Full details about this OWNER\" width=\"40\" height=\"29\"></a> </td>\n" +
+                        " \n" +
+                        " <td class=\"h\">\n" +
+                        " <div class=\"nm\">\n" +
+                        " <a href=\"http://www.racingpost.com/horses/horse_home.sd?race_id=564393&amp;r_date=2012-10-19&amp;horse_id=815258\" onclick=\"scorecards.send(&quot;horse_name&quot;);return Html.popup(this, {width:695, height:800})\" title=\"Full details about this HORSE\"><b>BYRON´S DREAM</b></a> \n" +
+                        " <a href=\"#\" id=\"sc_pencil_815258\" title=\"Show/Hide My Notes for this runner\"></a> </div>\n" +
+                        "\n" +
+                        " <div class=\"oddsBar\">\n" +
+                        " <div><div style=\"width: 6%\"></div></div>\n" +
+                        " <span>6%</span>\n" +
+                        " </div>\n" +
+                        " </td>\n" +
+                        " <td class=\"two c\">\n" +
+                        " <div class=\"tips\">0</div>\n" +
+                        " <div class=\"rpr\">68</div>\n" +
+                        " <div class=\"ts\">—</div>\n" +
+                        " </td>\n" +
+                        " <td class=\"two jt\">\n" +
+                        " <div>\n" +
+                        " <a href=\"http://www.racingpost.com/horses/trainer_home.sd?trainer_id=14335\" onclick=\"scorecards.send(&quot;trainer_name&quot;);return Html.popup(this, {width:695, height:800})\" title=\"Full details about this TRAINER\">Jedd O´Keeffe</a><sup><span title=\"the percentage of the stable's runners that have Run To Form in the last 14 days, based on RPR\">50</span></sup> </div>\n" +
+                        " <div>\n" +
+                        " <a href=\"http://www.racingpost.com/horses/jockey_home.sd?jockey_id=76831\" onclick=\"scorecards.send(&quot;jockey_name&quot;);return Html.popup(this, {width:695, height:800})\" title=\"Full details about this JOCKEY\">Tom Eaves</a> </div>\n" +
+                        " </td>\n" +
+                        " <td class=\"two awo\">\n" +
+                        " <div>\n" +
+                        " 2 &nbsp;\n" +
+                        " 9-6 </div>\n" +
+                        " <div>\n" +
+                        " 64 </div>\n" +
+                        " </td>\n" +
+                        " <td class=\"bk\" id=\"sc_61619985_bk\"><button type=\"button\" class=\"btn btnBet btnLight\" title=\"10 with Ladbrokes - Click to bet\"><div><div>10</div></div></button><em>11</em><em>9</em><em>10</em><em>9</em></td>\n" +
+                        " </tr>\n" +
+                        " <tr>\n" +
+                        " <td class=\"cardItemInfo\" colspan=\"7\">\n" +
+                        " <p class=\"diomed\">\n").append(" Off since too free in the summer; trainer modest record with 2yos </p>\n" +
+                        " <div class=\"forms\">\n" +
+                        " <table class=\"grid smallSpaceGrid\">\n" +
+                        " <tbody><tr class=\"noSpace\">\n" +
+                        " <th class=\"v\">&nbsp;</th>\n" +
+                        " <th class=\"date\">DATE</th>\n" +
+                        " <th class=\"raceCond\">RACE CONDITIONS</th>\n" +
+                        " <th class=\"wgt\">WGT</th>\n" +
+                        " <th class=\"raceOut\">RACE OUTCOME</th>\n" +
+                        " <th class=\"jock\">JOCKEY</th>\n" +
+                        " <th class=\"num\">OR</th>\n" +
+                        " <th class=\"num\">TS</th>\n" +
+                        " <th class=\"num last\">RPR</th>\n" +
+                        " </tr>\n" +
+                        " <tr>\n" +
+                        " <td class=\"v\"><a href=\"#\" onclick=\"scorecards.sendSpecificDesc(&quot;ruk_video&quot;, &quot;80, 2012-08-13, 12:00&quot;);panels.mediaCentre.replayPopup($(this), 560841, 815258, '2012-08-13', 'RUK'); return false;\"><img src=\"http://ui.racingpost.com/release/v17/ico/video.17.0.gif\" alt=\"Video\" title=\"Video\"></a></td>\n" +
+                        " <td>\n" +
+                        " <a href=\"http://www.racingpost.com/horses/result_home.sd?race_id=560841&amp;r_date=2012-08-13&amp;popup=yes\" onclick=\"scorecards.send(560841);return Html.popup(this, {width:695, height:800})\" title=\"TurfTV.co.uk Maiden Auction Stakes\">13Aug12</a> &nbsp;\n" +
+                        " </td>\n" +
+                        " <td>\n" +
+                        " <b class=\"black\">\n" +
+                        " <a href=\"http://www.racingpost.com/horses/course_home.sd?crs_id=80\" onclick=\"return Html.popup(this, {width:695, height:800})\" title=\"Course (Click to view details): left-handed, fairly sharp track\">Thi</a> 7GF </b>\n" +
+                        " C52yMdAc 2K </td>\n" +
+                        " <td>8-9</td>\n" +
+                        " <td>\n" +
+                        " <b class=\"black\">6</b>/8 <a href=\"http://www.racingpost.com/horses/result_home.sd?race_id=560841&amp;r_date=&amp;popup=yes\" onclick=\"scorecards.send(560841);return Html.popup(this, {width:695, height:800})\" title=\"took keen hold early, in touch, headway to chase leaders 3f out, soon ridden and weakened 2f out\">(10½L Kolonel Kirkup 8-9)</a> 10/1 </td>\n" +
+                        " <td>\n" +
+                        " <a href=\"http://www.racingpost.com/horses/jockey_home.sd?jockey_id=82605\" onclick=\"scorecards.send(&quot;jockey_name&quot;);return Html.popup(this, {width:695, height:800})\" title=\"Full details about this JOCKEY\">Frederik Tylicki</a> </td>\n" +
+                        " <td class=\"num\">—</td>\n" +
+                        " <td class=\"num\"><span class=\"red bold\">*</span></td>\n" +
+                        " <td class=\"num last\"><span class=\"red bold\">*</span></td>\n" +
+                        " </tr>\n" +
+                        " <tr>\n" +
+                        " <td class=\"v\"><a href=\"#\" onclick=\"scorecards.sendSpecificDesc(&quot;ruk_video&quot;, &quot;8, 2012-07-29, 12:00&quot;);panels.mediaCentre.replayPopup($(this), 559736, 815258, '2012-07-29', 'RUK'); return false;\"><img src=\"http://ui.racingpost.com/release/v17/ico/video.17.0.gif\" alt=\"Video\" title=\"Video\"></a></td>\n" +
+                        " <td>\n" +
+                        " <a href=\"http://www.racingpost.com/horses/result_home.sd?race_id=559736&amp;r_date=2012-07-29&amp;popup=yes\" onclick=\"scorecards.send(559736);return Html.popup(this, {width:695, height:800})\" title=\"Read Hayley At racinguk.com Every Friday Maiden Auction Stakes\">29Jul12</a> &nbsp;\n" +
+                        " </td>\n" +
+                        " <td>\n" +
+                        " <b class=\"black\">\n" +
+                        " <a href=\"http://www.racingpost.com/horses/course_home.sd?crs_id=8\" onclick=\"return Html.popup(this, {width:695, height:800})\" title=\"Course (Click to view details): right-handed, galloping track (sprint course testing)\">Crl</a> 6Gd </b>\n" +
+                        " C52yMdAc 2K </td>\n" +
+                        " <td>8-9</td>\n" +
+                        " <td>\n" +
+                        " <b class=\"black\">4</b>/12 <a href=\"http://www.racingpost.com/horses/result_home.sd?race_id=559736&amp;r_date=&amp;popup=yes\" onclick=\"scorecards.send(559736);return Html.popup(this, {width:695, height:800})\" title=\"behind and soon pushed along, headway on outside over 2f out, kept on final furlong, never able to challenge\">(4¼L Ishigunnaeatit 8-7)</a> 50/1 </td>\n" +
+                        " <td>\n" +
+                        " <a href=\"http://www.racingpost.com/horses/jockey_home.sd?jockey_id=82605\" onclick=\"scorecards.send(&quot;jockey_name&quot;);return Html.popup(this, {width:695, height:800})\" title=\"Full details about this JOCKEY\">Frederik Tylicki</a> </td>\n" +
+                        " <td class=\"num\">—</td>\n" +
+                        " <td class=\"num\"><span class=\"red bold\">*</span></td>\n" +
+                        " <td class=\"num last\"><span class=\"red bold\">*</span></td>\n" +
+                        " </tr>\n" +
+                        " <tr>\n" +
+                        " <td class=\"v\"><a href=\"#\" onclick=\"scorecards.sendSpecificDesc(&quot;ruk_video&quot;, &quot;15, 2012-06-30, 12:00&quot;);panels.mediaCentre.replayPopup($(this), 557550, 815258, '2012-06-30', 'RUK'); return false;\"><img src=\"http://ui.racingpost.com/release/v17/ico/video.17.0.gif\" alt=\"Video\" title=\"Video\"></a></td>\n" +
+                        " <td>\n" +
+                        " <a href=\"http://www.racingpost.com/horses/result_home.sd?race_id=557550&amp;r_date=2012-06-30&amp;popup=yes\" onclick=\"scorecards.send(557550);return Html.popup(this, {width:695, height:800})\" title=\"Quadro Services Precast Concrete &amp; Modular Installation Maiden Stakes\">30Jun12</a> &nbsp;\n" +
+                        " </td>\n" +
+                        " <td>\n" +
+                        " <b class=\"black\">\n" +
+                        " <a href=\"http://www.racingpost.com/horses/course_home.sd?crs_id=15\" onclick=\"return Html.popup(this, {width:695, height:800})\" title=\"Course (Click to view details): left-handed, galloping track\">Don</a> 7Gd </b>\n" +
+                        " C52yMd 2K </td>\n" +
+                        " <td>8-12</td>\n" +
+                        " <td>\n" +
+                        " <b class=\"black\">9</b>/16 <a href=\"http://www.racingpost.com/horses/result_home.sd?race_id=557550&amp;r_date=&amp;popup=yes\" onclick=\"scorecards.send(557550);return Html.popup(this, {width:695, height:800})\" title=\"dwelt, soon in touch, chased leaders halfway, ridden along well over 2f out and gradually weakened\">(15L Azrur 9-3)</a> 66/1 </td>\n" +
+                        " <td>\n" +
+                        " <a href=\"http://www.racingpost.com/horses/jockey_home.sd?jockey_id=85755\" onclick=\"scorecards.send(&quot;jockey_name&quot;);return Html.popup(this, {width:695, height:800})\" title=\"Full details about this JOCKEY\">Justin Newman</a> </td>\n" +
+                        " <td class=\"num\">—</td>\n" +
+                        " <td class=\"num\"><span class=\"red bold\">*</span></td>\n" +
+                        " <td class=\"num last\"><span class=\"red bold\">*</span></td>\n" +
+                        " </tr>\n" +
+                        " </tbody></table>\n" +
+                        " <span id=\"barrier_RPR-TS_In_Form81154286284\" class=\"bar prpTsInfo\"><span id=\"ruli_33\"><span class=\"red bold\">*</span> Historical RP Ratings and Topspeed Ratings are part of Racing Post Members' Club <a href=\"#\" class=\"blue\" onclick=\"javascript:callLogin('special_offer');\"> Log in to view</a></span></span></div>\n" +
+                        "<div id=\"sc_raceHorseNotes_815258\" class=\"notes\" style=\"display: none; \"></div>\n" +
+                        "\n" +
+                        " </td>\n" +
+                        " </tr>\n" +
+                        " <tr>\n" +
+                        " <td colspan=\"7\"><tt><i></i></tt></td>\n" +
+                        " </tr>\n" +
+                        " </tbody><tbody id=\"sc_61619981\">\n" +
+                        " <tr class=\"cr\">\n" +
+                        " <td class=\"t\">\n" +
+                        " <strong>6</strong><sup>4</sup> <em>6047</em>\n" +
+                        " </td>\n" +
+                        " <td class=\"s\">\n" +
+                        " <a href=\"http://www.racingpost.com/horses/owner_home.sd?owner_id=184701\" onclick=\"scorecards.send(&quot;owner_name&quot;);return Html.popup(this, {width:695, height:800})\" title=\"Full details about this OWNER\"><img src=\"http://images.racingpost.com/png_silks/1/0/7/184701.png\" class=\"iepng\" alt=\"Owner details\" title=\"Full details about this OWNER\" width=\"40\" height=\"29\"></a> </td>\n" +
+                        " \n" +
+                        " <td class=\"h\">\n" +
+                        " <div class=\"nm\">\n" +
+                        " <a href=\"http://www.racingpost.com/horses/horse_home.sd?race_id=564393&amp;r_date=2012-10-19&amp;horse_id=808986\" onclick=\"scorecards.send(&quot;horse_name&quot;);return Html.popup(this, {width:695, height:800})\" title=\"Full details about this HORSE\"><b>AL KHISA</b></a> <span>\n" +
+                        " p </span>\n" +
+                        " \n" +
+                        " <a href=\"#\" id=\"sc_pencil_808986\" title=\"Show/Hide My Notes for this runner\"></a> </div>\n" +
+                        "\n" +
+                        " <div class=\"oddsBar\">\n" +
+                        " <div><div style=\"width: 9%\"></div></div>\n" +
+                        " <span>9%</span>\n" +
+                        " </div>\n" +
+                        " </td>\n" +
+                        " <td class=\"two c\">\n" +
+                        " <div class=\"tips\">1</div>\n" +
+                        " <div class=\"rpr\">71</div>\n" +
+                        " <div class=\"ts\">—</div>\n" +
+                        " </td>\n" +
+                        " <td class=\"two jt\">\n" +
+                        " <div>\n" +
+                        " <a href=\"http://www.racingpost.com/horses/trainer_home.sd?trainer_id=22525\" onclick=\"scorecards.send(&quot;trainer_name&quot;);return Html.popup(this, {width:695, height:800})\" title=\"Full details about this TRAINER\">Kevin Ryan</a><sup><span title=\"the percentage of the stable's runners that have Run To Form in the last 14 days, based on RPR\">59</span></sup> </div>\n" +
+                        " <div>\n" +
+                        " <a href=\"http://www.racingpost.com/horses/jockey_home.sd?jockey_id=84983\" onclick=\"scorecards.send(&quot;jockey_name&quot;);return Html.popup(this, {width:695, height:800})\" title=\"Full details about this JOCKEY\">Amy Ryan</a> </div>\n" +
+                        " </td>\n" +
+                        " <td class=\"two awo\">\n" +
+                        " <div>\n" +
+                        " 2 &nbsp;\n" +
+                        " 9-6 </div>\n" +
+                        " <div>\n" +
+                        " 64 </div>\n" +
+                        " </td>\n" +
+                        " <td class=\"bk\" id=\"sc_61619981_bk\"><button type=\"button\" class=\"btn btnBet btnLight\" title=\"14 with Ladbrokes - Click to bet\"><div><div>14</div></div></button><em>12</em><em>14</em><em>12</em><em>11</em></td>\n" +
+                        " </tr>\n" +
+                        " <tr>\n" +
+                        " <td class=\"cardItemInfo\" colspan=\"7\">\n" +
+                        " <p class=\"diomed\">\n" +
+                        " Mainly run on soft turf; needs to improve for the extra furlong </p>\n" +
+                        " <div class=\"forms\">\n" +
+                        " <table class=\"grid smallSpaceGrid\">\n" +
+                        " <tbody><tr class=\"noSpace\">\n" +
+                        " <th class=\"v\">&nbsp;</th>\n" +
+                        " <th class=\"date\">DATE</th>\n" +
+                        " <th class=\"raceCond\">RACE CONDITIONS</th>\n" +
+                        " <th class=\"wgt\">WGT</th>\n" +
+                        " <th class=\"raceOut\">RACE OUTCOME</th>\n" +
+                        " <th class=\"jock\">JOCKEY</th>\n" +
+                        " <th class=\"num\">OR</th>\n" +
+                        " <th class=\"num\">TS</th>\n" +
+                        " <th class=\"num last\">RPR</th>\n" +
+                        " </tr>\n" +
+                        " <tr>\n" +
+                        " <td class=\"v\"><a href=\"#\" onclick=\"scorecards.sendSpecificDesc(&quot;ruk_video&quot;, &quot;10, 2012-10-09, 12:00&quot;);panels.mediaCentre.replayPopup($(this), 563947, 808986, '2012-10-09', 'RUK'); return false;\"><img src=\"http://ui.racingpost.com/release/v17/ico/video.17.0.gif\" alt=\"Video\" title=\"Video\"></a></td>\n" +
+                        " <td>\n" +
+                        " <a href=\"http://www.racingpost.com/horses/result_home.sd?race_id=563947&amp;r_date=2012-10-09&amp;popup=yes\" onclick=\"scorecards.send(563947);return Html.popup(this, {width:695, height:800})\" title=\"yorkshire-outdoors.co.uk Adventure Activities Nursery (Div I)\">09Oct12</a> &nbsp;\n" +
+                        " </td>\n" +
+                        " <td>\n" +
+                        " <b class=\"black\">\n" +
+                        " <a href=\"http://www.racingpost.com/horses/course_home.sd?crs_id=10\" onclick=\"return Html.popup(this, {width:695, height:800})\" title=\"Course (Click to view details): left-handed, very sharp track\">Cat</a> 6Sft </b>\n" +
+                        " C62yHc 2K </td>\n" +
+                        " <td>9-7</td>\n" +
+                        " <td>\n" +
+                        " <b class=\"black\">7</b>/10 <a href=\"http://www.racingpost.com/horses/result_home.sd?race_id=563947&amp;r_date=&amp;popup=yes\" onclick=\"scorecards.send(563947);return Html.popup(this, {width:695, height:800})\" title=\"mid-division, driven over 2f out, never a factor\">(6¼L Mixed Message 9-5)</a> 10/1 </td>\n" +
+                        " <td>\n" +
+                        " <a href=\"http://www.racingpost.com/horses/jockey_home.sd?jockey_id=84983\" onclick=\"scorecards.send(&quot;jockey_name&quot;);return Html.popup(this, {width:695, height:800})\" title=\"Full details about this JOCKEY\">Amy Ryan</a> </td>\n" +
+                        " <td class=\"num\">64</td>\n" +
+                        " <td class=\"num\"><span class=\"red bold\">*</span></td>\n" +
+                        " <td class=\"num last\"><span class=\"red bold\">*</span></td>\n" +
+                        " </tr>\n" +
+                        " <tr>\n" +
+                        " <td class=\"v\"><a href=\"#\" onclick=\"scorecards.sendSpecificDesc(&quot;ruk_video&quot;, &quot;8, 2012-06-27, 12:00&quot;);panels.mediaCentre.replayPopup($(this), 557447, 808986, '2012-06-27', 'RUK'); return false;\"><img src=\"http://ui.racingpost.com/release/v17/ico/video.17.0.gif\" alt=\"Video\" title=\"Video\"></a></td>\n" +
+                        " <td>\n" +
+                        " <a href=\"http://www.racingpost.com/horses/result_home.sd?race_id=557447&amp;r_date=2012-06-27&amp;popup=yes\" onclick=\"scorecards.send(557447);return Html.popup(this, {width:695, height:800})\" title=\"APD 25 Year Anniversary Maiden Auction Stakes\">27Jun12</a> &nbsp;\n" +
+                        " </td>\n" +
+                        " <td>\n" +
+                        " <b class=\"black\">\n" +
+                        " <a href=\"http://www.racingpost.com/horses/course_home.sd?crs_id=8\" onclick=\"return Html.popup(this, {width:695, height:800})\" title=\"Course (Click to view details): right-handed, galloping track (sprint course testing)\">Crl</a> 5Sft </b>\n" +
+                        " C52yMdAc 2K </td>\n" +
+                        " <td>8-8</td>\n" +
+                        " <td>\n" +
+                        " <b class=\"black\">4</b>/8 <a href=\"http://www.racingpost.com/horses/result_home.sd?race_id=557447&amp;r_date=&amp;popup=yes\" onclick=\"scorecards.send(557447);return Html.popup(this, {width:695, height:800})\" title=\"held up, pushed along halfway, headway over 1f out, kept on final furlong, never able to challenge\">(2¾L Blue Lotus 8-11)</a> 40/1 </td>\n" +
+                        " <td>\n" +
+                        " <a href=\"http://www.racingpost.com/horses/jockey_home.sd?jockey_id=84983\" onclick=\"scorecards.send(&quot;jockey_name&quot;);return Html.popup(this, {width:695, height:800})\" title=\"Full details about this JOCKEY\">Amy Ryan</a> </td>\n" +
+                        " <td class=\"num\">—</td>\n" +
+                        " <td class=\"num\"><span class=\"red bold\">*</span></td>\n" +
+                        " <td class=\"num last\"><span class=\"red bold\">*</span></td>\n" +
+                        " </tr>\n" +
+                        " <tr>\n" +
+                        " <td class=\"v\"><a href=\"#\" onclick=\"scorecards.sendSpecificDesc(&quot;ruk_video&quot;, &quot;23, 2012-05-25, 12:00&quot;);panels.mediaCentre.replayPopup($(this), 554393, 808986, '2012-05-25', 'RUK'); return false;\"><img src=\"http://ui.racingpost.com/release/v17/ico/video.17.0.gif\" alt=\"Video\" title=\"Video\"></a></td>\n" +
+                        " <td>\n" +
+                        " <a href=\"http://www.racingpost.com/horses/result_home.sd?race_id=554393&amp;r_date=2012-05-25&amp;popup=yes\" onclick=\"scorecards.send(554393);return Html.popup(this, {width:695, height:800})\" title=\"E B F PHS Compliance Maiden Fillies' Stakes\">25May12</a> &nbsp;\n" +
+                        " </td>\n" +
+                        " <td>\n" +
+                        " <b class=\"black\">\n" +
+                        " <a href=\"http://www.racingpost.com/horses/course_home.sd?crs_id=23\" onclick=\"return Html.popup(this, {width:695, height:800})\" title=\"Course (Click to view details): left-handed, galloping track\">Hay</a> 6GF </b>\n" +
+                        " C52yMd 3K </td>\n" +
+                        " <td>9-0</td>\n" +
+                        " <td>\n" +
+                        " <b class=\"black\">11</b>/12 <a href=\"http://www.racingpost.com/horses/result_home.sd?race_id=554393&amp;r_date=&amp;popup=yes\" onclick=\"scorecards.send(554393);return Html.popup(this, {width:695, height:800})\" title=\"led, headed before halfway, weakened 2f out, eased when well beaten inside final furlong\">(23L Kosika 9-0)</a> 16/1 </td>\n" +
+                        " <td>\n" +
+                        " <a href=\"http://www.racingpost.com/horses/jockey_home.sd?jockey_id=13689\" onclick=\"scorecards.send(&quot;jockey_name&quot;);return Html.popup(this, {width:695, height:800})\" title=\"Full details about this JOCKEY\">Jamie Spencer</a> </td>\n" +
+                        " <td class=\"num\">—</td>\n" +
+                        " <td class=\"num\"><span class=\"red bold\">*</span></td>\n" +
+                        " <td class=\"num last\"><span class=\"red bold\">*</span></td>\n" +
+                        " </tr>\n" +
+                        " <tr>\n" +
+                        " <td class=\"v\"><a href=\"#\" onclick=\"scorecards.sendSpecificDesc(&quot;ruk_video&quot;, &quot;6, 2012-04-18, 12:00&quot;);panels.mediaCentre.replayPopup($(this), 553418, 808986, '2012-04-18', 'RUK'); return false;\"><img src=\"http://ui.racingpost.com/release/v17/ico/video.17.0.gif\" alt=\"Video\" title=\"Video\"></a></td>\n" +
+                        " <td>\n" +
+                        " <a href=\"http://www.racingpost.com/horses/result_home.sd?race_id=553418&amp;r_date=2012-04-18&amp;popup=yes\" onclick=\"scorecards.send(553418);return Html.popup(this, {width:695, height:800})\" title=\"Andy Taylor Snr Is 70 Today Maiden Auction Stakes (Div II)\">18Apr12</a> &nbsp;\n" +
+                        " </td>\n" +
+                        " <td>\n" +
+                        " <b class=\"black\">\n" +
+                        " <a href=\"http://www.racingpost.com/horses/course_home.sd?crs_id=6\" onclick=\"return Html.popup(this, {width:695, height:800})\" title=\"Course (Click to view details): right-handed, essentially galloping track (sprint course testing)\">Bev</a> 5Sft </b>\n" +
+                        " C52yMdAc 2K </td>\n" +
+                        " <td>8-5</td>\n" +
+                        " <td>\n" +
+                        " <b class=\"black\">6</b>/12 <a href=\"http://www.racingpost.com/horses/result_home.sd?race_id=553418&amp;r_date=&amp;popup=yes\" onclick=\"scorecards.send(553418);return Html.popup(this, {width:695, height:800})\" title=\"went left start, soon driven along, kept on final 2f, never near leaders\">(6½L Tharawal Lady 8-8)</a> 10/1 </td>\n" +
+                        " <td>\n" +
+                        " <a href=\"http://www.racingpost.com/horses/jockey_home.sd?jockey_id=84983\" onclick=\"scorecards.send(&quot;jockey_name&quot;);return Html.popup(this, {width:695, height:800})\" title=\"Full details about this JOCKEY\">Amy Ryan</a> </td>\n" +
+                        " <td class=\"num\">—</td>\n" +
+                        " <td class=\"num\"><span class=\"red bold\">*</span></td>\n" +
+                        " <td class=\"num last\"><span class=\"red bold\">*</span></td>\n" +
+                        " </tr>\n" +
+                        " </tbody></table>\n" +
+                        " <span id=\"barrier_RPR-TS_In_Form51465167004\" class=\"bar prpTsInfo\"><span id=\"ruli_33\"><span class=\"red bold\">*</span> Historical RP Ratings and Topspeed Ratings are part of Racing Post Members' Club <a href=\"#\" class=\"blue\" onclick=\"javascript:callLogin('special_offer');\"> Log in to view</a></span></span></div>\n" +
+                        "<div id=\"sc_raceHorseNotes_808986\" class=\"notes\" style=\"display: none; \"></div>\n" +
+                        "\n" +
+                        " </td>\n" +
+                        " </tr>\n" +
+                        " <tr>\n" +
+                        " <td colspan=\"7\"><tt><i></i></tt></td>\n" +
+                        " </tr>\n" +
+                        " </tbody><tbody id=\"sc_61619979\">\n" +
+                        " <tr class=\"cr\">\n" +
+                        " <td class=\"t\">\n" +
+                        " <strong>3</strong><sup>9</sup> <em>6<b>3</b>28</em>\n" +
+                        " </td>\n" +
+                        " <td class=\"s\">\n" +
+                        " <a href=\"http://www.racingpost.com/horses/owner_home.sd?owner_id=191236\" onclick=\"scorecards.send(&quot;owner_name&quot;);return Html.popup(this, {width:695, height:800})\" title=\"Full details about this OWNER\"><img src=\"http://images.racingpost.com/png_silks/6/3/2/191236.png\" class=\"iepng\" alt=\"Owner details\" title=\"Full details about this OWNER\" width=\"40\" height=\"29\"></a> </td>\n" +
+                        " \n" +
+                        " <td class=\"h\">\n" +
+                        " <div class=\"nm\">\n" +
+                        " <a href=\"http://www.racingpost.com/horses/horse_home.sd?race_id=564393&amp;r_date=2012-10-19&amp;horse_id=805513\" onclick=\"scorecards.send(&quot;horse_name&quot;);return Html.popup(this, {width:695, height:800})\" title=\"Full details about this HORSE\"><b>OUR THREE GRACES</b></a> \n" +
+                        " <a href=\"#\" id=\"sc_pencil_805513\" title=\"Show/Hide My Notes for this runner\"></a> </div>\n" +
+                        "\n" +
+                        " <div class=\"oddsBar\">\n" +
+                        " <div><div style=\"width: 6%\"></div></div>\n" +
+                        " <span>6%</span>\n" +
+                        " </div>\n" +
+                        " </td>\n" +
+                        " <td class=\"two c\">\n" +
+                        " <div class=\"tips\">0</div>\n" +
+                        " <div class=\"rpr\">72</div>\n" +
+                        " <div class=\"ts\">56 </div>\n" +
+                        " </td>\n" +
+                        " <td class=\"two jt\">\n" +
+                        " <div>\n" +
+                        " <a href=\"http://www.racingpost.com/horses/trainer_home.sd?trainer_id=7833\" onclick=\"scorecards.send(&quot;trainer_name&quot;);return Html.popup(this, {width:695, height:800})\" title=\"Full details about this TRAINER\">Gary Moore</a><sup><span title=\"the percentage of the stable's runners that have Run To Form in the last 14 days, based on RPR\">33</span></sup> </div>\n" +
+                        " <div>\n" +
+                        " <a href=\"http://www.racingpost.com/horses/jockey_home.sd?jockey_id=78224\" onclick=\"scorecards.send(&quot;jockey_name&quot;);return Html.popup(this, {width:695, height:800})\" title=\"Full details about this JOCKEY\">George Baker</a> </div>\n" +
+                        " </td>\n" +
+                        " <td class=\"two awo\">\n" +
+                        " <div>\n" +
+                        " 2 &nbsp;\n" +
+                        " 9-7 </div>\n" +
+                        " <div>\n" +
+                        " 65 </div>\n" +
+                        " </td>\n" +
+                        " <td class=\"bk\" id=\"sc_61619979_bk\"><button type=\"button\" class=\"btn btnBet btnLight\" title=\"16 with Ladbrokes - Click to bet\"><div><div>16</div></div></button><em>14</em><em>16</em><em>14</em><em>12</em></td>\n" +
+                        " </tr>\n" +
+                        " <tr>\n" +
+                        " <td class=\"cardItemInfo\" colspan=\"7\">\n" +
+                        " <p class=\"diomed\">\n" +
+                        " Didn´t prove her stamina from a tough draw latest; more needed </p>\n" +
+                        " <div class=\"forms\">\n" +
+                        " <table class=\"grid smallSpaceGrid\">\n" +
+                        " <tbody><tr class=\"noSpace\">\n" +
+                        " <th class=\"v\">&nbsp;</th>\n" +
+                        " <th class=\"date\">DATE</th>\n" +
+                        " <th class=\"raceCond\">RACE CONDITIONS</th>\n" +
+                        " <th class=\"wgt\">WGT</th>\n" +
+                        " <th class=\"raceOut\">RACE OUTCOME</th>\n" +
+                        " <th class=\"jock\">JOCKEY</th>\n" +
+                        " <th class=\"num\">OR</th>\n" +
+                        " <th class=\"num\">TS</th>\n" +
+                        " <th class=\"num last\">RPR</th>\n" +
+                        " </tr>\n" +
+                        " <tr>\n" +
+                        " <td class=\"v\"><a href=\"#\" onclick=\"scorecards.sendSpecificDesc(&quot;ruk_video&quot;, &quot;31, 2012-08-22, 12:00&quot;);panels.mediaCentre.replayPopup($(this), 561279, 805513, '2012-08-22', 'RUK'); return false;\"><img src=\"http://ui.racingpost.com/release/v17/ico/video.17.0.gif\" alt=\"Video\" title=\"Video\"></a></td>\n" +
+                        " <td>\n" +
+                        " <a href=\"http://www.racingpost.com/horses/result_home.sd?race_id=561279&amp;r_date=2012-08-22&amp;popup=yes\" onclick=\"scorecards.send(561279);return Html.popup(this, {width:695, height:800})\" title=\"Horseback UK Nursery\">22Aug12</a> &nbsp;\n" +
+                        " </td>\n" +
+                        " <td>\n" +
+                        " <b class=\"black\">\n" +
+                        " <a href=\"http://www.racingpost.com/horses/course_home.sd?crs_id=31\" onclick=\"return Html.popup(this, {width:695, height:800})\" title=\"Course (Click to view details): left-handed, sharp track\">Lin</a> 7GF </b>\n" +
+                        " C52yHc 2K </td>\n" +
+                        " <td>9-4</td>\n" +
+                        " <td>\n" +
+                        " <b class=\"black\">8</b>/9 <a href=\"http://www.racingpost.com/horses/result_home.sd?race_id=561279&amp;r_date=&amp;popup=yes\" onclick=\"scorecards.send(561279);return Html.popup(this, {width:695, height:800})\" title=\"chased winner to over 2f out, weakened well over 1f out, eased\">(10½L Spithead 8-13)</a> 10/1 </td>\n" +
+                        " <td>\n" +
+                        " <a href=\"http://www.racingpost.com/horses/jockey_home.sd?jockey_id=13026\" onclick=\"scorecards.send(&quot;jockey_name&quot;);return Html.popup(this, {width:695, height:800})\" title=\"Full details about this JOCKEY\">Fergus Sweeney</a> </td>\n" +
+                        " <td class=\"num\">65</td>\n" +
+                        " <td class=\"num\"><span class=\"red bold\">*</span></td>\n" +
+                        " <td class=\"num last\"><span class=\"red bold\">*</span></td>\n" +
+                        " </tr>\n" +
+                        " <tr>\n" +
+                        " <td class=\"v\"><a href=\"#\" onclick=\"scorecards.sendSpecificDesc(&quot;ruk_video&quot;, &quot;5, 2012-08-07, 12:00&quot;);panels.mediaCentre.replayPopup($(this), 560439, 805513, '2012-08-07', 'RUK'); return false;\"><img src=\"http://ui.racingpost.com/release/v17/ico/video.17.0.gif\" alt=\"Video\" title=\"Video\"></a></td>\n" +
+                        " <td>\n" +
+                        " <a href=\"http://www.racingpost.com/horses/result_home.sd?race_id=560439&amp;r_date=2012-08-07&amp;popup=yes\" onclick=\"scorecards.send(560439);return Html.popup(this, {width:695, height:800})\" title=\"Freebets.co.uk Maiden Auction Fillies' Stakes\">07Aug12</a> &nbsp;\n" +
+                        " </td>\n" +
+                        " <td>\n" +
+                        " <b class=\"black\">\n" +
+                        " <a href=\"http://www.racingpost.com/horses/course_home.sd?crs_id=5\" onclick=\"return Html.popup(this, {width:695, height:800})\" title=\"Course (Click to view details): left-handed galloping track\">Bat</a> 6Gd </b>\n" +
+                        " C62yMd 1K </td>\n" +
+                        " <td>8-8</td>\n" +
+                        " <td>\n" +
+                        " <b class=\"black\">2</b>/7 <a href=\"http://www.racingpost.com/horses/result_home.sd?race_id=560439&amp;r_date=&amp;popup=yes\" onclick=\"scorecards.send(560439);return Html.popup(this, {width:695, height:800})\" title=\"soon led, narrowly headed 2f out, stayed pressing leader and still upsides until outpaced by winner final 120yds\">(2¼L Entwined 8-8)</a> 8/1 </td>\n" +
+                        " <td>\n" +
+                        " <a href=\"http://www.racingpost.com/horses/jockey_home.sd?jockey_id=13026\" onclick=\"scorecards.send(&quot;jockey_name&quot;);return Html.popup(this, {width:695, height:800})\" title=\"Full details about this JOCKEY\">Fergus Sweeney</a> </td>\n" +
+                        " <td class=\"num\">—</td>\n" +
+                        " <td class=\"num\"><span class=\"red bold\">*</span></td>\n" +
+                        " <td class=\"num last\"><span class=\"red bold\">*</span></td>\n" +
+                        " </tr>\n" +
+                        " <tr>\n" +
+                        " <td class=\"v\"><a href=\"#\" onclick=\"scorecards.sendSpecificDesc(&quot;ruk_video&quot;, &quot;393, 2012-07-30, 12:00&quot;);panels.mediaCentre.replayPopup($(this), 561132, 805513, '2012-07-30', 'RUK'); return false;\"><img src=\"http://ui.racingpost.com/release/v17/ico/video.17.0.gif\" alt=\"Video\" title=\"Video\"></a></td>\n" +
+                        " <td>\n" +
+                        " <a href=\"http://www.racingpost.com/horses/result_home.sd?race_id=561132&amp;r_date=2012-07-30&amp;popup=yes\" onclick=\"scorecards.send(561132);return Html.popup(this, {width:695, height:800})\" title=\"£32 Bonus At 32Red.com Maiden Fillies' Stakes\">30Jul12</a> &nbsp;\n" +
+                        " </td>\n" +
+                        " <td>\n" +
+                        " <b class=\"black\">\n" +
+                        " <a href=\"http://www.racingpost.com/horses/course_home.sd?crs_id=393\" onclick=\"return Html.popup(this, {width:695, height:800})\" title=\"Course (Click to view details): AW Polytrack: left-handed\">Lin</a> 6St </b>\n" +
+                        " C52yMd 2K </td>\n" +
+                        " <td>9-0</td>\n" +
+                        " <td>\n" +
+                        " <b class=\"black\">3</b>/6 <a href=\"http://www.racingpost.com/horses/result_home.sd?race_id=561132&amp;r_date=&amp;popup=yes\" onclick=\"scorecards.send(561132);return Html.popup(this, {width:695, height:800})\" title=\"tracked leaders, ridden over 2f out, soon outpaced by leading pair, kept on inside final furlong\">(5L City Girl 9-0)</a> 16/1 </td>\n" +
+                        " <td>\n" +
+                        " <a href=\"http://www.racingpost.com/horses/jockey_home.sd?jockey_id=79202\" onclick=\"scorecards.send(&quot;jockey_name&quot;);return Html.popup(this, {width:695, height:800})\" title=\"Full details about this JOCKEY\">Ryan Moore</a> </td>\n" +
+                        " <td class=\"num\">—</td>\n" +
+                        " <td class=\"num\"><span class=\"red bold\">*</span></td>\n" +
+                        " <td class=\"num last\"><span class=\"red bold\">*</span></td>\n" +
+                        " </tr>\n" +
+                        " <tr>\n" +
+                        " <td class=\"v\"><a href=\"#\" onclick=\"scorecards.sendSpecificDesc(&quot;ruk_video&quot;, &quot;93, 2012-07-02, 12:00&quot;);panels.mediaCentre.replayPopup($(this), 558040, 805513, '2012-07-02', 'RUK'); return false;\"><img src=\"http://ui.racingpost.com/release/v17/ico/video.17.0.gif\" alt=\"Video\" title=\"Video\"></a></td>\n" +
+                        " <td>\n" +
+                        " <a href=\"http://www.racingpost.com/horses/result_home.sd?race_id=558040&amp;r_date=2012-07-02&amp;popup=yes\" onclick=\"scorecards.send(558040);return Html.popup(this, {width:695, height:800})\" title=\"Betfred Home of Big Winners Fillies' Median Auction Maiden Stakes\">02Jul12</a> &nbsp;\n" +
+                        " </td>\n" +
+                        " <td>\n" +
+                        " <b class=\"black\">\n" +
+                        " <a href=\"http://www.racingpost.com/horses/course_home.sd?crs_id=93\" onclick=\"return Html.popup(this, {width:695, height:800})\" title=\"Course (Click to view details): figure of eight, fairly sharp track\">Wdr</a> 5Gd </b>\n" +
+                        " C52yMd 2K </td>\n" +
+                        " <td>8-11</td>\n" +
+                        " <td>\n" +
+                        " <b class=\"black\">6</b>/8 <a href=\"http://www.racingpost.com/horses/result_home.sd?race_id=558040&amp;r_date=&amp;popup=yes\" onclick=\"scorecards.send(558040);return Html.popup(this, {width:695, height:800})\" title=\"dwelt, mostly in last pair, weakened well over 1f out\">(14½L Hoyam 9-0)</a> 20/1 </td>\n" +
+                        " <td>\n" +
+                        " <a href=\"http://www.racingpost.com/horses/jockey_home.sd?jockey_id=88632\" onclick=\"scorecards.send(&quot;jockey_name&quot;);return Html.popup(this, {width:695, height:800})\" title=\"Full details about this JOCKEY\">Harry Bentley</a> </td>\n" +
+                        " <td class=\"num\">—</td>\n" +
+                        " <td class=\"num\"><span class=\"red bold\">*</span></td>\n" +
+                        " <td class=\"num last\"><span class=\"red bold\">*</span></td>\n" +
+                        " </tr>\n" +
+                        " </tbody></table>\n" +
+                        " <span id=\"barrier_RPR-TS_In_Form71461769403\" class=\"bar prpTsInfo\"><span id=\"ruli_33\"><span class=\"red bold\">*</span> Historical RP Ratings and Topspeed Ratings are part of Racing Post Members' Club <a href=\"#\" class=\"blue\" onclick=\"javascript:callLogin('special_offer');\"> Log in to view</a></span></span></div>\n" +
+                        "<div id=\"sc_raceHorseNotes_805513\" class=\"notes\" style=\"display: none; \"></div>\n" +
+                        "\n" +
+                        " </td>\n" +
+                        " </tr>\n" +
+                        " <tr>\n" +
+                        " <td colspan=\"7\"><tt><i></i></tt></td>\n" +
+                        " </tr>\n" +
+                        " </tbody><tbody id=\"sc_61619982\">\n" +
+                        " <tr class=\"cr\">\n" +
+                        " <td class=\"t\">\n" +
+                        " <strong>4</strong><sup>7</sup> <em>098795</em>\n" +
+                        " </td>\n" +
+                        " <td class=\"s\">\n" +
+                        " <a href=\"http://www.racingpost.com/horses/owner_home.sd?owner_id=60881\" onclick=\"scorecards.send(&quot;owner_name&quot;);return Html.popup(this, {width:695, height:800})\" title=\"Full details about this OWNER\"><img src=\"http://images.racingpost.com/png_silks/1/8/8/60881.png\" class=\"iepng\" alt=\"Owner details\" title=\"Full details about this OWNER\" width=\"40\" height=\"29\"></a> </td>\n" +
+                        " \n" +
+                        " <td class=\"h\">\n" +
+                        " <div class=\"nm\">\n" +
+                        " <a href=\"http://www.racingpost.com/horses/horse_home.sd?race_id=564393&amp;r_date=2012-10-19&amp;horse_id=810609\" onclick=\"scorecards.send(&quot;horse_name&quot;);return Html.popup(this, {width:695, height:800})\" title=\"Full details about this HORSE\"><b>STAND N APPLAUDE</b></a> \n" +
+                        " <a href=\"#\" id=\"sc_pencil_810609\" title=\"Show/Hide My Notes for this runner\"></a> </div>\n" +
+                        "\n" +
+                        " <div class=\"oddsBar\">\n" +
+                        " <div><div style=\"width: 5%\"></div></div>\n" +
+                        " <span>5%</span>\n" +
+                        " </div>\n" +
+                        " </td>\n" +
+                        " <td class=\"two c\">\n" +
+                        " <div class=\"tips\">0</div>\n" +
+                        " <div class=\"rpr\">73</div>\n" +
+                        " <div class=\"ts\">—</div>\n" +
+                        " </td>\n" +
+                        " <td class=\"two jt\">\n" +
+                        " <div>\n" +
+                        " <a href=\"http://www.racingpost.com/horses/trainer_home.sd?trainer_id=8147\" onclick=\"scorecards.send(&quot;trainer_name&quot;);return Html.popup(this, {width:695, height:800})\" title=\"Full details about this TRAINER\">David Nicholls</a><sup><span title=\"the percentage of the stable's runners that have Run To Form in the last 14 days, based on RPR\">40</span></sup> </div>\n" +
+                        " <div>\n" +
+                        " <a href=\"http://www.racingpost.com/horses/jockey_home.sd?jockey_id=81166\" onclick=\"scorecards.send(&quot;jockey_name&quot;);return Html.popup(this, {width:695, height:800})\" title=\"Full details about this JOCKEY\">Andrew Mullen</a> </div>\n" +
+                        " </td>\n" +
+                        " <td class=\"two awo\">\n" +
+                        " <div>\n" +
+                        " 2 &nbsp;\n" +
+                        " 9-6 </div>\n" +
+                        " <div>\n" +
+                        " 64 </div>\n" +
+                        " </td>\n" +
+                        " <td class=\"bk\" id=\"sc_61619982_bk\"><button type=\"button\" class=\"btn btnBet btnLight\" title=\"16 with Ladbrokes - Click to bet\"><div><div>16</div></div></button><em>20</em><em>16</em></td>\n" +
+                        " </tr>\n" +
+                        " <tr>\n" +
+                        " <td class=\"cardItemInfo\" colspan=\"7\">\n" +
+                        " <p class=\"diomed\">\n" +
+                        " Best on slow turf to date and completely exposed now </p>\n" +
+                        " <div class=\"forms\">\n" +
+                        " <table class=\"grid smallSpaceGrid\">\n" +
+                        " <tbody><tr class=\"noSpace\">\n" +
+                        " <th class=\"v\">&nbsp;</th>\n" +
+                        " <th class=\"date\">DATE</th>\n" +
+                        " <th class=\"raceCond\">RACE CONDITIONS</th>\n" +
+                        " <th class=\"wgt\">WGT</th>\n" +
+                        " <th class=\"raceOut\">RACE OUTCOME</th>\n" +
+                        " <th class=\"jock\">JOCKEY</th>\n" +
+                        " <th class=\"num\">OR</th>\n" +
+                        " <th class=\"num\">TS</th>\n" +
+                        " <th class=\"num last\">RPR</th>\n" +
+                        " </tr>\n" +
+                        " <tr>\n" +
+                        " <td class=\"v\"><a href=\"#\" onclick=\"scorecards.sendSpecificDesc(&quot;ruk_video&quot;, &quot;10, 2012-10-09, 12:00&quot;);panels.mediaCentre.replayPopup($(this), 565452, 810609, '2012-10-09', 'RUK'); return false;\"><img src=\"http://ui.racingpost.com/release/v17/ico/video.17.0.gif\" alt=\"Video\" title=\"Video\"></a></td>\n" +
+                        " <td>\n" +
+                        " <a href=\"http://www.racingpost.com/horses/result_home.sd?race_id=565452&amp;r_date=2012-10-09&amp;popup=yes\" onclick=\"scorecards.send(565452);return Html.popup(this, {width:695, height:800})\" title=\"yorkshire-outdoors.co.uk Adventure Activities Nursery (Div II)\">09Oct12</a> &nbsp;\n" +
+                        " </td>\n" +
+                        " <td>\n" +
+                        " <b class=\"black\">\n" +
+                        " <a href=\"http://www.racingpost.com/horses/course_home.sd?crs_id=10\" onclick=\"return Html.popup(this, {width:695, height:800})\" title=\"Course (Click to view details): left-handed, very sharp track\">Cat</a> 6Sft </b>\n" +
+                        " C62yHc 2K </td>\n" +
+                        " <td>9-7</td>\n" +
+                        " <td>\n" +
+                        " <b class=\"black\">5</b>/12 <a href=\"http://www.racingpost.com/horses/result_home.sd?race_id=565452&amp;r_date=&amp;popup=yes\" onclick=\"scorecards.send(565452);return Html.popup(this, {width:695, height:800})\" title=\"prominent, ridden along 2f out and every chance until driven, edged left and weakened over 1f out\">(4½L Iwilsayzisonlyonce 8-13)</a> 33/1 </td>\n" +
+                        " <td>\n" +
+                        " <a href=\"http://www.racingpost.com/horses/jockey_home.sd?jockey_id=81166\" onclick=\"scorecards.send(&quot;jockey_name&quot;);return Html.popup(this, {width:695, height:800})\" title=\"Full details about this JOCKEY\">Andrew Mullen</a> </td>\n" +
+                        " <td class=\"num\">64</td>\n" +
+                        " <td class=\"num\"><span class=\"red bold\">*</span></td>\n" +
+                        " <td class=\"num last\"><span class=\"red bold\">*</span></td>\n" +
+                        " </tr>\n" +
+                        " <tr>\n" +
+                        " <td class=\"v\"><a href=\"#\" onclick=\"scorecards.sendSpecificDesc(&quot;ruk_video&quot;, &quot;16, 2012-09-04, 12:00&quot;);panels.mediaCentre.replayPopup($(this), 562088, 810609, '2012-09-04', 'RUK'); return false;\"><img src=\"http://ui.racingpost.com/release/v17/ico/video.17.0.gif\" alt=\"Video\" title=\"Video\"></a></td>\n" +
+                        " <td>\n" +
+                        " <a href=\"http://www.racingpost.com/horses/result_home.sd?race_id=562088&amp;r_date=2012-09-04&amp;popup=yes\" onclick=\"scorecards.send(562088);return Html.popup(this, {width:695, height:800})\" title=\"TurfTV Nursery\">04Sep12</a> &nbsp;\n" +
+                        " </td>\n" +
+                        " <td>\n" +
+                        " <b class=\"black\">\n" +
+                        " <a href=\"http://www.racingpost.com/horses/course_home.sd?crs_id=16\" onclick=\"return Html.popup(this, {width:695, height:800})\" title=\"Course (Click to view details): right-handed, sharp track\">Mus</a> 7GF </b>\n" +
+                        " C52yHc 3K </td>\n" +
+                        " <td>9-0</td>\n" +
+                        " <td>\n" +
+                        " <b class=\"black\">9</b>/9 <a href=\"http://www.racingpost.com/horses/result_home.sd?race_id=562088&amp;r_date=&amp;popup=yes\" onclick=\"scorecards.send(562088);return Html.popup(this, {width:695, height:800})\" title=\"led, ridden along and headed over 2f out, switched left over 1f out, no extra when hampered approaching final furlong, eased when beaten\">(21L Tussie Mussie 9-4)</a> 14/1 </td>\n" +
+                        " <td>\n" +
+                        " <a href=\"http://www.racingpost.com/horses/jockey_home.sd?jockey_id=75464\" onclick=\"scorecards.send(&quot;jockey_name&quot;);return Html.popup(this, {width:695, height:800})\" title=\"Full details about this JOCKEY\">Adrian Nicholls</a> </td>\n" +
+                        " <td class=\"num\">64</td>\n" +
+                        " <td class=\"num\"><span class=\"red bold\">*</span></td>\n" +
+                        " <td class=\"num last\"><span class=\"red bold\">*</span></td>\n" +
+                        " </tr>\n" +
+                        " <tr>\n" +
+                        " <td class=\"v\"><a href=\"#\" onclick=\"scorecards.sendSpecificDesc(&quot;ruk_video&quot;, &quot;47, 2012-08-11, 12:00&quot;);panels.mediaCentre.replayPopup($(this), 560612, 810609, '2012-08-11', 'RUK'); return false;\"><img src=\"http://ui.racingpost.com/release/v17/ico/video.17.0.gif\" alt=\"Video\" title=\"Video\"></a></td>\n" +
+                        " <td>\n" +
+                        " <a href=\"http://www.racingpost.com/horses/result_home.sd?race_id=560612&amp;r_date=2012-08-11&amp;popup=yes\" onclick=\"scorecards.send(560612);return Html.popup(this, {width:695, height:800})\" title=\"Win A VIP Day Out At redcarracing.co.uk Nursery\">11Aug12</a> &nbsp;\n" +
+                        " </td>\n" +
+                        " <td>\n" +
+                        " <b class=\"black\">\n" +
+                        " <a href=\"http://www.racingpost.com/horses/course_home.sd?crs_id=47\" onclick=\"return Html.popup(this, {width:695, height:800})\" title=\"Course (Click to view details): left-handed, galloping track\">Red</a> 6GF </b>\n" +
+                        " C42yHc 3K </td>\n" +
+                        " <td>8-6</td>\n" +
+                        " <td>\n" +
+                        " <b class=\"black\">7</b>/7 <a href=\"http://www.racingpost.com/horses/result_home.sd?race_id=560612&amp;r_date=&amp;popup=yes\" onclick=\"scorecards.send(560612);return Html.popup(this, {width:695, height:800})\" title=\"held up, effort over 2f out, soon ridden and no impression approaching final furlong\">(6L Scentpastparadise 9-2)</a> 16/1 </td>\n" +
+                        " <td>\n" +
+                        " <a href=\"http://www.racingpost.com/horses/jockey_home.sd?jockey_id=75464\" onclick=\"scorecards.send(&quot;jockey_name&quot;);return Html.popup(this, {width:695, height:800})\" title=\"Full details about this JOCKEY\">Adrian Nicholls</a> </td>\n" +
+                        " <td class=\"num\">67</td>\n" +
+                        " <td class=\"num\"><span class=\"red bold\">*</span></td>\n" +
+                        " <td class=\"num last\"><span class=\"red bold\">*</span></td>\n" +
+                        " </tr>\n" +
+                        " <tr>\n" +
+                        " <td class=\"v\"><a href=\"#\" onclick=\"scorecards.sendSpecificDesc(&quot;ruk_video&quot;, &quot;15, 2012-06-17, 12:00&quot;);panels.mediaCentre.replayPopup($(this), 556438, 810609, '2012-06-17', 'RUK'); return false;\"><img src=\"http://ui.racingpost.com/release/v17/ico/video.17.0.gif\" alt=\"Video\" title=\"Video\"></a></td>\n" +
+                        " <td>\n" +
+                        " <a href=\"http://www.racingpost.com/horses/result_home.sd?race_id=556438&amp;r_date=2012-06-17&amp;popup=yes\" onclick=\"scorecards.send(556438);return Html.popup(this, {width:695, height:800})\" title=\"Coffee Shop Dore Village Sheffield E.B.F. Median Auction Maiden Stakes\">17Jun12</a> &nbsp;\n" +
+                        " </td>\n" +
+                        " <td>\n" +
+                        " <b class=\"black\">\n" +
+                        " <a href=\"http://www.racingpost.com/horses/course_home.sd?crs_id=15\" onclick=\"return Html.popup(this, {width:695, height:800})\" title=\"Course (Click to view details): left-handed, galloping track\">Don</a> 6GS </b>\n" +
+                        " C52yMd 3K </td>\n" +
+                        " <td>8-10</td>\n" +
+                        " <td>\n" +
+                        " <b class=\"black\">8</b>/15 <a href=\"http://www.racingpost.com/horses/result_home.sd?race_id=556438&amp;r_date=&amp;popup=yes\" onclick=\"scorecards.send(556438);return Html.popup(this, {width:695, height:800})\" title=\"led 2f, close up, ridden along 2f out, gradually weakened\">(6½L Kimberella 9-3)</a> 100/1 </td>\n" +
+                        " <td>\n" +
+                        " <a href=\"http://www.racingpost.com/horses/jockey_home.sd?jockey_id=88712\" onclick=\"scorecards.send(&quot;jockey_name&quot;);return Html.popup(this, {width:695, height:800})\" title=\"Full details about this JOCKEY\">Shirley Teasdale</a> </td>\n" +
+                        " <td class=\"num\">—</td>\n" +
+                        " <td class=\"num\"><span class=\"red bold\">*</span></td>\n" +
+                        " <td class=\"num last\"><span class=\"red bold\">*</span></td>\n" +
+                        " </tr>\n" +
+                        " <tr>\n" +
+                        " <td class=\"v\"><a href=\"#\" onclick=\"scorecards.sendSpecificDesc(&quot;ruk_video&quot;, &quot;40, 2012-05-22, 12:00&quot;);panels.mediaCentre.replayPopup($(this), 554328, 810609, '2012-05-22', 'RUK'); return false;\"><img src=\"http://ui.racingpost.com/release/v17/ico/video.17.0.gif\" alt=\"Video\" title=\"Video\"></a></td>\n" +
+                        " <td>\n" +
+                        " <a href=\"http://www.racingpost.com/horses/result_home.sd?race_id=554328&amp;r_date=2012-05-22&amp;popup=yes\" onclick=\"scorecards.send(554328);return Html.popup(this, {width:695, height:800})\" title=\"E B F Think Taxi Think DG 01159500500 Maiden Stakes\">22May12</a> &nbsp;\n" +
+                        " </td>\n" +
+                        " <td>\n" +
+                        " <b class=\"black\">\n" +
+                        " <a href=\"http://www.racingpost.com/horses/course_home.sd?crs_id=40\" onclick=\"return Html.popup(this, {width:695, height:800})\" title=\"Course (Click to view details): left-handed, galloping track\">Not</a> 6GF </b>\n" +
+                        " C52yMd 3K </td>\n" +
+                        " <td>9-3</td>\n" +
+                        " <td>\n" +
+                        " <b class=\"black\">9</b>/12 <a href=\"http://www.racingpost.com/horses/result_home.sd?race_id=554328&amp;r_date=&amp;popup=yes\" onclick=\"scorecards.send(554328);return Html.popup(this, {width:695, height:800})\" title=\"dwelt and always in rear\">(17½L Windhoek 9-3)</a> 100/1 </td>\n" +
+                        " <td>\n" +
+                        " <a href=\"http://www.racingpost.com/horses/jockey_home.sd?jockey_id=75464\" onclick=\"scorecards.send(&quot;jockey_name&quot;);return Html.popup(this, {width:695, height:800})\" title=\"Full details about this JOCKEY\">Adrian Nicholls</a> </td>\n" +
+                        " <td class=\"num\">—</td>\n" +
+                        " <td class=\"num\"><span class=\"red bold\">*</span></td>\n" +
+                        " <td class=\"num last\"><span class=\"red bold\">*</span></td>\n" +
+                        " </tr>\n" +
+                        " <tr>\n" +
+                        " <td class=\"v\"><a href=\"#\" onclick=\"scorecards.sendSpecificDesc(&quot;ruk_video&quot;, &quot;16, 2012-05-04, 12:00&quot;);panels.mediaCentre.replayPopup($(this), 552416, 810609, '2012-05-04', 'RUK'); return false;\"><img src=\"http://ui.racingpost.com/release/v17/ico/video.17.0.gif\" alt=\"Video\" title=\"Video\"></a></td>\n" +
+                        " <td>\n" +
+                        " <a href=\"http://www.racingpost.com/horses/result_home.sd?race_id=552416&amp;r_date=2012-05-04&amp;popup=yes\" onclick=\"scorecards.send(552416);return Html.popup(this, {width:695, height:800})\" title=\"E B F Strides Ahead At RZ Group Maiden Stakes\">04May12</a> &nbsp;\n" +
+                        " </td>\n" +
+                        " <td>\n" +
+                        " <b class=\"black\">\n" +
+                        " <a href=\"http://www.racingpost.com/horses/course_home.sd?crs_id=16\" onclick=\"return Html.popup(this, {width:695, height:800})\" title=\"Course (Click to view details): right-handed, sharp track\">Mus</a> 5GS </b>\n" +
+                        " C42yMd 5K </td>\n" +
+                        " <td>9-3</td>\n" +
+                        " <td>\n" +
+                        " <b class=\"black\">10</b>/10 <a href=\"http://www.racingpost.com/horses/result_home.sd?race_id=552416&amp;r_date=&amp;popup=yes\" onclick=\"scorecards.send(552416);return Html.popup(this, {width:695, height:800})\" title=\"slightly hampered start, always towards rear\">(12½L Tatlisu 9-3)</a> 33/1 </td>\n" +
+                        " <td>\n" +
+                        " <a href=\"http://www.racingpost.com/horses/jockey_home.sd?jockey_id=75464\" onclick=\"scorecards.send(&quot;jockey_name&quot;);return Html.popup(this, {width:695, height:800})\" title=\"Full details about this JOCKEY\">Adrian Nicholls</a> </td>\n" +
+                        " <td class=\"num\">—</td>\n" +
+                        " <td class=\"num\"><span class=\"red bold\">*</span></td>\n" +
+                        " <td class=\"num last\"><span class=\"red bold\">*</span></td>\n" +
+                        " </tr>\n" +
+                        " </tbody></table>\n" +
+                        " <span id=\"barrier_RPR-TS_In_Form111189742010\" class=\"bar prpTsInfo\"><span id=\"ruli_33\"><span class=\"red bold\">*</span> Historical RP Ratings and Topspeed Ratings are part of Racing Post Members' Club <a href=\"#\" class=\"blue\" onclick=\"javascript:callLogin('special_offer');\"> Log in to view</a></span></span></div>\n" +
+                        "<div id=\"sc_raceHorseNotes_810609\" class=\"notes\" style=\"display: none; \"></div>\n" +
+                        "\n" +
+                        " </td>\n" +
+                        " </tr>\n" +
+                        " <tr>\n" +
+                        " <td colspan=\"7\"><tt><i></i></tt></td>\n" +
+                        " </tr>\n" +
+                        " </tbody><tbody id=\"sc_61619986\">\n" +
+                        " <tr class=\"cr\">\n" +
+                        " <td class=\"t\">\n" +
+                        " <strong>11</strong><sup>11</sup> <em>898</em>\n" +
+                        " </td>\n" +
+                        " <td class=\"s\">\n" +
+                        " <a href=\"http://www.racingpost.com/horses/owner_home.sd?owner_id=181047\" onclick=\"scorecards.send(&quot;owner_name&quot;);return Html.popup(this, {width:695, height:800})\" title=\"Full details about this OWNER\"><img src=\"http://images.racingpost.com/png_silks/7/4/0/181047.png\" class=\"iepng\" alt=\"Owner details\" title=\"Full details about this OWNER\" width=\"40\" height=\"29\"></a> </td>\n" +
+                        " \n" +
+                        " <td class=\"h\">\n" +
+                        " <div class=\"nm\">\n" +
+                        " <a href=\"http://www.racingpost.com/horses/horse_home.sd?race_id=564393&amp;r_date=2012-10-19&amp;horse_id=815276\" onclick=\"scorecards.send(&quot;horse_name&quot;);return Html.popup(this, {width:695, height:800})\" title=\"Full details about this HORSE\"><b>ALFIE´S ROSE</b></a> \n" +
+                        " <a href=\"#\" id=\"sc_pencil_815276\" title=\"Show/Hide My Notes for this runner\"></a> </div>\n" +
+                        "\n" +
+                        " <div class=\"oddsBar\">\n" +
+                        " &nbsp; </div>\n" +
+                        " </td>\n" +
+                        " <td class=\"two c\">\n" +
+                        " <div class=\"tips\">0</div>\n" +
+                        " <div class=\"rpr\">61</div>\n" +
+                        " <div class=\"ts\">—</div>\n" +
+                        " </td>\n" +
+                        " <td class=\"two jt\">\n" +
+                        " <div>\n" +
+                        " <a href=\"http://www.racingpost.com/horses/trainer_home.sd?trainer_id=3415\" onclick=\"scorecards.send(&quot;trainer_name&quot;);return Html.popup(this, {width:695, height:800})\" title=\"Full details about this TRAINER\">William Haggas</a><sup><span title=\"the percentage of the stable's runners that have Run To Form in the last 14 days, based on RPR\">58</span></sup> </div>\n" +
+                        " <div>\n" +
+                        " <span>DOUBTFUL</span> </div>\n" +
+                        " </td>\n" +
+                        " <td class=\"two awo\">\n" +
+                        " <div>\n" +
+                        " 2 &nbsp;\n" +
+                        " 9-4 </div>\n" +
+                        " <div>\n" +
+                        " 62 </div>\n" +
+                        " </td>\n" +
+                        " <td class=\"bk\" id=\"sc_61619986_bk\"><strong class=\"noBetting\">No betting</strong></td>\n" +
+                        " </tr>\n" +
+                        " <tr>\n" +
+                        " <td class=\"cardItemInfo\" colspan=\"7\">\n" +
+                        " <p class=\"diomed\">\n" +
+                        " Not gone on in maidens but yard continues in cracking form </p>\n" +
+                        " <div class=\"forms\">\n" +
+                        " <table class=\"grid smallSpaceGrid\">\n" +
+                        " <tbody><tr class=\"noSpace\">\n" +
+                        " <th class=\"v\">&nbsp;</th>\n" +
+                        " <th class=\"date\">DATE</th>\n" +
+                        " <th class=\"raceCond\">RACE CONDITIONS</th>\n" +
+                        " <th class=\"wgt\">WGT</th>\n" +
+                        " <th class=\"raceOut\">RACE OUTCOME</th>\n" +
+                        " <th class=\"jock\">JOCKEY</th>\n" +
+                        " <th class=\"num\">OR</th>\n" +
+                        " <th class=\"num\">TS</th>\n" +
+                        " <th class=\"num last\">RPR</th>\n" +
+                        " </tr>\n" +
+                        " <tr>\n" +
+                        " <td class=\"v\"><a href=\"#\" onclick=\"scorecards.sendSpecificDesc(&quot;ruk_video&quot;, &quot;104, 2012-10-05, 12:00&quot;);panels.mediaCentre.replayPopup($(this), 564655, 815276, '2012-10-05', 'RUK'); return false;\"><img src=\"http://ui.racingpost.com/release/v17/ico/video.17.0.gif\" alt=\"Video\" title=\"Video\"></a></td>\n" +
+                        " <td>\n" +
+                        " <a href=\"http://www.racingpost.com/horses/result_home.sd?race_id=564655&amp;r_date=2012-10-05&amp;popup=yes\" onclick=\"scorecards.send(564655);return Html.popup(this, {width:695, height:800})\" title=\"Holiday On The Norfolk Broads Maiden Stakes (Div I)\">05Oct12</a> &nbsp;\n" +
+                        " </td>\n" +
+                        " <td>\n" +
+                        " <b class=\"black\">\n" +
+                        " <a href=\"http://www.racingpost.com/horses/course_home.sd?crs_id=104\" onclick=\"return Html.popup(this, {width:695, height:800})\" title=\"Course (Click to view details): left-handed, galloping track\">Yar</a> 7Hy </b>\n" +
+                        " C52yMd 3K </td>\n" +
+                        " <td>9-3</td>\n" +
+                        " <td>\n" +
+                        " <b class=\"black\">8</b>/9 <a href=\"http://www.racingpost.com/horses/result_home.sd?race_id=564655&amp;r_date=&amp;popup=yes\" onclick=\"scorecards.send(564655);return Html.popup(this, {width:695, height:800})\" title=\"steadied start, held up in last trio, no progress under pressure entering final 2f, never dangerous\">(11L Intimidate 9-3)</a> 50/1 </td>\n" +
+                        " <td>\n" +
+                        " <a href=\"http://www.racingpost.com/horses/jockey_home.sd?jockey_id=82384\" onclick=\"scorecards.send(&quot;jockey_name&quot;);return Html.popup(this, {width:695, height:800})\" title=\"Full details about this JOCKEY\">Liam Jones</a> </td>\n" +
+                        " <td class=\"num\">—</td>\n" +
+                        " <td class=\"num\"><span class=\"red bold\">*</span></td>\n" +
+                        " <td class=\"num last\"><span class=\"red bold\">*</span></td>\n" +
+                        " </tr>\n" +
+                        " <tr>\n" +
+                        " <td class=\"v\"><a href=\"#\" onclick=\"scorecards.sendSpecificDesc(&quot;ruk_video&quot;, &quot;85, 2012-08-27, 12:00&quot;);panels.mediaCentre.replayPopup($(this), 561643, 815276, '2012-08-27', 'RUK'); return false;\"><img src=\"http://ui.racingpost.com/release/v17/ico/video.17.0.gif\" alt=\"Video\" title=\"Video\"></a></td>\n" +
+                        " <td>\n" +
+                        " <a href=\"http://www.racingpost.com/horses/result_home.sd?race_id=561643&amp;r_date=2012-08-27&amp;popup=yes\" onclick=\"scorecards.send(561643);return Html.popup(this, {width:695, height:800})\" title=\"Irish Stallion Farms E B F Maiden Stakes (Div I)\">27Aug12</a> &nbsp;\n" +
+                        " </td>\n" +
+                        " <td>\n" +
+                        " <b class=\"black\">\n" +
+                        " <a href=\"http://www.racingpost.com/horses/course_home.sd?crs_id=85\" onclick=\"return Html.popup(this, {width:695, height:800})\" title=\"Course (Click to view details): left-handed, sharp track\">War</a> 7GF </b>\n" +
+                        " C52yMd 3K </td>\n" +
+                        " <td>9-3</td>\n" +
+                        " <td>\n" +
+                        " <b class=\"black\">9</b>/10 <a href=\"http://www.racingpost.com/horses/result_home.sd?race_id=561643&amp;r_date=&amp;popup=yes\" onclick=\"scorecards.send(561643);return Html.popup(this, {width:695, height:800})\" title=\"slowly into stride, always in rear\">(16L Secretinthepark 9-3)</a> 12/1 </td>\n" +
+                        " <td>\n" +
+                        " <a href=\"http://www.racingpost.com/horses/jockey_home.sd?jockey_id=82384\" onclick=\"scorecards.send(&quot;jockey_name&quot;);return Html.popup(this, {width:695, height:800})\" title=\"Full details about this JOCKEY\">Liam Jones</a> </td>\n" +
+                        " <td class=\"num\">—</td>\n" +
+                        " <td class=\"num\"><span class=\"red bold\">*</span></td>\n" +
+                        " <td class=\"num last\"><span class=\"red bold\">*</span></td>\n" +
+                        " </tr>\n" +
+                        " <tr>\n" +
+                        " <td class=\"v\"><a href=\"#\" onclick=\"scorecards.sendSpecificDesc(&quot;ruk_video&quot;, &quot;40, 2012-08-17, 12:00&quot;);panels.mediaCentre.replayPopup($(this), 560969, 815276, '2012-08-17', 'RUK'); return false;\"><img src=\"http://ui.racingpost.com/release/v17/ico/video.17.0.gif\" alt=\"Video\" title=\"Video\"></a></td>\n" +
+                        " <td>\n" +
+                        " <a href=\"http://www.racingpost.com/horses/result_home.sd?race_id=560969&amp;r_date=2012-08-17&amp;popup=yes\" onclick=\"scorecards.send(560969);return Html.popup(this, {width:695, height:800})\" title=\"British Stallion Studs Supporting British Racing E B F Maiden Stakes\">17Aug12</a> &nbsp;\n" +
+                        " </td>\n" +
+                        " <td>\n" +
+                        " <b class=\"black\">\n" +
+                        " <a href=\"http://www.racingpost.com/horses/course_home.sd?crs_id=40\" onclick=\"return Html.popup(this, {width:695, height:800})\" title=\"Course (Click to view details): left-handed, galloping track\">Not</a> 6Gd </b>\n" +
+                        " C52yMd 3K </td>\n" +
+                        " <td>9-3</td>\n" +
+                        " <td>\n" +
+                        " <b class=\"black\">8</b>/11 <a href=\"http://www.racingpost.com/horses/result_home.sd?race_id=560969&amp;r_date=&amp;popup=yes\" onclick=\"scorecards.send(560969);return Html.popup(this, {width:695, height:800})\" title=\"dwelt and slightly hampered start, green and in rear until some late headway\">(12½L Cour Valant 9-3)</a> 20/1 </td>\n" +
+                        " <td>\n" +
+                        " <a href=\"http://www.racingpost.com/horses/jockey_home.sd?jockey_id=82384\" onclick=\"scorecards.send(&quot;jockey_name&quot;);return Html.popup(this, {width:695, height:800})\" title=\"Full details about this JOCKEY\">Liam Jones</a> </td>\n" +
+                        " <td class=\"num\">—</td>\n" +
+                        " <td class=\"num\"><span class=\"red bold\">*</span></td>\n" +
+                        " <td class=\"num last\"><span class=\"red bold\">*</span></td>\n" +
+                        " </tr>\n" +
+                        " </tbody></table>\n")
                 .append(" <span id=\"barrier_RPR-TS_In_Form12671926803\" class=\"bar prpTsInfo\"><span id=\"ruli_33\"><span class=\"red bold\">*</span> Historical RP Ratings and Topspeed Ratings are part of Racing Post Members' Club <a href=\"#\" class=\"blue\" onclick=\"javascript:callLogin('special_offer');\"> Log in to view</a></span></span></div>\n" +
                         "<div id=\"sc_raceHorseNotes_815276\" class=\"notes\" style=\"display: none; \"></div>\n" +
                         "\n" +

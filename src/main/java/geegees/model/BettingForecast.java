@@ -18,20 +18,20 @@ public class BettingForecast {
 
     Collection<Horse> horses = newArrayList();
 
-    public BettingForecast(Document document) {
+    public BettingForecast(Element element) {
         logger.info("loading betting forecast...");
-        Element favourite = document.getElementsByTag("b").get(0);
+        Element favourite = element.getElementsByTag("b").get(0);
         final String favouriteName = favourite.getElementsByTag("a").get(0).text();
         horses.add(new Horse(favouriteName, favourite.textNodes().get(0).text().trim()));
 
-        List<TextNode> odds = newArrayList(Collections2.filter(document.getElementsByTag("p").get(0).textNodes(),
+        List<TextNode> odds = newArrayList(Collections2.filter(element.getElementsByTag("p").get(0).textNodes(),
                 new Predicate<TextNode>() {
                     @Override
                     public boolean apply(TextNode node) {
                         return node.text().length() > 2;
                     }
                 }));
-        List<Element> names = newArrayList(Collections2.filter(document.getElementsByTag("p").get(0).getElementsByTag("a"),
+        List<Element> names = newArrayList(Collections2.filter(element.getElementsByTag("p").get(0).getElementsByTag("a"),
                 new Predicate<Element>() {
                     @Override
                     public boolean apply(Element name) {

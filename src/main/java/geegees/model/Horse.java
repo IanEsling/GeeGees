@@ -25,4 +25,9 @@ public class Horse {
     public Integer getTips() {
         return tips;
     }
+
+    @Override
+    public String toString() {
+        return name + " : " + odds;
+    }
 }
