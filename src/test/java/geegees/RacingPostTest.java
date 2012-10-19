@@ -6,7 +6,6 @@ import org.jsoup.nodes.Element;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 
 import java.io.IOException;
@@ -14,16 +13,9 @@ import java.util.List;
 
 import static com.google.common.collect.Lists.newArrayList;
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
-import static org.mockito.BDDMockito.given;
-import static org.mockito.Matchers.any;
-import static org.mockito.Matchers.anyString;
 
 @RunWith(MockitoJUnitRunner.class)
 public class RacingPostTest {
-
-    @Mock
-    RacingPostService racingPostService;
 
     List<String> raceUrls;
     private String baseURL;
@@ -39,8 +31,7 @@ public class RacingPostTest {
 
     @Test
     public void getBettingForecastForEachRace() throws IOException {
-//        given(racingPostService.getForecast(anyString())).willReturn()
-        List<Element> forecast = newArrayList();
+        List<Element> forecast;
         for (String url : raceUrls) {
             Document race = Jsoup.connect(baseURL + url).timeout(10000).get();
             forecast = race.getElementsByClass("cardFooter").get(0).getElementsByTag("p");

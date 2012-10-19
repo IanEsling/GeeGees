@@ -1,5 +1,7 @@
-package geegees;
+package geegees.model;
 
+import geegees.model.BettingForecast;
+import geegees.model.Horse;
 import org.jsoup.Jsoup;
 import org.junit.Before;
 import org.junit.Test;

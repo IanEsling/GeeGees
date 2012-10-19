@@ -1,4 +1,4 @@
-package geegees;
+package geegees.model;
 
 public class Horse {
     String name;

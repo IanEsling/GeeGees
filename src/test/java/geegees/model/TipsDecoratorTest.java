@@ -1,5 +1,7 @@
-package geegees;
+package geegees.model;
 
+import geegees.model.Horse;
+import geegees.model.TipsDecorator;
 import org.jsoup.Jsoup;
 import org.junit.Before;
 import org.junit.Test;
