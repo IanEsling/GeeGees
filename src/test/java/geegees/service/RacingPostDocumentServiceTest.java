@@ -1,5 +1,6 @@
 package geegees.service;
 
+import geegees.builders.HorseBuilder;
 import geegees.model.BettingForecast;
 import geegees.model.Horse;
 import geegees.model.Race;
@@ -7,30 +8,33 @@ import org.jsoup.Jsoup;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.util.List;
 import java.util.Map;
 
+import static com.google.common.collect.Lists.newArrayList;
 import static com.google.common.collect.Maps.newHashMap;
+import static geegees.builders.HorseBuilder.horseBuilder;
 import static org.junit.Assert.*;
 
 @SuppressWarnings("StringBufferReplaceableByString")
 public class RacingPostDocumentServiceTest {
 
     RacingPostDocumentService racingPostDocumentService = new RacingPostDocumentService();
-    Map<String, String> horses;
+    List<Horse> horses;
 
     @Before
     public void horses() {
-        horses = newHashMap();
-        horses.put("Best To Better", "4/1");
-        horses.put("Slipstream Angel", "5/1");
-        horses.put("El Mirage", "6/1");
-        horses.put("Pearl Bounty", "6/1");
-        horses.put("Al Khisa", "8/1");
-        horses.put("Hot Mustard", "8/1");
-        horses.put("Byron´s Dream", "12/1");
-        horses.put("Our Three Graces", "12/1");
-        horses.put("Missing Agent", "16/1");
-        horses.put("Stand N Applaude", "16/1");
+        horses = newArrayList();
+        horses.add(horseBuilder().name("Best To Better").odds("4/1").build());
+        horses.add(horseBuilder().name("Slipstream Angel").odds("5/1").build());
+        horses.add(horseBuilder().name("El Mirage").odds("6/1").build());
+        horses.add(horseBuilder().name("Pearl Bounty").odds("6/1").build());
+        horses.add(horseBuilder().name("Al Khisa").odds("8/1").build());
+        horses.add(horseBuilder().name("Hot Mustard").odds("8/1").build());
+        horses.add(horseBuilder().name("Byron´s Dream").odds("12/1").build());
+        horses.add(horseBuilder().name("Our Three Graces").odds("12/1").build());
+        horses.add(horseBuilder().name("Missing Agent").odds("16/1").build());
+        horses.add(horseBuilder().name("Stand N Applaude").odds("16/1").build());
     }
 
     @Test
@@ -43,15 +47,29 @@ public class RacingPostDocumentServiceTest {
     }
 
     @Test
+    public void shouldGetTipsDecorator(){
+
+    }
+
+    @Test
     public void shouldGetBettingForecastFromDocument() {
         BettingForecast forecast = racingPostDocumentService.getBettingForecast(Jsoup.parse(getRaceHtml()));
         assertNotNull("no forecast", forecast);
         assertEquals("wrong number of horses", 10, forecast.getHorses().size());
         for (Horse horse : forecast.getHorses()) {
-            assertTrue("can't find horse " + horse.getName(), horses.keySet().contains(horse.getName()));
-            assertEquals("wrong odds for horse " + horse.getName(), horses.get(horse.getName()),
+            assertTrue("can't find horse " + horse.getName(), horses.contains(horse));
+            assertEquals("wrong odds for horse " + horse.getName(), getHorseByName(horse).getOdds(),
                     horse.getOdds());
         }
+    }
+
+    private Horse getHorseByName(Horse findMe) {
+        for (Horse horse : horses) {
+            if (horse.getName().equals(findMe.getName())) {
+                return horse;
+            }
+        }
+        return null;
     }
 
     private String getRaceHtml() {

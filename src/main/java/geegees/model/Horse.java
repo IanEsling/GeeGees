@@ -5,7 +5,7 @@ public class Horse {
     private String odds;
     private Integer tips;
 
-    Horse(String name, String odds) {
+    public Horse(String name, String odds) {
         this.name = name;
         this.odds = odds;
     }
@@ -29,5 +29,22 @@ public class Horse {
     @Override
     public String toString() {
         return name + " : " + odds;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Horse horse = (Horse) o;
+
+        if (name != null ? !name.equals(horse.name) : horse.name != null) return false;
+
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        return name != null ? name.hashCode() : 0;
     }
 }

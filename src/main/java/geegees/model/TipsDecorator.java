@@ -20,7 +20,6 @@ public class TipsDecorator {
                 horse.setTips(Integer.valueOf(runner.select("div.tips").get(0).text()));
             }
         }
-
     }
 
     private Horse getHorseByName(String name) {
