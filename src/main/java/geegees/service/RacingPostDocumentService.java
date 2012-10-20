@@ -19,11 +19,12 @@ import static com.google.common.collect.Lists.newArrayList;
 public class RacingPostDocumentService {
     Logger logger = LoggerFactory.getLogger(RacingPostDocumentService.class);
     private static final String RACING_POST_BASE_URL = "http://betting.racingpost.com";
+    private static final int TIMEOUT = 30000;
 
     public Document getRacePage(String url) {
         Document document = null;
         try {
-            document = Jsoup.connect(RACING_POST_BASE_URL + url).timeout(10000).get();
+            document = Jsoup.connect(RACING_POST_BASE_URL + url).timeout(TIMEOUT).get();
         } catch (IOException e) {
             logger.error("error getting race URL: " + url, e);
         }
@@ -45,7 +46,7 @@ public class RacingPostDocumentService {
     public Collection<String> getRaceUrls() {
         Document racesPage = null;
         try {
-            racesPage = Jsoup.connect(RACING_POST_BASE_URL + "/horses/cards").timeout(10000).get();
+            racesPage = Jsoup.connect(RACING_POST_BASE_URL + "/horses/cards").timeout(TIMEOUT).get();
         } catch (IOException e) {
             logger.error("error trying to read from Racing Post website.", e);
         }

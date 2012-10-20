@@ -5,7 +5,7 @@ import org.jsoup.nodes.Element;
 
 import java.util.Collection;
 
-public class Race {
+public class Race implements Comparable<Race> {
     private String venue;
     private String time;
     private Integer numberOfRunners;
@@ -53,5 +53,14 @@ public class Race {
 
     public void setNumberOfRunners(Integer numberOfRunners) {
         this.numberOfRunners = numberOfRunners;
+    }
+
+    @Override
+    public int compareTo(Race race) {
+        if (race.getVenue().equals(getVenue())) {
+            return getTime().compareTo(race.getTime());
+        } else {
+            return getVenue().compareTo(race.getVenue());
+        }
     }
 }

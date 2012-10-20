@@ -1,12 +1,16 @@
 package geegees.builders;
 
+import geegees.model.Horse;
 import geegees.model.Race;
+
+import java.util.Collection;
 
 public class RaceBuilder {
 
     private String time;
     private String venue;
     private Integer numberOfRunners;
+    private Collection<Horse> horses;
 
     private RaceBuilder(){}
 
@@ -19,6 +23,7 @@ public class RaceBuilder {
         race.setTime(time);
         race.setVenue(venue);
         race.setNumberOfRunners(numberOfRunners);
+        race.setHorses(horses);
         return race;
     }
 
@@ -34,6 +39,11 @@ public class RaceBuilder {
 
     public RaceBuilder numberOfRunners(Integer numberOfRunners) {
         this.numberOfRunners = numberOfRunners;
+        return this;
+    }
+
+    public RaceBuilder horses(Collection<Horse> horses) {
+        this.horses = horses;
         return this;
     }
 }
