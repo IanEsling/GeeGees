@@ -44,7 +44,7 @@ public class BettingForecastTest {
                 "<p>" +
                 "<strong>BETTING FORECAST:</strong>" +
                 "<b>10/11 <a href=\"http://www.racingpost.com/horses/horse_home.sd?horse_id=800437\" onclick=\"scorecards.send(&quot;horse_name&quot;);return Html.popup(this, {width:695, height:800})\" title=\"Full details about this HORSE\">Kingdom</a></b>" +
-                ", 5/1 <a href=\"http://www.racingpost.com/horses/horse_home.sd?horse_id=818910\" onclick=\"scorecards.send(&quot;horse_name&quot;);return Html.popup(this, {width:695, height:800})\" title=\"Full details about this HORSE\">Sophisticated Heir</a>" +
+                ", <b>5/1 <a href=\"http://www.racingpost.com/horses/horse_home.sd?horse_id=818910\" onclick=\"scorecards.send(&quot;horse_name&quot;);return Html.popup(this, {width:695, height:800})\" title=\"Full details about this HORSE\">Sophisticated Heir</a></b>" +
                 ", 12/1 <a href=\"http://www.racingpost.com/horses/horse_home.sd?horse_id=816284\" onclick=\"scorecards.send(&quot;horse_name&quot;);return Html.popup(this, {width:695, height:800})\" title=\"Full details about this HORSE\">Lucky Kitten</a>" +
                 ", 16/1 <a href=\"http://www.racingpost.com/horses/horse_home.sd?horse_id=821766\" onclick=\"scorecards.send(&quot;horse_name&quot;);return Html.popup(this, {width:695, height:800})\" title=\"Full details about this HORSE\">Pay Day Kitten</a>" +
                 ", 20/1 <a href=\"http://www.racingpost.com/horses/horse_home.sd?horse_id=820782\" onclick=\"scorecards.send(&quot;horse_name&quot;);return Html.popup(this, {width:695, height:800})\" title=\"Full details about this HORSE\">Rock N Rover</a>" +

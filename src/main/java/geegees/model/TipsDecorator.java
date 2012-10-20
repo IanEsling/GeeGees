@@ -6,9 +6,11 @@ import org.jsoup.select.Elements;
 
 import java.util.Collection;
 
+import static com.google.common.collect.Lists.newArrayList;
+
 public class TipsDecorator {
 
-    private final Collection<Horse> horses;
+    private Collection<Horse> horses = newArrayList();
 
     public TipsDecorator(Document document, Collection<Horse> horses) {
         this.horses = horses;
@@ -22,6 +24,8 @@ public class TipsDecorator {
         }
     }
 
+    public TipsDecorator() {}
+
     private Horse getHorseByName(String name) {
         for (Horse horse : horses) {
             if (horse.getName().equalsIgnoreCase(name)) {
@@ -33,5 +37,9 @@ public class TipsDecorator {
 
     public Collection<Horse> getHorses() {
         return horses;
+    }
+
+    public void setHorses(Collection<Horse> horses) {
+        this.horses = horses;
     }
 }

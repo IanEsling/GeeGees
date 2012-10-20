@@ -5,6 +5,7 @@ import com.google.common.collect.Collections2;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.nodes.TextNode;
+import org.jsoup.select.Elements;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -18,12 +19,19 @@ public class BettingForecast {
 
     Collection<Horse> horses = newArrayList();
 
+    public BettingForecast(){}
+
     public BettingForecast(Element element) {
         logger.info("loading betting forecast...");
-        Element favourite = element.getElementsByTag("b").get(0);
-        final String favouriteName = favourite.getElementsByTag("a").get(0).text();
-        horses.add(new Horse(favouriteName, favourite.textNodes().get(0).text().trim()));
+        final Collection<String> favouriteNames = newArrayList();
+        Elements favourites = element.getElementsByTag("b");
+        for (Element favourite : favourites) {
+            String favouriteName = favourite.getElementsByTag("a").get(0).text();
+            favouriteNames.add(favouriteName);
+            horses.add(new Horse(favouriteName, favourite.textNodes().get(0).text().trim()));
+        }
 
+        logger.info("getting names and odds from element : " + element.getElementsByTag("p").get(0));
         List<TextNode> odds = newArrayList(Collections2.filter(element.getElementsByTag("p").get(0).textNodes(),
                 new Predicate<TextNode>() {
                     @Override
@@ -35,10 +43,12 @@ public class BettingForecast {
                 new Predicate<Element>() {
                     @Override
                     public boolean apply(Element name) {
-                        return !name.text().equals(favouriteName);
+                        return !favouriteNames.contains(name.text());
                     }
                 }));
 
+        logger.info("getting odds : " + odds);
+        logger.info("for horses : " + names);
         for (int i = 0; i <= names.size() - 1; i++) {
             horses.add(new Horse(names.get(i).text(), odds.get(i).text().substring(2).trim()));
         }
@@ -48,4 +58,7 @@ public class BettingForecast {
         return horses;
     }
 
+    public void setHorses(Collection<Horse> horses) {
+        this.horses = horses;
+    }
 }
