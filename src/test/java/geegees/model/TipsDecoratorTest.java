@@ -1,7 +1,5 @@
 package geegees.model;
 
-import geegees.model.Horse;
-import geegees.model.TipsDecorator;
 import org.jsoup.Jsoup;
 import org.junit.Before;
 import org.junit.Test;
@@ -19,7 +17,7 @@ public class TipsDecoratorTest {
     Map<String, Integer> expectedTips;
 
     @Before
-    public void createExpectedTips(){
+    public void createExpectedTips() {
         expectedTips = newHashMap();
         expectedTips.put("Kingdom", 5);
         expectedTips.put("Cool Metallic", 1);

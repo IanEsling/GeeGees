@@ -23,11 +23,6 @@ public class BettingForecastBuilder {
         return bettingForecast;
     }
 
-    public BettingForecastBuilder addHorse(Horse horse) {
-        this.horses.add(horse);
-        return this;
-    }
-
     public BettingForecastBuilder horses(Collection<Horse> horses) {
         this.horses = horses;
         return this;

@@ -11,21 +11,16 @@ public class TipsDecoratorBuilder {
 
     private Collection<Horse> horses = newArrayList();
 
-    private TipsDecoratorBuilder(){}
+    private TipsDecoratorBuilder() {}
 
-    public static TipsDecoratorBuilder tipsDecoratorBuilder(){
+    public static TipsDecoratorBuilder tipsDecoratorBuilder() {
         return new TipsDecoratorBuilder();
     }
 
-    public TipsDecorator build(){
+    public TipsDecorator build() {
         TipsDecorator tipsDecorator = new TipsDecorator();
         tipsDecorator.setHorses(horses);
         return tipsDecorator;
-    }
-
-    public TipsDecoratorBuilder addHorse(Horse horse) {
-        this.horses.add(horse);
-        return this;
     }
 
     public TipsDecoratorBuilder horses(Collection<Horse> horses) {

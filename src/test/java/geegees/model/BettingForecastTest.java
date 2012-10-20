@@ -1,14 +1,11 @@
 package geegees.model;
 
-import geegees.model.BettingForecast;
-import geegees.model.Horse;
 import org.jsoup.Jsoup;
 import org.junit.Before;
 import org.junit.Test;
 
 import java.util.Map;
 
-import static com.google.common.collect.Lists.newArrayList;
 import static com.google.common.collect.Maps.newHashMap;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
@@ -19,7 +16,7 @@ public class BettingForecastTest {
     Map<String, String> horses;
 
     @Before
-    public void setHorseNames(){
+    public void setHorseNames() {
         horses = newHashMap();
         horses.put("Kingdom", "10/11");
         horses.put("Sophisticated Heir", "5/1");
@@ -30,7 +27,7 @@ public class BettingForecastTest {
     }
 
     @Test
-    public void shouldParseBettingForecastHtml(){
+    public void shouldParseBettingForecastHtml() {
         bettingForecast = new BettingForecast(Jsoup.parse(getBettingForecastHTML()));
         assertTrue("wrong number of horses", bettingForecast.getHorses().size() == 6);
         for (Horse horse : bettingForecast.getHorses()) {

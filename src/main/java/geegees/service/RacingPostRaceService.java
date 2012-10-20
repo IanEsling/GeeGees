@@ -1,17 +1,9 @@
 package geegees.service;
 
 import geegees.model.Race;
-import geegees.model.TipsDecorator;
-import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
-import org.jsoup.nodes.Element;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
-import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Collection;
-import java.util.List;
 
 import static com.google.common.collect.Lists.newArrayList;
 

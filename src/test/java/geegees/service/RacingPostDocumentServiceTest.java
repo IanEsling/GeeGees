@@ -1,6 +1,5 @@
 package geegees.service;
 
-import geegees.builders.HorseBuilder;
 import geegees.model.BettingForecast;
 import geegees.model.Horse;
 import geegees.model.Race;
@@ -10,10 +9,8 @@ import org.junit.Before;
 import org.junit.Test;
 
 import java.util.List;
-import java.util.Map;
 
 import static com.google.common.collect.Lists.newArrayList;
-import static com.google.common.collect.Maps.newHashMap;
 import static geegees.builders.HorseBuilder.horseBuilder;
 import static org.junit.Assert.*;
 
@@ -48,7 +45,7 @@ public class RacingPostDocumentServiceTest {
     }
 
     @Test
-    public void shouldGetTipsDecorator(){
+    public void shouldGetTipsDecorator() {
         TipsDecorator tipsDecorator = racingPostDocumentService.getTipsDecorator(Jsoup.parse(getRaceHtml()), horses);
         assertNotNull("no tips decorator", tipsDecorator);
         assertEquals("wrong number of horses", 10, tipsDecorator.getHorses().size());

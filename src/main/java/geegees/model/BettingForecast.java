@@ -2,7 +2,6 @@ package geegees.model;
 
 import com.google.common.base.Predicate;
 import com.google.common.collect.Collections2;
-import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.nodes.TextNode;
 import org.jsoup.select.Elements;
@@ -19,7 +18,7 @@ public class BettingForecast {
 
     Collection<Horse> horses = newArrayList();
 
-    public BettingForecast(){}
+    public BettingForecast() {}
 
     public BettingForecast(Element element) {
         logger.info("loading betting forecast...");

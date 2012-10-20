@@ -6,17 +6,16 @@ public class HorseBuilder {
 
     String name;
     private String odds;
-    private Integer tips;
 
-    private HorseBuilder(){}
+    private HorseBuilder() {}
 
-    public static HorseBuilder horseBuilder(){
+    public static HorseBuilder horseBuilder() {
         return new HorseBuilder();
     }
 
-    public Horse build(){
+    public Horse build() {
         Horse horse = new Horse(name, odds);
-        horse.setTips(tips);
+//        horse.setTips(tips);
         return horse;
     }
 
@@ -27,11 +26,6 @@ public class HorseBuilder {
 
     public HorseBuilder odds(String odds) {
         this.odds = odds;
-        return this;
-    }
-
-    public HorseBuilder tips(Integer tips) {
-        this.tips = tips;
         return this;
     }
 }
