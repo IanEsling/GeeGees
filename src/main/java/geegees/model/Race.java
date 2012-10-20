@@ -56,6 +56,12 @@ public class Race implements Comparable<Race> {
     }
 
     @Override
+    public String toString() {
+        return getTime() + " at " + getVenue() + " with " + getNumberOfRunners()
+                 + " : " + getHorses();
+    }
+
+    @Override
     public int compareTo(Race race) {
         if (race.getVenue().equals(getVenue())) {
             return getTime().compareTo(race.getTime());

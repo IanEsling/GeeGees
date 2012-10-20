@@ -22,17 +22,19 @@ public class RacingPostDocumentService {
     private static final int TIMEOUT = 30000;
 
     public Document getRacePage(String url) {
-        Document document = null;
         try {
-            document = Jsoup.connect(RACING_POST_BASE_URL + url).timeout(TIMEOUT).get();
+            logger.debug("loading race from URL {}", url);
+            return Jsoup.connect(RACING_POST_BASE_URL + url).timeout(TIMEOUT).get();
         } catch (IOException e) {
             logger.error("error getting race URL: " + url, e);
         }
-        return document;
+        return null;
     }
 
     public Race getRace(Document document) {
-        return new Race(document);
+        Race race = new Race(document);
+        logger.info("loading {} at {}", race.getTime(), race.getVenue());
+        return race;
     }
 
     public BettingForecast getBettingForecast(Document document) {
@@ -46,6 +48,7 @@ public class RacingPostDocumentService {
     public Collection<String> getRaceUrls() {
         Document racesPage = null;
         try {
+            logger.info("looking for races...");
             racesPage = Jsoup.connect(RACING_POST_BASE_URL + "/horses/cards").timeout(TIMEOUT).get();
         } catch (IOException e) {
             logger.error("error trying to read from Racing Post website.", e);
@@ -53,6 +56,8 @@ public class RacingPostDocumentService {
         Collection<String> raceUrls = newArrayList();
         getRaceUrlsForColumn(racesPage, "leftColumn", raceUrls);
         getRaceUrlsForColumn(racesPage, "rightColumn", raceUrls);
+        logger.debug("loaded race URLs: {}", raceUrls);
+        logger.info("found {} races...", raceUrls.size());
         return raceUrls;
     }
 

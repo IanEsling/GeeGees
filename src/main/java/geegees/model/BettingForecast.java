@@ -21,16 +21,17 @@ public class BettingForecast {
     public BettingForecast() {}
 
     public BettingForecast(Element element) {
-        logger.info("loading betting forecast...");
         final Collection<String> favouriteNames = newArrayList();
+        logger.debug("getting favourites for betting forecast...");
         Elements favourites = element.getElementsByTag("b");
+        logger.debug("got favourites {} ", favourites);
         for (Element favourite : favourites) {
             String favouriteName = favourite.getElementsByTag("a").get(0).text();
             favouriteNames.add(favouriteName);
             horses.add(new Horse(favouriteName, favourite.textNodes().get(0).text().trim()));
         }
 
-        logger.info("getting names and odds from element : " + element.getElementsByTag("p").get(0));
+        logger.debug("getting names and odds from element : " + element.getElementsByTag("p").get(0));
         List<TextNode> odds = newArrayList(Collections2.filter(element.getElementsByTag("p").get(0).textNodes(),
                 new Predicate<TextNode>() {
                     @Override
@@ -46,8 +47,8 @@ public class BettingForecast {
                     }
                 }));
 
-        logger.info("getting odds : " + odds);
-        logger.info("for horses : " + names);
+        logger.debug("getting odds : " + odds);
+        logger.debug("for horses : " + names);
         for (int i = 0; i <= names.size() - 1; i++) {
             horses.add(new Horse(names.get(i).text(), odds.get(i).text().substring(2).trim()));
         }
