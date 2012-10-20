@@ -2,6 +2,7 @@ package geegees.service;
 
 import com.google.common.base.Function;
 import geegees.model.Horse;
+import geegees.model.Race;
 import org.jsoup.nodes.Document;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -19,6 +20,8 @@ import static geegees.builders.HorseBuilder.horseBuilder;
 import static geegees.builders.RaceBuilder.raceBuilder;
 import static geegees.builders.TipsDecoratorBuilder.tipsDecoratorBuilder;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.fail;
 import static org.mockito.BDDMockito.given;
 
 @RunWith(MockitoJUnitRunner.class)
@@ -55,6 +58,25 @@ public class RacingPostRaceServiceTest {
                 tipsDecoratorBuilder().horses(tips2).build());
 
         assertEquals("no races", 2, racingPostRaceService.getRaces().size());
+        Race race1 = getRaceByVenue(racingPostRaceService.getRaces(), "Venue 1");
+        Race race2 = getRaceByVenue(racingPostRaceService.getRaces(), "Venue 2");
+        assertEquals("wrong time for race1", "time 1", race1.getTime());
+        assertEquals("wrong number of runners for race 1", 1, race1.getNumberOfRunners().intValue());
+        assertEquals("wrong number of horses for race 1", 1, race1.getHorses().size());
+
+        assertEquals("wrong time for race2", "time 2", race2.getTime());
+        assertEquals("wrong number of runners for race 2", 2, race2.getNumberOfRunners().intValue());
+        assertEquals("wrong number of horses for race 2", 2, race2.getHorses().size());
+    }
+
+    private Race getRaceByVenue(Collection<Race> races, String venue) {
+        for (Race race : races) {
+            if (race.getVenue().equals(venue)) {
+                return race;
+            }
+        }
+        fail("couldn't find race for venue " + venue + " in races " + races);
+        return null;
     }
 
     private Collection<Horse> addTips(List<Horse> horses) {
@@ -67,11 +89,3 @@ public class RacingPostRaceServiceTest {
         });
     }
 }
-
-//for (String url : raceUrls) {
-//        Document racePage = racingPostDocumentService.getRacePage(url);
-//Race race = racingPostDocumentService.getRace(racePage);
-//race.setHorses(racingPostDocumentService.getTipsDecorator(racePage,
-//        racingPostDocumentService.getBettingForecast(racePage).getHorses()).getHorses());
-//races.add(race);
-//}
