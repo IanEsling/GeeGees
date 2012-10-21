@@ -19,7 +19,7 @@ import static com.google.common.collect.Lists.newArrayList;
 public class RacingPostDocumentService {
     Logger logger = LoggerFactory.getLogger(RacingPostDocumentService.class);
     private static final String RACING_POST_BASE_URL = "http://betting.racingpost.com";
-    private static final int TIMEOUT = 30000;
+    private static final int TIMEOUT = 60000;
 
     public Document getRacePage(String url) {
         try {

@@ -10,18 +10,20 @@ import org.slf4j.LoggerFactory;
 
 import java.io.File;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.Collection;
 import java.util.Date;
 
 public class ExcelService {
 
     Logger logger = LoggerFactory.getLogger(ExcelService.class);
+    SimpleDateFormat format = new SimpleDateFormat("dd-MM-yyyy-HH:mm");
 
     public void createSpreadsheet(Collection<Race> races) {
         WritableWorkbook racesDoc = null;
         try {
             logger.info("creating spreadsheet...");
-            racesDoc = Workbook.createWorkbook(File.createTempFile("races" + String.valueOf(new Date().getTime()), ".xls", new File(System.getProperty("user.dir"))));
+            racesDoc = Workbook.createWorkbook(new File(new File(System.getProperty("user.dir")), "races-" + format.format(new Date()) + ".xls"));
         } catch (IOException e) {
             logger.error("Error trying to write races to spreadsheet", e);
         }
@@ -32,7 +34,7 @@ public class ExcelService {
             WritableCellFormat raceTitleFormat = new WritableCellFormat(raceTitleFont);
             int row = 0;
             for (Race race : races) {
-                logger.debug("writing spreadsheet for race {}", race);
+                logger.info("writing to spreadsheet for {}", race);
                 try {
                     sheet.addCell(new Label(0, row, race.getVenue(), raceTitleFormat));
                     sheet.addCell(new Label(1, row, race.getTime(), raceTitleFormat));

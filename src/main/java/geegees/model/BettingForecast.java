@@ -47,6 +47,9 @@ public class BettingForecast {
                     }
                 }));
 
+        if (names.size() == 0) {
+            logger.info("no betting forecast found for this race.");
+        }
         logger.debug("getting odds : " + odds);
         logger.debug("for horses : " + names);
         for (int i = 0; i <= names.size() - 1; i++) {

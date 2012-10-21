@@ -2,11 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4906eb3e-3c23-416b-a2bb-2c3f55caf229" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/GeeGees.iml" afterPath="$PROJECT_DIR$/GeeGees.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pom.xml" afterPath="$PROJECT_DIR$/pom.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/geegees/model/BettingForecast.java" afterPath="$PROJECT_DIR$/src/main/java/geegees/model/BettingForecast.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/geegees/model/Race.java" afterPath="$PROJECT_DIR$/src/main/java/geegees/model/Race.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/geegees/model/TipsDecorator.java" afterPath="$PROJECT_DIR$/src/main/java/geegees/model/TipsDecorator.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/geegees/service/ExcelService.java" afterPath="$PROJECT_DIR$/src/main/java/geegees/service/ExcelService.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/geegees/service/RacingPostDocumentService.java" afterPath="$PROJECT_DIR$/src/main/java/geegees/service/RacingPostDocumentService.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/geegees/service/RacingPostRaceService.java" afterPath="$PROJECT_DIR$/src/main/java/geegees/service/RacingPostRaceService.java" />
     </list>
     <ignored path="GeeGees.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -64,10 +64,10 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="RacingPostRaceService.java" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/java/geegees/service/RacingPostRaceService.java">
+      <file leaf-file-name="GeeGees.log" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/GeeGees.log">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="28" column="16" selection-start="867" selection-end="867" vertical-scroll-proportion="2.375">
+            <state line="86242" column="45" selection-start="8865004" selection-end="8865004" vertical-scroll-proportion="-941.9544">
               <folding />
             </state>
           </provider>
@@ -86,9 +86,6 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/src/test/java/geegees/model/RaceTest.java" />
-        <option value="$PROJECT_DIR$/src/test/java/geegees/model/BettingForecastTest.java" />
-        <option value="$PROJECT_DIR$/src/test/java/geegees/builders/TipsDecoratorBuilder.java" />
         <option value="$PROJECT_DIR$/src/test/java/geegees/builders/BettingForecastBuilder.java" />
         <option value="$PROJECT_DIR$/src/main/java/geegees/model/Horse.java" />
         <option value="$PROJECT_DIR$/src/test/java/geegees/service/RacingPostRaceServiceTest.java" />
@@ -96,12 +93,15 @@
         <option value="$PROJECT_DIR$/src/test/java/geegees/builders/HorseBuilder.java" />
         <option value="$PROJECT_DIR$/src/main/java/geegees/Main.java" />
         <option value="$PROJECT_DIR$/src/test/java/geegees/ExcelCreatingTest.java" />
-        <option value="$PROJECT_DIR$/src/main/java/geegees/service/ExcelService.java" />
         <option value="$PROJECT_DIR$/src/main/java/geegees/model/Race.java" />
-        <option value="$PROJECT_DIR$/src/main/java/geegees/model/BettingForecast.java" />
         <option value="$PROJECT_DIR$/src/main/java/geegees/model/TipsDecorator.java" />
-        <option value="$PROJECT_DIR$/src/main/java/geegees/service/RacingPostDocumentService.java" />
         <option value="$PROJECT_DIR$/src/main/java/geegees/service/RacingPostRaceService.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/geegees/logback.xml" />
+        <option value="$PROJECT_DIR$/pom.xml" />
+        <option value="$PROJECT_DIR$/src/main/resources/logback.xml" />
+        <option value="$PROJECT_DIR$/src/main/java/geegees/service/RacingPostDocumentService.java" />
+        <option value="$PROJECT_DIR$/src/main/java/geegees/model/BettingForecast.java" />
+        <option value="$PROJECT_DIR$/src/main/java/geegees/service/ExcelService.java" />
       </list>
     </option>
   </component>
@@ -111,6 +111,38 @@
         <option name="keepSourceFolders" value="false" />
       </MavenImportingSettings>
     </option>
+  </component>
+  <component name="MavenProjectNavigator">
+    <treeState>
+      <PATH>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="" />
+          <option name="myItemType" value="org.jetbrains.idea.maven.navigator.MavenProjectsStructure$RootNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="GeeGees" />
+          <option name="myItemType" value="org.jetbrains.idea.maven.navigator.MavenProjectsStructure$ProjectNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="Dependencies" />
+          <option name="myItemType" value="org.jetbrains.idea.maven.navigator.MavenProjectsStructure$DependenciesNode" />
+        </PATH_ELEMENT>
+      </PATH>
+      <PATH>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="" />
+          <option name="myItemType" value="org.jetbrains.idea.maven.navigator.MavenProjectsStructure$RootNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="GeeGees" />
+          <option name="myItemType" value="org.jetbrains.idea.maven.navigator.MavenProjectsStructure$ProjectNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="Lifecycle" />
+          <option name="myItemType" value="org.jetbrains.idea.maven.navigator.MavenProjectsStructure$LifecycleNode" />
+        </PATH_ELEMENT>
+      </PATH>
+    </treeState>
   </component>
   <component name="ProjectFrameBounds">
     <option name="width" value="1440" />
@@ -159,15 +191,9 @@
               <option name="myItemId" value="GeeGees" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
             </PATH_ELEMENT>
-          </PATH>
-          <PATH>
             <PATH_ELEMENT>
-              <option name="myItemId" value="GeeGees" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="GeeGees" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+              <option name="myItemId" value="External Libraries" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ExternalLibrariesNode" />
             </PATH_ELEMENT>
           </PATH>
           <PATH>
@@ -177,22 +203,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="GeeGees" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="test" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="geegees" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -219,70 +229,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="geegees" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="service" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="GeeGees" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="GeeGees" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="test" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="geegees" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="model" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="GeeGees" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="GeeGees" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="test" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="geegees" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="builders" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -301,6 +247,10 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="resources" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -405,7 +355,7 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="project.structure.last.edited" value="Project" />
+    <property name="project.structure.last.edited" value="Modules" />
     <property name="GoToFile.includeJavaFiles" value="false" />
     <property name="last_directory_selection" value="$PROJECT_DIR$/src/test/java/geegees/service" />
     <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary" value="JUnit4" />
@@ -434,6 +384,9 @@
     </key>
     <key name="CreateClassDialog.RecentsKey">
       <recent name="geegees" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/main/resources" />
     </key>
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
       <recent name="geegees.model" />
@@ -541,7 +494,13 @@
       </option>
       <envs />
       <patterns />
+      <RunnerSettings RunnerId="Debug">
+        <option name="DEBUG_PORT" value="" />
+        <option name="TRANSPORT" value="0" />
+        <option name="LOCAL" value="true" />
+      </RunnerSettings>
       <RunnerSettings RunnerId="Run" />
+      <ConfigurationWrapper RunnerId="Debug" />
       <ConfigurationWrapper RunnerId="Run" />
       <method />
     </configuration>
@@ -561,6 +520,32 @@
       <RunnerSettings RunnerId="Run" />
       <ConfigurationWrapper RunnerId="Run" />
       <method />
+    </configuration>
+    <configuration default="true" type="MavenRunConfiguration" factoryName="Maven">
+      <MavenSettings>
+        <option name="myGeneralSettings" />
+        <option name="myRunnerSettings" />
+        <option name="myRunnerParameters">
+          <MavenRunnerParameters>
+            <option name="profiles">
+              <set />
+            </option>
+            <option name="goals">
+              <list />
+            </option>
+            <option name="profilesMap">
+              <map />
+            </option>
+            <option name="workingDirPath" value="" />
+          </MavenRunnerParameters>
+        </option>
+      </MavenSettings>
+      <method>
+        <option name="AntTarget" enabled="false" />
+        <option name="BuildArtifacts" enabled="false" />
+        <option name="Make" enabled="false" />
+        <option name="Maven.BeforeRunTask" enabled="false" />
+      </method>
     </configuration>
     <configuration default="true" type="Remote" factoryName="Remote">
       <option name="USE_SOCKET_TRANSPORT" value="true" />
@@ -670,7 +655,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="Data Sources" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -684,9 +669,9 @@
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32848486" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
-      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24856322" sideWeight="0.27272728" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Run" active="true" anchor="bottom" auto_hide="true" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.72727275" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3297414" sideWeight="0.27272728" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24856322" sideWeight="0.27272728" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="true" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.72727275" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="CheckStyle" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -755,34 +740,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/test/java/geegees/model/RaceTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="16" column="0" selection-start="411" selection-end="411" vertical-scroll-proportion="0.03452528">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/geegees/model/BettingForecastTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="37" column="0" selection-start="1215" selection-end="1215" vertical-scroll-proportion="0.27496916">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/geegees/builders/TipsDecoratorBuilder.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="23" column="5" selection-start="599" selection-end="599" vertical-scroll-proportion="0.55825245">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/geegees/builders/BettingForecastBuilder.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="13" column="38" selection-start="318" selection-end="318" vertical-scroll-proportion="0.2184466">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/geegees/model/Horse.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="41" column="9" selection-start="799" selection-end="799" vertical-scroll-proportion="0.47572815">
@@ -831,27 +788,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/geegees/service/ExcelService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="34" column="68" selection-start="1278" selection-end="1278" vertical-scroll-proportion="0.58692974">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/geegees/model/Race.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="60" column="39" selection-start="1551" selection-end="1551" vertical-scroll-proportion="0.592233">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/geegees/model/BettingForecast.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="17" column="0" selection-start="418" selection-end="482" vertical-scroll-proportion="0.20715167">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/geegees/model/TipsDecorator.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="22" column="61" selection-start="768" selection-end="768" vertical-scroll-proportion="0.47572815">
@@ -859,16 +795,65 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/geegees/service/RacingPostDocumentService.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/geegees/service/RacingPostRaceService.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="20" column="4" selection-start="489" selection-end="567" vertical-scroll-proportion="0.1699029">
+        <state line="28" column="16" selection-start="867" selection-end="867" vertical-scroll-proportion="0.6456311">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/geegees/service/RacingPostRaceService.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/geegees/model/Race.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="28" column="16" selection-start="867" selection-end="867" vertical-scroll-proportion="2.375">
+        <state line="16" column="0" selection-start="354" selection-end="354" vertical-scroll-proportion="0.44174758">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pom.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="76" column="43" selection-start="2982" selection-end="2982" vertical-scroll-proportion="0.7237978">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/logback.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="10" column="36" selection-start="453" selection-end="453" vertical-scroll-proportion="0.34525278">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/geegees/service/RacingPostDocumentService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="20" column="4" selection-start="567" selection-end="567" vertical-scroll-proportion="0.03452528">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/geegees/model/BettingForecast.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="50" column="65" selection-start="2055" selection-end="2055" vertical-scroll-proportion="0.621455">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar:///System/Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents/Classes/classes.jar!/java/io/File.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="5" column="13" selection-start="145" selection-end="145" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/geegees/service/ExcelService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="25" column="0" selection-start="677" selection-end="677" vertical-scroll-proportion="0.17262639">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/GeeGees.log">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="86242" column="45" selection-start="8865004" selection-end="8865004" vertical-scroll-proportion="-941.9544">
           <folding />
         </state>
       </provider>
@@ -931,6 +916,7 @@
             <option name="proportions">
               <list>
                 <option value="0.2" />
+                <option value="0.5" />
               </list>
             </option>
           </splitter-proportions>
