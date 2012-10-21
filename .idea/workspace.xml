@@ -2,11 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4906eb3e-3c23-416b-a2bb-2c3f55caf229" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/GeeGees.iml" afterPath="$PROJECT_DIR$/GeeGees.iml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pom.xml" afterPath="$PROJECT_DIR$/pom.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/geegees/model/BettingForecast.java" afterPath="$PROJECT_DIR$/src/main/java/geegees/model/BettingForecast.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/geegees/service/ExcelService.java" afterPath="$PROJECT_DIR$/src/main/java/geegees/service/ExcelService.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/geegees/service/RacingPostDocumentService.java" afterPath="$PROJECT_DIR$/src/main/java/geegees/service/RacingPostDocumentService.java" />
     </list>
     <ignored path="GeeGees.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -64,10 +61,10 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="GeeGees.log" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/GeeGees.log">
+      <file leaf-file-name="ExcelService.java" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/geegees/service/ExcelService.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="86242" column="45" selection-start="8865004" selection-end="8865004" vertical-scroll-proportion="-941.9544">
+            <state line="36" column="98" selection-start="1395" selection-end="1395" vertical-scroll-proportion="0.3107275">
               <folding />
             </state>
           </provider>
@@ -97,10 +94,10 @@
         <option value="$PROJECT_DIR$/src/main/java/geegees/model/TipsDecorator.java" />
         <option value="$PROJECT_DIR$/src/main/java/geegees/service/RacingPostRaceService.java" />
         <option value="$PROJECT_DIR$/src/main/resources/geegees/logback.xml" />
-        <option value="$PROJECT_DIR$/pom.xml" />
         <option value="$PROJECT_DIR$/src/main/resources/logback.xml" />
         <option value="$PROJECT_DIR$/src/main/java/geegees/service/RacingPostDocumentService.java" />
         <option value="$PROJECT_DIR$/src/main/java/geegees/model/BettingForecast.java" />
+        <option value="$PROJECT_DIR$/pom.xml" />
         <option value="$PROJECT_DIR$/src/main/java/geegees/service/ExcelService.java" />
       </list>
     </option>
@@ -655,7 +652,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
       <window_info id="Data Sources" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -670,7 +667,7 @@
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3297414" sideWeight="0.27272728" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24856322" sideWeight="0.27272728" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24856322" sideWeight="0.27272728" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="true" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.72727275" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="CheckStyle" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -809,13 +806,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/pom.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="76" column="43" selection-start="2982" selection-end="2982" vertical-scroll-proportion="0.7237978">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/logback.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state line="10" column="36" selection-start="453" selection-end="453" vertical-scroll-proportion="0.34525278">
@@ -844,16 +834,23 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/geegees/service/ExcelService.java">
+    <entry file="file://$PROJECT_DIR$/GeeGees.log">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="25" column="0" selection-start="677" selection-end="677" vertical-scroll-proportion="0.17262639">
+        <state line="86242" column="45" selection-start="8865004" selection-end="8865004" vertical-scroll-proportion="-941.9544">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/GeeGees.log">
+    <entry file="file://$PROJECT_DIR$/pom.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="86242" column="45" selection-start="8865004" selection-end="8865004" vertical-scroll-proportion="-941.9544">
+        <state line="34" column="21" selection-start="1319" selection-end="1319" vertical-scroll-proportion="1.1738595">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/geegees/service/ExcelService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="36" column="98" selection-start="1395" selection-end="1395" vertical-scroll-proportion="0.3107275">
           <folding />
         </state>
       </provider>

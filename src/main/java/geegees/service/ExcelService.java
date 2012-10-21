@@ -34,7 +34,7 @@ public class ExcelService {
             WritableCellFormat raceTitleFormat = new WritableCellFormat(raceTitleFont);
             int row = 0;
             for (Race race : races) {
-                logger.info("writing to spreadsheet for {}", race);
+                logger.info("writing to spreadsheet for {} at {}", race.getTime(), race.getVenue());
                 try {
                     sheet.addCell(new Label(0, row, race.getVenue(), raceTitleFormat));
                     sheet.addCell(new Label(1, row, race.getTime(), raceTitleFormat));
