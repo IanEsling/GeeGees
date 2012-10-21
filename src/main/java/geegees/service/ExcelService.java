@@ -17,7 +17,7 @@ import java.util.Date;
 public class ExcelService {
 
     Logger logger = LoggerFactory.getLogger(ExcelService.class);
-    SimpleDateFormat format = new SimpleDateFormat("dd-MM-yyyy-HH:mm");
+    SimpleDateFormat format = new SimpleDateFormat("dd-MM-yyyy-HH-mm");
 
     public void createSpreadsheet(Collection<Race> races) {
         WritableWorkbook racesDoc = null;
