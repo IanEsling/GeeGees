@@ -10,6 +10,7 @@ public class Race implements Comparable<Race> {
     private String time;
     private Integer numberOfRunners;
     private Collection<Horse> horses;
+    private boolean bettable = false;
 
     public Race() {}
 
@@ -68,5 +69,13 @@ public class Race implements Comparable<Race> {
         } else {
             return getVenue().compareTo(race.getVenue());
         }
+    }
+
+    public boolean getBettable() {
+        return bettable;
+    }
+
+    public void setBettable(boolean bettable) {
+        this.bettable = bettable;
     }
 }

@@ -5,12 +5,14 @@ import geegees.model.Race;
 
 import java.util.Collection;
 
+import static com.google.common.collect.Lists.newArrayList;
+
 public class RaceBuilder {
 
     private String time;
     private String venue;
     private Integer numberOfRunners;
-    private Collection<Horse> horses;
+    private Collection<Horse> horses = newArrayList();
 
     private RaceBuilder(){}
 
@@ -44,6 +46,11 @@ public class RaceBuilder {
 
     public RaceBuilder horses(Collection<Horse> horses) {
         this.horses = horses;
+        return this;
+    }
+
+    public RaceBuilder horse(Horse horse) {
+        this.horses.add(horse);
         return this;
     }
 }

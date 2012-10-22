@@ -3,7 +3,8 @@ package geegees.model;
 public class Horse {
     String name;
     private String odds;
-    private Integer tips;
+    private Integer tips = 0;
+    private double difference;
 
     public Horse(String name, String odds) {
         this.name = name;
@@ -23,7 +24,15 @@ public class Horse {
     }
 
     public Integer getTips() {
-        return tips;
+        return tips == null ? 0 : tips;
+    }
+
+    public double getDifference() {
+        return difference;
+    }
+
+    public void setDifference(double difference) {
+        this.difference = difference;
     }
 
     @Override

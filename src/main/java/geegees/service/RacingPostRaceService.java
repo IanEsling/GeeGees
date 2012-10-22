@@ -1,6 +1,7 @@
 package geegees.service;
 
 import geegees.model.Race;
+import geegees.model.RaceBetAnalysisDecorator;
 import org.jsoup.nodes.Document;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -31,7 +32,7 @@ public class RacingPostRaceService {
             Race race = racingPostDocumentService.getRace(racePage);
             race.setHorses(racingPostDocumentService.getTipsDecorator(racePage,
                     racingPostDocumentService.getBettingForecast(racePage).getHorses()).getHorses());
-            races.add(race);
+            races.add(new RaceBetAnalysisDecorator(race).getRace());
         }
         Collections.sort(races);
         return races;
