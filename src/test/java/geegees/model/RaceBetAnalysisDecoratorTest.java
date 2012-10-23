@@ -30,7 +30,7 @@ public class RaceBetAnalysisDecoratorTest {
         //then
         for (Horse horse : race.getHorses()) {
             if (horse.getName().equals("fav")) {
-                assertEquals("wrong value for favourite", -2d, horse.getDifference(), 0d);
+                assertEquals("wrong value for favourite", -2d, horse.getMagicNumber(), 0d);
             }
         }
     }

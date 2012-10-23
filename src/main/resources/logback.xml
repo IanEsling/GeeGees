@@ -13,6 +13,7 @@
             <!-- keep 30 days' worth of history -->
             <maxHistory>30</maxHistory>
         </rollingPolicy>
+        <append>false</append>
         <triggeringPolicy class="ch.qos.logback.core.rolling.SizeBasedTriggeringPolicy">
             <maxFileSize>5MB</maxFileSize>
         </triggeringPolicy>
