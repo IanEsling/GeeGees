@@ -54,6 +54,10 @@ public class RaceBetAnalysisDecorator {
     }
 
     private double getDecimalOdds(Horse horse) {
+        if (horse.getOdds().equals("Evs")) {
+            return 1d;
+        }
+
         int slashAt = horse.getOdds().indexOf("/");
         Double numerator = Double.valueOf(horse.getOdds().substring(0, slashAt));
         Double denominator = Double.valueOf(horse.getOdds().substring(slashAt + 1));

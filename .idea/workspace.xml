@@ -2,9 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4906eb3e-3c23-416b-a2bb-2c3f55caf229" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/geegees/model/Horse.java" afterPath="$PROJECT_DIR$/src/main/java/geegees/model/Horse.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/geegees/model/RaceBetAnalysisDecorator.java" afterPath="$PROJECT_DIR$/src/main/java/geegees/model/RaceBetAnalysisDecorator.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/geegees/service/ExcelService.java" afterPath="$PROJECT_DIR$/src/main/java/geegees/service/ExcelService.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/java/geegees/model/BettingForecastTest.java" afterPath="$PROJECT_DIR$/src/test/java/geegees/model/BettingForecastTest.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/java/geegees/model/RaceBetAnalysisDecoratorTest.java" afterPath="$PROJECT_DIR$/src/test/java/geegees/model/RaceBetAnalysisDecoratorTest.java" />
     </list>
     <ignored path="GeeGees.iws" />
@@ -85,8 +84,8 @@
       <property name="field_breakpoints_groupByClasses" value="true" />
       <property name="method_breakpoints_groupByClasses" value="true" />
       <property name="exception_breakpoints_viewId" value="TABLE" />
-      <property name="exception_breakpoints_groupByClasses" value="true" />
       <property name="field_breakpoints_viewId" value="TABLE" />
+      <property name="exception_breakpoints_groupByClasses" value="true" />
       <property name="method_breakpoints_groupByMethods" value="false" />
     </ui_properties>
   </component>
@@ -98,7 +97,7 @@
       <file leaf-file-name="ExcelService.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/geegees/service/ExcelService.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="46" column="0" selection-start="1955" selection-end="1955" vertical-scroll-proportion="0.6233766">
+            <state line="41" column="25" selection-start="1585" selection-end="1585" vertical-scroll-proportion="0.051948052">
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -469,16 +468,17 @@
     <property name="recentsLimit" value="5" />
     <property name="MemberChooser.sorted" value="false" />
     <property name="project.structure.side.proportion" value="0.2" />
+    <property name="GoToClass.includeJavaFiles" value="false" />
     <property name="MemberChooser.copyJavadoc" value="false" />
     <property name="GoToClass.toSaveIncludeLibraries" value="false" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="com.intellij.testIntegration.createTest.CreateTestDialog.includeInheritedMembers" value="false" />
-    <property name="MemberChooser.showClasses" value="true" />
     <property name="FullScreen" value="false" />
+    <property name="MemberChooser.showClasses" value="true" />
     <property name="GoToClass.includeLibraries" value="false" />
-    <property name="options.searchVisible" value="true" />
-    <property name="options.splitter.details.proportions" value="0.2" />
     <property name="dynamic.classpath" value="false" />
+    <property name="options.splitter.details.proportions" value="0.2" />
+    <property name="options.searchVisible" value="true" />
   </component>
   <component name="RecentsManager">
     <key name="CreateTestDialog.RecentsKey">
@@ -774,7 +774,7 @@
     <editor active="false" />
     <layout>
       <window_info id="Data Sources" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Changes" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32969698" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32969698" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="JetGradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -782,16 +782,16 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32848486" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="true" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3297414" sideWeight="0.27272728" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24784483" sideWeight="0.67030305" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24784483" sideWeight="0.67030305" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="true" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.72727275" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="CheckStyle" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32874015" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32848486" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
@@ -918,28 +918,22 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/geegees/model/Horse.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="6" column="30" selection-start="147" selection-end="147" vertical-scroll-proportion="0.2038835">
-          <folding />
-        </state>
+        <state line="6" column="30" selection-start="147" selection-end="147" vertical-scroll-proportion="0.2038835" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/test/java/geegees/model/RaceBetAnalysisDecoratorTest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="115" column="61" selection-start="4241" selection-end="4241" vertical-scroll-proportion="0.37378642">
-          <folding />
-        </state>
+        <state line="115" column="61" selection-start="4241" selection-end="4241" vertical-scroll-proportion="0.37378642" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/geegees/model/RaceBetAnalysisDecorator.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="19" column="0" selection-start="524" selection-end="524" vertical-scroll-proportion="0.33333334">
-          <folding />
-        </state>
+        <state line="19" column="0" selection-start="524" selection-end="524" vertical-scroll-proportion="0.33333334" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/geegees/service/ExcelService.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="46" column="0" selection-start="1955" selection-end="1955" vertical-scroll-proportion="0.6233766">
+        <state line="41" column="25" selection-start="1585" selection-end="1585" vertical-scroll-proportion="0.051948052">
           <folding>
             <element signature="imports" expanded="true" />
           </folding>

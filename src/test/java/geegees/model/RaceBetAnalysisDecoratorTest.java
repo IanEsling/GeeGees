@@ -13,6 +13,29 @@ public class RaceBetAnalysisDecoratorTest {
     RaceBetAnalysisDecorator raceBetAnalysisDecorator;
 
     @Test
+    public void shouldCalculateEvens() {
+        Race race = raceBuilder()
+                .venue("venue")
+                .time("time")
+                .numberOfRunners(10)
+                .horse(horseBuilder().name("not-fav").odds("4/1").build())
+                .horse(horseBuilder().name("fav").odds("Evs").tips(5).build())
+                .horse(horseBuilder().name("not-fav-either").odds("5/1").build())
+                .build();
+        raceBetAnalysisDecorator = new RaceBetAnalysisDecorator(race);
+
+        //when
+        race = raceBetAnalysisDecorator.getRace();
+
+        //then
+        for (Horse horse : race.getHorses()) {
+            if (horse.getName().equals("fav")) {
+                assertEquals("wrong value for favourite", -2d, horse.getDifference(), 0d);
+            }
+        }
+    }
+
+    @Test
     public void shouldCalculateValueForOneFavourite() {
         Race race = raceBuilder()
                 .venue("venue")
