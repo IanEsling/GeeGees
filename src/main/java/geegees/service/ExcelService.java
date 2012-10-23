@@ -41,19 +41,22 @@ public class ExcelService {
                     raceTitleFormat.setBackground(race.getBettable() ? Colour.LIGHT_GREEN : Colour.RED);
                     sheet.addCell(new Label(0, row, race.getVenue(), raceTitleFormat));
                     sheet.addCell(new Label(1, row, race.getTime(), raceTitleFormat));
-                    sheet.addCell(new Label(2, row, race.getNumberOfRunners() + " runners", raceTitleFormat));
+                    sheet.addCell(new Label(2, row, "Number Of Runners: ", raceTitleFormat));
+                    sheet.addCell(new Number(3, row, race.getNumberOfRunners(), raceTitleFormat));
                     row++;
                     WritableCellFormat horseTitleFormat = new WritableCellFormat(new WritableFont(WritableFont.ARIAL, WritableFont.DEFAULT_POINT_SIZE, WritableFont.BOLD));
                     sheet.addCell(new Label(0, row, "Horse Name", horseTitleFormat));
                     sheet.addCell(new Label(1, row, "Odds", horseTitleFormat));
-                    sheet.addCell(new Label(2, row, "Tips", horseTitleFormat));
-                    sheet.addCell(new Label(3, row, "Magic Number", horseTitleFormat));
+                    sheet.addCell(new Label(2, row, "Decimal Odds", horseTitleFormat));
+                    sheet.addCell(new Label(3, row, "Tips", horseTitleFormat));
+                    sheet.addCell(new Label(4, row, "Magic Number", horseTitleFormat));
                     row++;
                     for (Horse horse : race.getHorses()) {
                         sheet.addCell(new Label(0, row, horse.getName()));
                         sheet.addCell(new Label(1, row, horse.getOdds()));
-                        sheet.addCell(new Number(2, row, horse.getTips()));
-                        sheet.addCell(new Number(3, row, horse.getDifference()));
+                        sheet.addCell(new Label(2, row, String.valueOf(horse.getDecimalOdds())));
+                        sheet.addCell(new Number(3, row, horse.getTips()));
+                        sheet.addCell(new Number(4, row, horse.getMagicNumber()));
                         row++;
                     }
                     row++;

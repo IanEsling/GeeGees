@@ -1,6 +1,5 @@
 package geegees.model;
 
-import org.junit.Ignore;
 import org.junit.Test;
 
 import static geegees.builders.HorseBuilder.horseBuilder;
@@ -31,7 +30,7 @@ public class RaceBetAnalysisDecoratorTest {
         //then
         for (Horse horse : race.getHorses()) {
             if (horse.getName().equals("fav")) {
-                assertEquals("wrong value for favourite", -3d, horse.getDifference(), 0d);
+                assertEquals("wrong value for favourite", -3d, horse.getMagicNumber(), 0d);
             }
         }
     }
@@ -56,13 +55,13 @@ public class RaceBetAnalysisDecoratorTest {
         //then
         for (Horse horse : race.getHorses()) {
             if (horse.getName().equals("fav1")) {
-                assertEquals("wrong value for favourite 1", -2d, horse.getDifference(), 0d);
+                assertEquals("wrong value for favourite 1", -2d, horse.getMagicNumber(), 0d);
             }
             if (horse.getName().equals("fav2")) {
-                assertEquals("wrong value for favourite 2", -1d, horse.getDifference(), 0d);
+                assertEquals("wrong value for favourite 2", -1d, horse.getMagicNumber(), 0d);
             }
             if (horse.getName().equals("fav3")) {
-                assertEquals("wrong value for favourite 3", 0d, horse.getDifference(), 0d);
+                assertEquals("wrong value for favourite 3", 0d, horse.getMagicNumber(), 0d);
             }
         }
     }
@@ -105,6 +104,26 @@ public class RaceBetAnalysisDecoratorTest {
 
         //then
         assertTrue("race should be bettable", race.getBettable());
+    }
+
+    @Test
+    public void shouldNotBeBettableIfFavouriteLessThanEvens() {
+        //given
+        Race race = raceBuilder()
+                .venue("venue")
+                .time("time")
+                .numberOfRunners(5)
+                .horse(horseBuilder().name("fav").odds("10/11").build())
+                .horse(horseBuilder().name("not-fav").odds("5/2").build())
+                .horse(horseBuilder().name("me-not-fav").odds("7/3").build())
+                .build();
+        raceBetAnalysisDecorator = new RaceBetAnalysisDecorator(race);
+
+        //when
+        race = raceBetAnalysisDecorator.getRace();
+
+        //then
+        assertFalse("race should not be bettable", race.getBettable());
     }
 
     @Test

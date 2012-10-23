@@ -4,7 +4,8 @@ public class Horse {
     String name;
     private String odds;
     private Integer tips = 0;
-    private double difference;
+    private double magicNumber;
+    private double decimalOdds;
 
     public Horse(String name, String odds) {
         this.name = name;
@@ -27,12 +28,12 @@ public class Horse {
         return tips == null ? 0 : tips;
     }
 
-    public double getDifference() {
-        return difference;
+    public double getMagicNumber() {
+        return magicNumber;
     }
 
-    public void setDifference(double difference) {
-        this.difference = difference;
+    public void setMagicNumber(double magicNumber) {
+        this.magicNumber = magicNumber;
     }
 
     @Override
@@ -56,5 +57,13 @@ public class Horse {
     @Override
     public int hashCode() {
         return name != null ? name.hashCode() : 0;
+    }
+
+    public double getDecimalOdds() {
+        return decimalOdds;
+    }
+
+    public void setDecimalOdds(double decimalOdds) {
+        this.decimalOdds = decimalOdds;
     }
 }
